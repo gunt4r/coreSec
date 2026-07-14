@@ -16,7 +16,7 @@ export function isLang(value: unknown): value is Lang {
 
 const en = {
   meta: {
-    title: "CORE SEC — Crypto Account Recovery",
+    title: "CORESEC FINANCE — Crypto Account Recovery",
     description:
       "When exchanges freeze accounts and wallets go dark, we navigate compliance, legal, and technical channels to restore your access.",
   },
@@ -97,6 +97,44 @@ const en = {
     success_body: "We will contact you within 24 hours.",
     error: "Something went wrong. Please try again or contact us directly.",
   },
+  cases: {
+    eyebrow: "Client Outcomes",
+    headline: "Cases we've resolved",
+    sub: "Each case is backed by the exchange correspondence or account screenshot it describes. Click any card to view the evidence. Identifying details are redacted at the client's request.",
+    view_proof: "View proof",
+    disclaimer:
+      "Outcomes depend on the exchange, the reason for the freeze, and the specifics of each case. Past results do not guarantee a similar outcome.",
+    items: {
+      appeal: {
+        body: "A balance was isolated under Bybit's “Abnormal Asset Origin” policy, leaving the funding account at zero. We mapped the flag, prepared the documentation, and filed the appeal. The flag was lifted and the assets released.",
+        label: "Bybit",
+        meta: "Abnormal asset origin · appeal",
+        outcome: "Appeal granted · 21,267 USDT released",
+        proof: "Bybit funding account, Pending Assets: 21,267 USDT (TRON TRC-20), status “Appeal Successful”.",
+      },
+      withdrawal: {
+        body: "A withdrawal was held during compliance review. Following our submission to the exchange, the transfer was approved and broadcast on-chain.",
+        label: "Bybit",
+        meta: "Withdrawal held in review",
+        outcome: "Released · 27,576.98 USDT sent",
+        proof: "Bybit confirmation email: withdrawal status changed to “sent” — 27,576.9793 USDT via Ethereum (ERC-20).",
+      },
+      manual_transfer: {
+        body: "When verification cannot be completed, the account is closed permanently. We secured the exit that preserves the balance — a one-time manual transfer of the full amount to a wallet the client controls.",
+        label: "Bybit",
+        meta: "Verification could not be completed",
+        outcome: "Funds returned to the client's wallet",
+        proof: "Bybit Customer Support authorising a one-time manual transfer of available assets to an external wallet address before permanent account closure.",
+      },
+      refund_scam: {
+        body: "A client forwarded a message promising a refund on condition of an up-front transfer. No legitimate recovery requires sending crypto to a stranger's wallet. We identified the advance-fee scam and the client paid nothing.",
+        label: "Changelly",
+        meta: "Fake “refund” solicitation",
+        outcome: "Advance-fee scam stopped · client paid nothing",
+        proof: "Fraudulent email impersonating a Changelly compliance officer, instructing the victim to send USDT to an attacker-controlled wallet address in order to “release” a refund.",
+      },
+    },
+  },
   faq: {
     eyebrow: "Questions",
     headline: "Frequently asked",
@@ -116,7 +154,7 @@ const en = {
     terms: "Terms of Service",
     contact: "Contact",
     email: "core.sec.finance@gmail.com",
-    telegram: "@reclaimprotocol",
+    telegram: "",
     rights: "All rights reserved.",
   },
 };
@@ -125,7 +163,7 @@ export type Dictionary = typeof en;
 
 const uk: Dictionary = {
   meta: {
-    title: "CORE SEC — Відновлення криптоакаунтів",
+    title: "CORESEC FINANCE — Відновлення криптоакаунтів",
     description:
       "Коли біржі заморожують акаунти та гаманці, ми використовуємо правові, комплаєнс та технічні канали для відновлення вашого доступу.",
   },
@@ -206,6 +244,44 @@ const uk: Dictionary = {
     success_body: "Ми зв'яжемося з вами протягом 24 годин.",
     error: "Щось пішло не так. Спробуйте ще раз або зв'яжіться з нами напряму.",
   },
+  cases: {
+    eyebrow: "Результати клієнтів",
+    headline: "Справи, які ми вирішили",
+    sub: "Кожну справу підтверджує листування з біржею або скріншот акаунту, який вона описує. Натисніть на картку, щоб переглянути доказ. Ідентифікаційні дані приховані на прохання клієнта.",
+    view_proof: "Переглянути доказ",
+    disclaimer:
+      "Результат залежить від біржі, причини блокування та обставин конкретної справи. Попередні результати не гарантують аналогічного результату.",
+    items: {
+      appeal: {
+        body: "Баланс було ізольовано за політикою Bybit «Abnormal Asset Origin», фандинг-акаунт залишився на нулі. Ми визначили причину позначки, підготували документи та подали апеляцію. Позначку знято, активи розблоковано.",
+        label: "Bybit",
+        meta: "Аномальне походження активів · апеляція",
+        outcome: "Апеляцію задоволено · 21 267 USDT розблоковано",
+        proof: "Фандинг-акаунт Bybit, Pending Assets: 21 267 USDT (TRON TRC-20), статус «Appeal Successful».",
+      },
+      withdrawal: {
+        body: "Виведення було затримано під час комплаєнс-перевірки. Після нашого звернення до біржі переказ схвалено та відправлено в мережу.",
+        label: "Bybit",
+        meta: "Виведення затримано на перевірці",
+        outcome: "Розблоковано · 27 576,98 USDT відправлено",
+        proof: "Лист-підтвердження Bybit: статус виведення змінено на «відправлено» — 27 576,9793 USDT через Ethereum (ERC-20).",
+      },
+      manual_transfer: {
+        body: "Якщо верифікацію завершити неможливо, акаунт закривають назавжди. Ми забезпечили вихід, що зберігає баланс — одноразовий ручний переказ усієї суми на гаманець, який контролює клієнт.",
+        label: "Bybit",
+        meta: "Верифікацію завершити неможливо",
+        outcome: "Кошти повернуто на гаманець клієнта",
+        proof: "Служба підтримки Bybit погоджує одноразовий ручний переказ доступних активів на зовнішній гаманець перед остаточним закриттям акаунту.",
+      },
+      refund_scam: {
+        body: "Клієнт переслав повідомлення з обіцянкою повернення за умови попереднього переказу. Жодне законне повернення не вимагає надсилати криптовалюту на чужий гаманець. Ми розпізнали схему з передоплатою — клієнт не заплатив нічого.",
+        label: "Changelly",
+        meta: "Фальшива пропозиція «повернення»",
+        outcome: "Шахрайство з передоплатою зупинено · клієнт не заплатив нічого",
+        proof: "Шахрайський лист від імені комплаєнс-офіцера Changelly із вимогою надіслати USDT на гаманець зловмисника, щоб «розблокувати» повернення.",
+      },
+    },
+  },
   faq: {
     eyebrow: "Запитання",
     headline: "Поширені запитання",
@@ -225,14 +301,14 @@ const uk: Dictionary = {
     terms: "Умови використання",
     contact: "Контакти",
     email: "core.sec.finance@gmail.com",
-    telegram: "@reclaimprotocol",
+    telegram: "",
     rights: "Усі права захищені.",
   },
 };
 
 const ru: Dictionary = {
   meta: {
-    title: "CORE SEC — Восстановление криптоаккаунтов",
+    title: "CORESEC FINANCE — Восстановление криптоаккаунтов",
     description:
       "Когда биржи замораживают аккаунты и кошельки, мы используем правовые, комплаенс и технические каналы для восстановления вашего доступа.",
   },
@@ -313,6 +389,44 @@ const ru: Dictionary = {
     success_body: "Мы свяжемся с вами в течение 24 часов.",
     error: "Что-то пошло не так. Попробуйте ещё раз или свяжитесь с нами напрямую.",
   },
+  cases: {
+    eyebrow: "Результаты клиентов",
+    headline: "Дела, которые мы решили",
+    sub: "Каждое дело подтверждается перепиской с биржей или скриншотом аккаунта, который оно описывает. Нажмите на карточку, чтобы увидеть доказательство. Идентифицирующие данные скрыты по просьбе клиента.",
+    view_proof: "Смотреть доказательство",
+    disclaimer:
+      "Результат зависит от биржи, причины блокировки и обстоятельств конкретного дела. Прошлые результаты не гарантируют аналогичного исхода.",
+    items: {
+      appeal: {
+        body: "Баланс был изолирован по политике Bybit «Abnormal Asset Origin», фандинг-аккаунт остался на нуле. Мы определили причину пометки, подготовили документы и подали апелляцию. Пометка снята, активы разблокированы.",
+        label: "Bybit",
+        meta: "Аномальное происхождение активов · апелляция",
+        outcome: "Апелляция удовлетворена · 21 267 USDT разблокировано",
+        proof: "Фандинг-аккаунт Bybit, Pending Assets: 21 267 USDT (TRON TRC-20), статус «Appeal Successful».",
+      },
+      withdrawal: {
+        body: "Вывод был задержан во время комплаенс-проверки. После нашего обращения к бирже перевод одобрен и отправлен в сеть.",
+        label: "Bybit",
+        meta: "Вывод задержан на проверке",
+        outcome: "Разблокировано · 27 576,98 USDT отправлено",
+        proof: "Письмо-подтверждение Bybit: статус вывода изменён на «отправлено» — 27 576,9793 USDT через Ethereum (ERC-20).",
+      },
+      manual_transfer: {
+        body: "Когда верификацию завершить невозможно, аккаунт закрывают навсегда. Мы обеспечили выход, сохраняющий баланс — единоразовый ручной перевод всей суммы на кошелёк, который контролирует клиент.",
+        label: "Bybit",
+        meta: "Верификацию завершить невозможно",
+        outcome: "Средства возвращены на кошелёк клиента",
+        proof: "Служба поддержки Bybit согласует единоразовый ручной перевод доступных активов на внешний кошелёк перед окончательным закрытием аккаунта.",
+      },
+      refund_scam: {
+        body: "Клиент переслал сообщение с обещанием возврата при условии предварительного перевода. Ни один законный возврат не требует отправлять криптовалюту на чужой кошелёк. Мы распознали схему с предоплатой — клиент не заплатил ничего.",
+        label: "Changelly",
+        meta: "Фальшивое предложение «возврата»",
+        outcome: "Мошенничество с предоплатой остановлено · клиент не заплатил ничего",
+        proof: "Мошенническое письмо от имени комплаенс-офицера Changelly с требованием отправить USDT на кошелёк злоумышленника, чтобы «разблокировать» возврат.",
+      },
+    },
+  },
   faq: {
     eyebrow: "Вопросы",
     headline: "Часто задаваемые",
@@ -332,7 +446,7 @@ const ru: Dictionary = {
     terms: "Условия использования",
     contact: "Контакты",
     email: "core.sec.finance@gmail.com",
-    telegram: "@reclaimprotocol",
+    telegram: "",
     rights: "Все права защищены.",
   },
 };

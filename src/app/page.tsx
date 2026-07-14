@@ -1,3 +1,4 @@
+import { Cases } from "@/components/cases";
 import { ContactForm } from "@/components/contact-form";
 import { Faq } from "@/components/faq";
 import { Footer } from "@/components/footer";
@@ -16,6 +17,7 @@ export default function Home() {
         <Problems />
         <WhyUs />
         <Process />
+        <Cases />
         <ContactForm />
         <Faq />
       </main>

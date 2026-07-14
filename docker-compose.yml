@@ -1,11 +1,33 @@
 services:
   web:
     build: .
-    image: protect-crypto-land
-    ports:
-      - "3000:3000"
+    image: coresec
+    restart: unless-stopped
+    # Not published to the host — only Caddy reaches it, over the compose network.
+    expose:
+      - "3000"
     environment:
       NODE_ENV: production
-      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
-      TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID:-}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:?set TELEGRAM_BOT_TOKEN in .env}
+      TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID:?set TELEGRAM_CHAT_ID in .env}
+
+  caddy:
+    image: caddy:2-alpine
     restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      DOMAIN: ${DOMAIN:?set DOMAIN in .env}
+      ACME_EMAIL: ${ACME_EMAIL:-}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data # certificates — must persist, or you will hit Let's Encrypt rate limits
+      - caddy_config:/config
+    depends_on:
+      - web
+
+volumes:
+  caddy_data:
+  caddy_config:

@@ -1,4 +1,4 @@
-# BrandName — Crypto Account Recovery Landing
+# CORE SEC — Crypto Account Recovery Landing
 
 Next.js (App Router) landing page with a three-language switcher (EN / UA / RU), built from the Figma design.
 
@@ -21,10 +21,56 @@ Other scripts: `npm run build`, `npm start`, `npm run typecheck`.
 > ESLint is not wired up. `eslint-config-next`'s peer ranges currently send npm into a very long
 > dependency-resolution backtrack on this toolchain, so `tsc --noEmit` is the quality gate instead.
 
-## Docker
+## Deployment (VPS + Caddy)
+
+`docker compose` runs two containers: the Next.js app, and Caddy in front of it as a reverse proxy.
+Caddy terminates TLS and gets/renews the certificate automatically — there is no certbot step and no
+nginx config. The app itself is **not** published to the host; only Caddy's 80/443 are, and it reaches
+the app over the internal compose network.
+
+Point your domain's `A` record at the VPS **before** starting, or the certificate cannot be issued.
+
+On the server (needs Docker + the compose plugin):
 
 ```bash
-docker compose up --build      # http://localhost:3000
+git clone https://github.com/gunt4r/coreSec.git
+cd coreSec
+
+cp .env.example .env
+nano .env                      # set DOMAIN, ACME_EMAIL, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+
+docker compose up -d --build
+docker compose logs -f caddy   # watch the certificate get issued
+```
+
+That is the whole deploy. To ship an update:
+
+```bash
+git pull && docker compose up -d --build
+```
+
+Useful:
+
+```bash
+docker compose ps                 # what is running
+docker compose logs -f web        # app logs, incl. Telegram delivery failures
+docker compose down               # stop (certificates survive in the caddy_data volume)
+```
+
+Notes:
+
+- **`docker compose` fails fast if `.env` is incomplete** — `DOMAIN`, `TELEGRAM_BOT_TOKEN` and
+  `TELEGRAM_CHAT_ID` are required, so you cannot accidentally boot a site that silently drops leads.
+- Ports 80 and 443 must be open in the VPS firewall. Caddy redirects HTTP to HTTPS on its own.
+- The certificate lives in the `caddy_data` volume. Don't delete it casually — Let's Encrypt rate-limits
+  re-issuance.
+- `next build` runs inside the image build and wants roughly 1–2 GB of RAM. On a 1 GB VPS, add swap first.
+- Setting `DOMAIN=:80` serves plain HTTP with no certificate — useful for an IP-only box or a local test.
+
+## Docker (local)
+
+```bash
+docker compose up --build      # needs .env; serves on http://localhost via Caddy
 ```
 
 ## Telegram delivery + lead attribution

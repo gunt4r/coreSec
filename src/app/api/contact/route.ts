@@ -109,10 +109,14 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid submission" }, { status: 400 });
   }
 
+  // A missing config must never look like success: that silently drops the lead while the
+  // visitor is told we received it.
   if (!isTelegramConfigured()) {
-    // Keeps the form usable locally without credentials — but a lead would be lost in production.
-    console.warn("[contact] Telegram is not configured; lead not delivered", formatMessage(lead));
-    return NextResponse.json({ ok: true, delivered: false });
+    console.error(
+      "[contact] TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID are not set — lead NOT delivered:\n" +
+        formatMessage(lead),
+    );
+    return NextResponse.json({ error: "Delivery not configured" }, { status: 500 });
   }
 
   try {
@@ -123,5 +127,5 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Delivery failed" }, { status: 502 });
   }
 
-  return NextResponse.json({ ok: true, delivered: true });
+  return NextResponse.json({ ok: true });
 }

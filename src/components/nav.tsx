@@ -7,27 +7,7 @@ import { useLanguage } from "@/i18n/language-provider";
 import { LANGS, LANG_LABELS, type Lang } from "@/i18n/translations";
 import { scrollTo } from "@/lib/scroll";
 import { EASE } from "./fade-up";
-
-function Wordmark({ accent = true }: { accent?: boolean }) {
-  return (
-    <>
-      <span
-        className={`text-[13px] font-black uppercase tracking-[0.22em] ${
-          accent ? "text-forest" : "text-white"
-        }`}
-      >
-        CORE
-      </span>
-      <span
-        className={`text-[13px] font-light uppercase tracking-[0.22em] ${
-          accent ? "text-ink" : "text-white/70"
-        }`}
-      >
-        SEC
-      </span>
-    </>
-  );
-}
+import { Logo } from "./logo";
 
 export function Nav() {
   const { lang, setLang, t } = useLanguage();
@@ -83,10 +63,10 @@ export function Nav() {
         <div className="mx-auto flex h-[68px] max-w-[1440px] items-center justify-between px-6 md:px-10 lg:px-16">
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex items-baseline"
-            aria-label="CORE SEC"
+            className="flex items-center"
+            aria-label="CORESEC FINANCE"
           >
-            <Wordmark />
+            <Logo variant="light" />
           </button>
 
           <nav className="hidden items-center gap-9 md:flex">
@@ -159,8 +139,8 @@ export function Nav() {
           className="fixed inset-0 z-40 flex flex-col bg-cream"
         >
           <div className="flex h-[68px] items-center justify-between border-b border-black/[0.07] px-6">
-            <span className="flex items-baseline">
-              <Wordmark />
+            <span className="flex items-center">
+              <Logo variant="light" />
             </span>
             <button onClick={() => setMobileOpen(false)} className="p-2 text-[#444]" aria-label={t.nav.menu}>
               <X size={20} />

@@ -1,0 +1,7 @@
+{$DOMAIN} {
+    encode gzip zstd
+
+    reverse_proxy web:3000
+
+    tls {$ACME_EMAIL}
+}
