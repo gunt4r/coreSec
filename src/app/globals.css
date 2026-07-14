@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+
+  --breakpoint-xs: 30rem;
+
+  /* Brand palette */
+  --color-cream: #fbfbf8;
+  --color-ink: #111111;
+  --color-forest: #0f5d46;
+  --color-forest-dark: #0c5040;
+  --color-emerald: #18a058;
+  --color-deep: #10231e;
+  --color-mint: #ebf5f0;
+
+  /* Neutral text ramp */
+  --color-slate: #595959;
+  --color-graphite: #686868;
+  --color-mist: #bbbbbb;
+
+  --animate-pulse-ring: pulse-ring 4s ease-in-out infinite;
+  --animate-float-y: float-y 7s ease-in-out infinite;
+
+  @keyframes pulse-ring {
+    0%,
+    100% {
+      opacity: 0.12;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.05;
+      transform: scale(1.12);
+    }
+  }
+
+  @keyframes float-y {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Tailwind v4's reset drops the browser default of `cursor: pointer` on buttons. */
+button:not(:disabled),
+[role="button"]:not(:disabled),
+a[href],
+label[for],
+summary {
+  cursor: pointer;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(0 0 0 / 0.1);
+  border-radius: 99px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

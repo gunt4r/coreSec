@@ -1,0 +1,340 @@
+export const LANGS = ["en", "uk", "ru"] as const;
+
+export type Lang = (typeof LANGS)[number];
+
+export const LANG_LABELS: Record<Lang, string> = {
+  en: "EN",
+  uk: "UA",
+  ru: "RU",
+};
+
+export const DEFAULT_LANG: Lang = "en";
+
+export function isLang(value: unknown): value is Lang {
+  return typeof value === "string" && (LANGS as readonly string[]).includes(value);
+}
+
+const en = {
+  meta: {
+    title: "CORE SEC — Crypto Account Recovery",
+    description:
+      "When exchanges freeze accounts and wallets go dark, we navigate compliance, legal, and technical channels to restore your access.",
+  },
+  nav: {
+    links: [
+      { label: "Services", href: "#problems" },
+      { label: "Process", href: "#process" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    cta: "Submit Request",
+    menu: "Menu",
+    lang: "Lang",
+  },
+  hero: {
+    eyebrow: "Crypto Account Recovery",
+    headline: "Recover\naccess.\nRestore\ncontrol.",
+    sub: "When exchanges freeze accounts and wallets go dark, we navigate compliance, legal, and technical channels to restore your access — confidentially and efficiently.",
+    ctaPrimary: "Submit Request",
+    ctaSecondary: "Free Consultation",
+    detail: "Individual case approach · Confidential process · International reach",
+  },
+  problems: {
+    eyebrow: "Why Accounts Get Blocked",
+    headline: "The reasons exchanges freeze access",
+    items: [
+      { num: "01", title: "AML Compliance", desc: "Automatic anti-money laundering checks can freeze accounts without warning during routine monitoring cycles." },
+      { num: "02", title: "KYC Verification", desc: "Know Your Customer procedures may stall or fail, placing accounts into extended review limbo." },
+      { num: "03", title: "Suspicious Activity", desc: "Algorithmic flags for unusual transaction patterns can lock access immediately, pending manual review." },
+      { num: "04", title: "Compliance Reviews", desc: "Regulatory compliance audits may freeze accounts while documentation is verified and processed." },
+      { num: "05", title: "Incorrect Transfers", desc: "Transactions flagged as erroneous or received from flagged addresses may suspend wallet access." },
+      { num: "06", title: "Security Restrictions", desc: "Exchange security systems may lock accounts following detected threats or anomalous login patterns." },
+    ],
+  },
+  why: {
+    eyebrow: "Our Philosophy",
+    headline: "We operate at the intersection of compliance law, technical recovery, and exchange protocol.",
+    items: [
+      { num: "01", title: "Individual Approach", desc: "Every case receives dedicated attention. No generic templates." },
+      { num: "02", title: "Strict Confidentiality", desc: "All communications and case details held under full confidentiality." },
+      { num: "03", title: "Legal Expertise", desc: "Our team works across crypto law, compliance, and exchange protocol." },
+      { num: "04", title: "International Experience", desc: "Cases resolved across Binance, Coinbase, Kraken, OKX, and dozens more." },
+      { num: "05", title: "Direct Communication", desc: "You communicate directly with your case manager. No queues." },
+      { num: "06", title: "Transparent Process", desc: "We outline the roadmap from day one and report at every stage." },
+    ],
+  },
+  process: {
+    eyebrow: "How It Works",
+    headline: "From application to resolution",
+    steps: [
+      { num: "01", title: "Application", desc: "Submit your case through our secure intake form." },
+      { num: "02", title: "Analysis", desc: "We identify the root cause and assess your case." },
+      { num: "03", title: "Investigation", desc: "Legal and compliance team prepares documentation." },
+      { num: "04", title: "Strategy", desc: "We define and execute the optimal recovery path." },
+      { num: "05", title: "Support", desc: "We communicate with the exchange on your behalf." },
+      { num: "06", title: "Resolution", desc: "Access restored. Case closed with full documentation." },
+    ],
+  },
+  form: {
+    eyebrow: "Get Started",
+    headline: "Submit your request",
+    sub: "All applications are reviewed within 24 hours. Your information is handled with complete confidentiality.",
+    name: "Full Name",
+    email: "Email Address",
+    telegram: "Telegram",
+    phone: "Phone Number",
+    exchange: "Exchange or Wallet",
+    situation: "Describe your situation",
+    submit: "Submit Application",
+    submitting: "Sending...",
+    ph_name: "John Smith",
+    ph_email: "john@example.com",
+    ph_telegram: "@username",
+    ph_phone: "+1 (000) 000-0000",
+    ph_exchange: "Binance, Coinbase, MetaMask...",
+    ph_situation: "When was the account frozen? What messages did you receive from the exchange?",
+    privacy: "Your data is protected. We maintain strict confidentiality on all case details.",
+    success_title: "Application received",
+    success_body: "We will contact you within 24 hours.",
+    error: "Something went wrong. Please try again or contact us directly.",
+  },
+  faq: {
+    eyebrow: "Questions",
+    headline: "Frequently asked",
+    items: [
+      { q: "How long does the recovery process take?", a: "Timeline varies by case complexity and exchange responsiveness. Most cases resolve within 7 to 30 business days. We provide an estimated timeline after the initial case analysis." },
+      { q: "Do you guarantee account recovery?", a: "We do not offer unconditional guarantees, as outcomes depend on exchange policies and the nature of each case. We are transparent about likelihood of success during the initial consultation." },
+      { q: "What exchanges do you work with?", a: "We handle cases for all major centralized exchanges including Binance, Coinbase, Kraken, OKX, Bybit, KuCoin, Huobi, and others. We also assist with decentralized wallet recovery." },
+      { q: "Is my information kept confidential?", a: "Absolutely. All case information is handled under strict confidentiality. We do not share client data with third parties under any circumstances." },
+      { q: "What is the cost of the service?", a: "Our fees are determined on a case-by-case basis depending on complexity and the amount of assets involved. We provide a clear pricing structure during the initial consultation at no charge." },
+      { q: "How do I start?", a: "Fill in the application form on this page. A case manager will contact you within 24 hours to schedule an initial consultation." },
+    ],
+  },
+  footer: {
+    tagline: "Professional crypto account recovery.",
+    legal: "Legal",
+    privacy: "Privacy Policy",
+    terms: "Terms of Service",
+    contact: "Contact",
+    email: "core.sec.finance@gmail.com",
+    telegram: "@reclaimprotocol",
+    rights: "All rights reserved.",
+  },
+};
+
+export type Dictionary = typeof en;
+
+const uk: Dictionary = {
+  meta: {
+    title: "CORE SEC — Відновлення криптоакаунтів",
+    description:
+      "Коли біржі заморожують акаунти та гаманці, ми використовуємо правові, комплаєнс та технічні канали для відновлення вашого доступу.",
+  },
+  nav: {
+    links: [
+      { label: "Послуги", href: "#problems" },
+      { label: "Процес", href: "#process" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    cta: "Подати заявку",
+    menu: "Меню",
+    lang: "Мова",
+  },
+  hero: {
+    eyebrow: "Відновлення криптоакаунтів",
+    headline: "Відновіть\nдоступ.\nПоверніть\nконтроль.",
+    sub: "Коли біржі заморожують акаунти та гаманці, ми використовуємо правові, комплаєнс та технічні канали для відновлення вашого доступу — конфіденційно та ефективно.",
+    ctaPrimary: "Подати заявку",
+    ctaSecondary: "Безкоштовна консультація",
+    detail: "Індивідуальний підхід · Конфіденційний процес · Міжнародний досвід",
+  },
+  problems: {
+    eyebrow: "Чому блокують акаунти",
+    headline: "Причини заморожування доступу",
+    items: [
+      { num: "01", title: "AML-перевірка", desc: "Автоматичні перевірки з протидії відмиванню коштів можуть заморозити акаунт без попередження." },
+      { num: "02", title: "KYC-верифікація", desc: "Процедури ідентифікації можуть затягнутися, переводячи акаунт у стан тривалого очікування." },
+      { num: "03", title: "Підозріла активність", desc: "Алгоритмічні тригери на незвичайні транзакції можуть миттєво заблокувати доступ." },
+      { num: "04", title: "Комплаєнс-перевірки", desc: "Регуляторні аудити можуть заморозити акаунт до завершення перевірки документів." },
+      { num: "05", title: "Помилкові перекази", desc: "Транзакції з підозрілих адрес або помилкові можуть призупинити доступ до гаманця." },
+      { num: "06", title: "Обмеження безпеки", desc: "Системи безпеки бірж можуть заблокувати акаунт при виявленні аномальної активності." },
+    ],
+  },
+  why: {
+    eyebrow: "Наша філософія",
+    headline: "Ми працюємо на перетині комплаєнс-права, технічного відновлення та протоколів бірж.",
+    items: [
+      { num: "01", title: "Індивідуальний підхід", desc: "Кожна справа отримує особисту увагу. Жодних шаблонів." },
+      { num: "02", title: "Повна конфіденційність", desc: "Усі комунікації та деталі справ — під суворою конфіденційністю." },
+      { num: "03", title: "Правова експертиза", desc: "Наша команда охоплює криптоправо, комплаєнс та протоколи бірж." },
+      { num: "04", title: "Міжнародний досвід", desc: "Справи вирішено на Binance, Coinbase, Kraken, OKX та багатьох інших." },
+      { num: "05", title: "Пряме спілкування", desc: "Ви спілкуєтеся безпосередньо з менеджером. Без черг і ботів." },
+      { num: "06", title: "Прозорий процес", desc: "Ми окреслюємо план з першого дня та звітуємо на кожному етапі." },
+    ],
+  },
+  process: {
+    eyebrow: "Як це працює",
+    headline: "Від заявки до вирішення",
+    steps: [
+      { num: "01", title: "Заявка", desc: "Заповніть деталі справи через захищену форму." },
+      { num: "02", title: "Аналіз", desc: "Ми визначаємо першопричину та оцінюємо справу." },
+      { num: "03", title: "Розслідування", desc: "Юридична команда готує необхідну документацію." },
+      { num: "04", title: "Стратегія", desc: "Ми визначаємо та виконуємо оптимальний шлях відновлення." },
+      { num: "05", title: "Підтримка", desc: "Ми спілкуємося з біржею від вашого імені." },
+      { num: "06", title: "Вирішення", desc: "Доступ відновлено. Справу закрито з повною документацією." },
+    ],
+  },
+  form: {
+    eyebrow: "Розпочніть",
+    headline: "Подайте заявку",
+    sub: "Усі заявки розглядаються протягом 24 годин. Ваша інформація обробляється з повною конфіденційністю.",
+    name: "Повне ім'я",
+    email: "Електронна пошта",
+    telegram: "Telegram",
+    phone: "Номер телефону",
+    exchange: "Біржа або гаманець",
+    situation: "Опишіть вашу ситуацію",
+    submit: "Надіслати заявку",
+    submitting: "Надсилаємо...",
+    ph_name: "Іван Петренко",
+    ph_email: "ivan@example.com",
+    ph_telegram: "@username",
+    ph_phone: "+380 (00) 000-00-00",
+    ph_exchange: "Binance, Coinbase, MetaMask...",
+    ph_situation: "Коли було заморожено акаунт? Які повідомлення надійшли від біржі?",
+    privacy: "Ваші дані захищені. Ми зберігаємо сувору конфіденційність у всіх деталях справи.",
+    success_title: "Заявку отримано",
+    success_body: "Ми зв'яжемося з вами протягом 24 годин.",
+    error: "Щось пішло не так. Спробуйте ще раз або зв'яжіться з нами напряму.",
+  },
+  faq: {
+    eyebrow: "Запитання",
+    headline: "Поширені запитання",
+    items: [
+      { q: "Скільки часу займає процес відновлення?", a: "Тривалість залежить від складності справи та швидкості реагування біржі. Більшість справ вирішується протягом 7–30 робочих днів. Ми надаємо орієнтовні терміни після первинного аналізу." },
+      { q: "Чи гарантуєте ви відновлення акаунту?", a: "Ми не надаємо безумовних гарантій, оскільки результат залежить від політики біржі та характеру кожної справи. Прозоро оцінюємо шанси під час первинної консультації." },
+      { q: "З якими біржами ви працюєте?", a: "Ми розглядаємо справи для Binance, Coinbase, Kraken, OKX, Bybit, KuCoin, Huobi та інших. Також допомагаємо з відновленням децентралізованих гаманців." },
+      { q: "Чи зберігається конфіденційність моїх даних?", a: "Абсолютно. Вся інформація обробляється з дотриманням суворої конфіденційності. Ми не передаємо дані клієнтів третім особам за жодних обставин." },
+      { q: "Яка вартість послуг?", a: "Вартість визначається індивідуально залежно від складності та суми активів. Чітка структура ціноутворення — під час первинної консультації, без будь-якої оплати." },
+      { q: "Як розпочати?", a: "Заповніть заявку на цій сторінці. Менеджер зв'яжеться з вами протягом 24 годин." },
+    ],
+  },
+  footer: {
+    tagline: "Професійне відновлення криптоакаунтів.",
+    legal: "Правова інформація",
+    privacy: "Політика конфіденційності",
+    terms: "Умови використання",
+    contact: "Контакти",
+    email: "core.sec.finance@gmail.com",
+    telegram: "@reclaimprotocol",
+    rights: "Усі права захищені.",
+  },
+};
+
+const ru: Dictionary = {
+  meta: {
+    title: "CORE SEC — Восстановление криптоаккаунтов",
+    description:
+      "Когда биржи замораживают аккаунты и кошельки, мы используем правовые, комплаенс и технические каналы для восстановления вашего доступа.",
+  },
+  nav: {
+    links: [
+      { label: "Услуги", href: "#problems" },
+      { label: "Процесс", href: "#process" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    cta: "Подать заявку",
+    menu: "Меню",
+    lang: "Язык",
+  },
+  hero: {
+    eyebrow: "Восстановление криптоаккаунтов",
+    headline: "Восстановите\nдоступ.\nВерните\nконтроль.",
+    sub: "Когда биржи замораживают аккаунты и кошельки, мы используем правовые, комплаенс и технические каналы для восстановления вашего доступа — конфиденциально и эффективно.",
+    ctaPrimary: "Подать заявку",
+    ctaSecondary: "Бесплатная консультация",
+    detail: "Индивидуальный подход · Конфиденциальный процесс · Международный опыт",
+  },
+  problems: {
+    eyebrow: "Почему блокируют аккаунты",
+    headline: "Причины заморозки доступа",
+    items: [
+      { num: "01", title: "AML-проверка", desc: "Автоматические проверки по противодействию отмыванию средств могут заморозить аккаунт без предупреждения." },
+      { num: "02", title: "KYC-верификация", desc: "Процедуры идентификации могут затянуться, переводя аккаунт в длительное ожидание." },
+      { num: "03", title: "Подозрительная активность", desc: "Алгоритмические триггеры на нетипичные транзакции могут мгновенно заблокировать доступ." },
+      { num: "04", title: "Комплаенс-проверки", desc: "Регуляторные аудиты могут заморозить аккаунт до завершения проверки документов." },
+      { num: "05", title: "Ошибочные переводы", desc: "Транзакции с подозрительных адресов или ошибочные могут приостановить доступ к кошельку." },
+      { num: "06", title: "Ограничения безопасности", desc: "Системы безопасности бирж могут заблокировать аккаунт при обнаружении аномальной активности." },
+    ],
+  },
+  why: {
+    eyebrow: "Наша философия",
+    headline: "Мы работаем на пересечении комплаенс-права, технического восстановления и протоколов бирж.",
+    items: [
+      { num: "01", title: "Индивидуальный подход", desc: "Каждое дело получает личное внимание. Никаких шаблонов." },
+      { num: "02", title: "Полная конфиденциальность", desc: "Все коммуникации и детали дел — под строгой конфиденциальностью." },
+      { num: "03", title: "Правовая экспертиза", desc: "Наша команда охватывает криптоправо, комплаенс и протоколы бирж." },
+      { num: "04", title: "Международный опыт", desc: "Дела решены на Binance, Coinbase, Kraken, OKX и многих других." },
+      { num: "05", title: "Прямая коммуникация", desc: "Вы общаетесь напрямую с менеджером. Без очередей и ботов." },
+      { num: "06", title: "Прозрачный процесс", desc: "Мы обозначаем план с первого дня и отчитываемся на каждом этапе." },
+    ],
+  },
+  process: {
+    eyebrow: "Как это работает",
+    headline: "От заявки до решения",
+    steps: [
+      { num: "01", title: "Заявка", desc: "Заполните детали дела через защищённую форму." },
+      { num: "02", title: "Анализ", desc: "Мы определяем первопричину и оцениваем дело." },
+      { num: "03", title: "Расследование", desc: "Юридическая команда готовит необходимую документацию." },
+      { num: "04", title: "Стратегия", desc: "Мы определяем и выполняем оптимальный путь восстановления." },
+      { num: "05", title: "Поддержка", desc: "Мы общаемся с биржей от вашего имени." },
+      { num: "06", title: "Решение", desc: "Доступ восстановлен. Дело закрыто с полной документацией." },
+    ],
+  },
+  form: {
+    eyebrow: "Начните",
+    headline: "Подайте заявку",
+    sub: "Все заявки рассматриваются в течение 24 часов. Ваша информация обрабатывается с полной конфиденциальностью.",
+    name: "Полное имя",
+    email: "Электронная почта",
+    telegram: "Telegram",
+    phone: "Номер телефона",
+    exchange: "Биржа или кошелёк",
+    situation: "Опишите вашу ситуацию",
+    submit: "Отправить заявку",
+    submitting: "Отправляем...",
+    ph_name: "Иван Петров",
+    ph_email: "ivan@example.com",
+    ph_telegram: "@username",
+    ph_phone: "+00 000 000 0000",
+    ph_exchange: "Binance, Coinbase, MetaMask...",
+    ph_situation: "Когда был заморожен аккаунт? Какие сообщения пришли от биржи?",
+    privacy: "Ваши данные защищены. Мы соблюдаем строгую конфиденциальность по всем деталям дела.",
+    success_title: "Заявка получена",
+    success_body: "Мы свяжемся с вами в течение 24 часов.",
+    error: "Что-то пошло не так. Попробуйте ещё раз или свяжитесь с нами напрямую.",
+  },
+  faq: {
+    eyebrow: "Вопросы",
+    headline: "Часто задаваемые",
+    items: [
+      { q: "Сколько времени занимает процесс восстановления?", a: "Сроки зависят от сложности дела и скорости реагирования биржи. Большинство дел решается в течение 7–30 рабочих дней. Ориентировочные сроки — после первичного анализа." },
+      { q: "Гарантируете ли вы восстановление аккаунта?", a: "Мы не предоставляем безусловных гарантий, так как результат зависит от политики биржи и характера каждого дела. Прозрачно оцениваем шансы во время первичной консультации." },
+      { q: "С какими биржами вы работаете?", a: "Мы рассматриваем дела для Binance, Coinbase, Kraken, OKX, Bybit, KuCoin, Huobi и других. Также помогаем с восстановлением децентрализованных кошельков." },
+      { q: "Сохраняется ли конфиденциальность моих данных?", a: "Абсолютно. Вся информация обрабатывается с соблюдением строгой конфиденциальности. Мы не передаём данные клиентов третьим лицам ни при каких обстоятельствах." },
+      { q: "Какова стоимость услуг?", a: "Стоимость определяется индивидуально в зависимости от сложности и суммы активов. Чёткая структура ценообразования — во время первичной консультации, без какой-либо оплаты." },
+      { q: "Как начать?", a: "Заполните заявку на этой странице. Менеджер свяжется с вами в течение 24 часов." },
+    ],
+  },
+  footer: {
+    tagline: "Профессиональное восстановление криптоаккаунтов.",
+    legal: "Правовая информация",
+    privacy: "Политика конфиденциальности",
+    terms: "Условия использования",
+    contact: "Контакты",
+    email: "core.sec.finance@gmail.com",
+    telegram: "@reclaimprotocol",
+    rights: "Все права защищены.",
+  },
+};
+
+export const dictionaries: Record<Lang, Dictionary> = { en, uk, ru };

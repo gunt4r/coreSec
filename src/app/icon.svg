@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="12" fill="#10231E" />
+  <polygon
+    points="32,5 54.5,18 54.5,46 32,59 9.5,46 9.5,18"
+    fill="#39FF14"
+  />
+  <!-- Keyhole, knocked out of the hexagon in the panel colour. Sized to stay legible at 16px. -->
+  <circle cx="32" cy="27" r="7.4" fill="#10231E" />
+  <path d="M28.2 31 H35.8 L37.6 46 H26.4 Z" fill="#10231E" />
+</svg>
