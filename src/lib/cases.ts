@@ -6,7 +6,7 @@
  * people deciding whether to trust us with a frozen account.
  */
 export type CaseFile = {
-  id: "appeal" | "withdrawal" | "manual_transfer" | "refund_scam";
+  id: "appeal" | "withdrawal" | "manual_transfer" | "binance_withdrawal";
   image: string;
 };
 
@@ -14,5 +14,5 @@ export const CASE_FILES: CaseFile[] = [
   { id: "appeal", image: "/cases/bybit-appeal-successful.jpg" },
   { id: "withdrawal", image: "/cases/bybit-withdrawal-released.jpg" },
   { id: "manual_transfer", image: "/cases/bybit-manual-transfer.jpg" },
-  { id: "refund_scam", image: "/cases/changelly-refund-scam.jpg" },
+  { id: "binance_withdrawal", image: "/cases/binance-withdrawal-submitted.jpg" },
 ];
