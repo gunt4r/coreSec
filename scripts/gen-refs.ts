@@ -5,7 +5,7 @@ function main(): void {
     console.error("REF_SECRET is not set. Add it to .env or pass REF_SECRET=... inline.");
     process.exit(1);
   }
-  const baseUrl = process.env.REF_BASE_URL || "https://protectcryptoland.com";
+  const baseUrl = process.env.REF_BASE_URL || "https://coresec.finance";
 
   let names: string[];
   try {

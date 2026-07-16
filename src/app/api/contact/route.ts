@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { escapeHtml, isTelegramConfigured, sendTelegramMessage } from "@/lib/telegram";
+import { decodeRef } from "@/lib/ref";
 
 type Attribution = {
-  params: Record<string, string>;
+  ref?: string;
   referrer?: string;
   landedAt?: string;
 };
@@ -20,29 +21,17 @@ type Lead = {
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const MAX_PARAMS = 12;
-const MAX_KEY = 40;
-const MAX_VALUE = 200;
+const MAX_REF = 200;
 
 function text(value: unknown, max = 2000): string | undefined {
   return typeof value === "string" && value.trim() ? value.trim().slice(0, max) : undefined;
 }
 
-/** The client is not trusted: re-apply the same caps here before anything reaches Telegram. */
+/** The client is not trusted: re-apply caps here before anything reaches Telegram. */
 function parseAttribution(value: unknown): Attribution | undefined {
   if (typeof value !== "object" || value === null) return undefined;
-  const { params, referrer } = value as Record<string, unknown>;
-
-  const clean: Record<string, string> = {};
-  if (typeof params === "object" && params !== null) {
-    for (const [key, raw] of Object.entries(params as Record<string, unknown>)) {
-      if (Object.keys(clean).length >= MAX_PARAMS) break;
-      const v = text(raw, MAX_VALUE);
-      if (v) clean[key.slice(0, MAX_KEY)] = v;
-    }
-  }
-
-  return { params: clean, referrer: text(referrer, 300) };
+  const { ref, referrer } = value as Record<string, unknown>;
+  return { ref: text(ref, MAX_REF), referrer: text(referrer, 300) };
 }
 
 function parseLead(body: unknown): Lead | null {
@@ -84,19 +73,23 @@ function formatMessage(lead: Lead): string {
   }
 
   lines.push("", "<b>Source</b>");
-  const params = lead.attribution?.params ?? {};
-  const entries = Object.entries(params);
 
-  if (entries.length > 0) {
-    for (const [key, value] of entries) {
-      lines.push(`• ${escapeHtml(key)}: <code>${escapeHtml(value)}</code>`);
+  const ref = lead.attribution?.ref;
+  if (ref) {
+    const nickname = decodeRef(ref);
+    if (nickname) {
+      lines.push(`• Referred by: <code>${escapeHtml(nickname)}</code>`);
+    } else {
+      lines.push(`• Ref: <code>${escapeHtml(ref)}</code>`);
     }
-  } else {
-    lines.push("• Direct — no query parameters");
   }
 
   if (lead.attribution?.referrer) {
     lines.push(`• Referrer: ${escapeHtml(lead.attribution.referrer)}`);
+  }
+
+  if (!ref && !lead.attribution?.referrer) {
+    lines.push("• Direct — no referral");
   }
 
   return lines.join("\n");
