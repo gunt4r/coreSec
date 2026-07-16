@@ -39,8 +39,17 @@ Clean path segment so the URL looks like an ordinary page:
 https://protectcryptoland.com/k3Xf9aQ2vP
 ```
 
-Existing `?ref=` and `utm_*` query links keep working unchanged. This feature is
-purely additive.
+**Only the referral is read.** The app captures the ref from exactly two places
+and ignores every other query parameter:
+
+- the **path segment** — `/k3Xf9aQ2vP` (the obfuscated code), and
+- a **`?ref=` query param** — for plain/legacy links.
+
+Everything else (`fbclid`, `utm_*`, `gclid`, …) is dropped. This is deliberate:
+Meta appends `?fbclid=…` after the path when a link is clicked from Instagram
+(`/k3Xf9aQ2vP?fbclid=…`), so reading the path segment and ignoring the query
+handles that automatically and keeps the Telegram feed clean. The old
+multi-param capture (the `MAX_PARAMS` map) is removed entirely.
 
 ## Architecture
 
@@ -129,26 +138,38 @@ A path like `/k3Xf9aQ2vP` must serve the landing page, not 404.
 
 ### 4. Attribution capture — `src/lib/attribution.ts`
 
-Extend the existing hook so it also reads a path-segment code:
+Simplified to a single referral field. The `Attribution` type becomes:
 
-- On mount, if `window.location.pathname` is a single non-empty segment that
-  isn't a known asset, treat it as a raw ref code and store it as
-  `attribution.ref` (a new optional string field), alongside the existing
-  `params`/`referrer`.
-- Query-param attribution (`?ref=`, `utm_*`) continues to work exactly as
-  before; the two coexist.
-- The existing per-session storage, caps, and "last touch wins" behavior are
-  preserved.
+```ts
+type Attribution = { ref?: string; referrer?: string; landedAt: string };
+```
+
+(The `params: Record<string,string>` map and its `MAX_PARAMS`/`MAX_KEY`/
+`MAX_VALUE` loop are removed.)
+
+Capture logic on mount, in precedence order:
+
+1. If `window.location.pathname` is a single non-empty segment that isn't a
+   known asset (see middleware matcher), use it as the raw `ref` code.
+2. Else, if a `?ref=` query param is present, use its value as `ref`.
+3. Otherwise no `ref`.
+
+`referrer` (`document.referrer`) is still recorded — it's genuinely useful
+(that's what surfaced `l.instagram.com`). `ref` is length-capped
+(`MAX_REF = 200`). The existing per-session storage and "last touch wins"
+behavior are preserved.
 
 ### 5. Contact route — `src/app/api/contact/route.ts`
 
-- `parseAttribution` gains an optional `ref` string (re-capped server-side like
-  every other field — the client is not trusted).
+- `parseAttribution` reads just `ref` (capped) and `referrer` (capped) —
+  re-applied server-side because the client is not trusted. The old params loop
+  is gone.
 - In `formatMessage`, when `attribution.ref` is present, call `decodeRef`:
-  - success → add `• Referred by: <nickname>` to the Source block.
-  - `null` → fall back to `• Ref (unresolved): <raw code>` so nothing is
-    silently lost.
-- Existing `params`/`referrer` lines are unchanged.
+  - success → `• Referred by: <nickname>`
+  - `null` (e.g. a legacy plain `?ref=boyarskiy`, or garbage) → fall back to
+    `• Ref: <raw value>` so nothing is silently lost.
+- The `• Referrer: <url>` line stays; `• Direct — no referral` when neither
+  `ref` nor `referrer` is present.
 
 ## Config
 
@@ -174,6 +195,8 @@ REF_BASE_URL=https://protectcryptoland.com
   is missing or no usernames supplied.
 - **Middleware:** a code-shaped path rewrites to homepage; `/api/*`, `/_next/*`,
   and dotted asset paths are left alone.
+- **Only-ref capture:** a URL like `/CODE?fbclid=x&utm_source=y` yields
+  `ref = CODE` and no other params; `?ref=v&fbclid=x` yields `ref = v` only.
 - **End-to-end (manual, via the run/verify skill):** load `/<generated-code>`,
   submit the form, confirm the Telegram payload (or the unconfigured-Telegram
   console log) shows `Referred by: <nickname>`.
