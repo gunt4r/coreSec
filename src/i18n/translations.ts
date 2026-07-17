@@ -97,6 +97,14 @@ const en = {
     success_body: "We will contact you within 24 hours.",
     error: "Something went wrong. Please try again or contact us directly.",
   },
+  contacts: {
+    eyebrow: "Contact Us",
+    headline: "Get in touch",
+    sub: "Reach out through any of the channels below. We respond to every message.",
+    email_label: "Email",
+    telegram_label: "Telegram",
+    instagram_label: "Instagram",
+  },
   cases: {
     eyebrow: "Client Outcomes",
     headline: "Cases we've resolved",
@@ -154,7 +162,8 @@ const en = {
     terms: "Terms of Service",
     contact: "Contact",
     email: "core.sec.finance@gmail.com",
-    telegram: "",
+    telegram: "@coresec_finance",
+    instagram: "coresec.finance",
     rights: "All rights reserved.",
   },
 };
@@ -244,6 +253,14 @@ const uk: Dictionary = {
     success_body: "Ми зв'яжемося з вами протягом 24 годин.",
     error: "Щось пішло не так. Спробуйте ще раз або зв'яжіться з нами напряму.",
   },
+  contacts: {
+    eyebrow: "Зв'язок",
+    headline: "Зв'яжіться з нами",
+    sub: "Пишіть нам будь-яким зручним каналом нижче. Ми відповідаємо на кожне повідомлення.",
+    email_label: "Пошта",
+    telegram_label: "Telegram",
+    instagram_label: "Instagram",
+  },
   cases: {
     eyebrow: "Результати клієнтів",
     headline: "Справи, які ми вирішили",
@@ -301,7 +318,8 @@ const uk: Dictionary = {
     terms: "Умови використання",
     contact: "Контакти",
     email: "core.sec.finance@gmail.com",
-    telegram: "",
+    telegram: "@coresec_finance",
+    instagram: "coresec.finance",
     rights: "Усі права захищені.",
   },
 };
@@ -389,6 +407,14 @@ const ru: Dictionary = {
     success_body: "Мы свяжемся с вами в течение 24 часов.",
     error: "Что-то пошло не так. Попробуйте ещё раз или свяжитесь с нами напрямую.",
   },
+  contacts: {
+    eyebrow: "Связаться",
+    headline: "Свяжитесь с нами",
+    sub: "Пишите нам любым удобным каналом ниже. Мы отвечаем на каждое сообщение.",
+    email_label: "Почта",
+    telegram_label: "Telegram",
+    instagram_label: "Instagram",
+  },
   cases: {
     eyebrow: "Результаты клиентов",
     headline: "Дела, которые мы решили",
@@ -446,7 +472,8 @@ const ru: Dictionary = {
     terms: "Условия использования",
     contact: "Контакты",
     email: "core.sec.finance@gmail.com",
-    telegram: "",
+    telegram: "@coresec_finance",
+    instagram: "coresec.finance",
     rights: "Все права защищены.",
   },
 };

@@ -2,8 +2,11 @@
 
 import { useLanguage } from "@/i18n/language-provider";
 import { Logo } from "./logo";
+import { InstagramIcon, TelegramIcon } from "./social-icons";
 
 const linkClass = "text-[14px] text-white/[0.78] transition-colors duration-200 hover:text-white";
+const socialIconClass =
+  "flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.12] text-white/70 transition-all duration-200 hover:border-white/40 hover:bg-white/[0.06] hover:text-white";
 
 export function Footer() {
   const { t } = useLanguage();
@@ -21,20 +24,34 @@ export function Footer() {
             <h2 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/45 md:mb-5">
               {t.footer.contact}
             </h2>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-4">
               <a href={`mailto:${t.footer.email}`} className={linkClass}>
                 {t.footer.email}
               </a>
-              {t.footer.telegram && (
-                <a
-                  href={`https://t.me/${t.footer.telegram.replace("@", "")}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={linkClass}
-                >
-                  {t.footer.telegram}
-                </a>
-              )}
+              <div className="flex items-center gap-3">
+                {t.footer.telegram && (
+                  <a
+                    href={`https://t.me/${t.footer.telegram.replace("@", "")}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Telegram"
+                    className={socialIconClass}
+                  >
+                    <TelegramIcon size={19} />
+                  </a>
+                )}
+                {t.footer.instagram && (
+                  <a
+                    href={`https://instagram.com/${t.footer.instagram}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Instagram"
+                    className={socialIconClass}
+                  >
+                    <InstagramIcon size={19} />
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         </div>
