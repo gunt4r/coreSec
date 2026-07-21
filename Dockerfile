@@ -8,6 +8,8 @@ RUN npm ci
 FROM node:24-alpine AS builder
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
+ARG NEXT_PUBLIC_SITE_URL=https://coresec.finance
+ENV NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
@@ -21,7 +23,6 @@ ENV HOSTNAME=0.0.0.0
 
 RUN addgroup -g 1001 -S nodejs && adduser -u 1001 -S nextjs -G nodejs
 
-# `output: "standalone"` bundles the server and only the deps it actually uses.
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static

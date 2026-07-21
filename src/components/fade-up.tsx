@@ -1,8 +1,35 @@
 "use client";
 
-import { motion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 
-export const EASE = [0.22, 1, 0.36, 1] as const;
+export function useInView<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+
+    if (typeof IntersectionObserver === "undefined") {
+      setInView(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        setInView(true);
+        observer.disconnect();
+      },
+      { threshold: 0, rootMargin: "0px 0px -8% 0px" },
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return { ref, inView };
+}
 
 export function FadeUp({
   children,
@@ -13,20 +40,19 @@ export function FadeUp({
   delay?: number;
   className?: string;
 }) {
+  const { ref, inView } = useInView<HTMLDivElement>();
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.6, delay, ease: EASE }}
-      className={className}
+    <div
+      ref={ref}
+      className={`reveal${inView ? " reveal-shown" : ""}${className ? ` ${className}` : ""}`}
+      style={delay ? ({ "--reveal-delay": `${delay}s` } as React.CSSProperties) : undefined}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
-/** Shared eyebrow + headline block used by every section. */
 export function SectionHeading({
   eyebrow,
   headline,
@@ -44,7 +70,7 @@ export function SectionHeading({
     <div className={className}>
       <FadeUp>
         <span
-          className={`mb-5 block text-[11px] font-semibold uppercase tracking-[0.22em] ${
+          className={`mbe-5 block text-eyebrow font-semibold uppercase tracking-[0.22em] ${
             dark ? "text-emerald" : "text-forest"
           }`}
         >
@@ -55,7 +81,7 @@ export function SectionHeading({
         <h2
           className={
             headlineClassName ??
-            `text-[32px] font-extrabold leading-[1.08] tracking-[-0.025em] sm:text-[40px] md:text-[48px] lg:text-[56px] ${
+            `text-h2 font-extrabold leading-[1.08] tracking-[-0.025em] ${
               dark ? "text-white" : "text-ink"
             }`
           }

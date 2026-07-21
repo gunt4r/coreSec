@@ -1,13 +1,18 @@
 services:
   web:
-    build: .
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://coresec.finance}
     image: coresec
     restart: unless-stopped
-    # Not published to the host — only Caddy reaches it, over the compose network.
     expose:
       - "3000"
+    ports:
+      - "127.0.0.1:3000:3000"
     environment:
       NODE_ENV: production
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-}
       TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:?set TELEGRAM_BOT_TOKEN in .env}
       TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID:?set TELEGRAM_CHAT_ID in .env}
 
@@ -23,7 +28,9 @@ services:
       ACME_EMAIL: ${ACME_EMAIL:-}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy_data:/data # certificates — must persist, or you will hit Let's Encrypt rate limits
+      - ./certs/origin.pem:/etc/caddy/origin.pem:ro
+      - ./certs/origin.key:/etc/caddy/origin.key:ro
+      - caddy_data:/data
       - caddy_config:/config
     depends_on:
       - web

@@ -1,20 +1,23 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { resolvePath } from "@/lib/routes";
 
-/**
- * Referral links look like /k3Xf9aQ2vP. There is no such page, so without this
- * they would 404. Rewrite any non-asset path to the homepage; the browser URL
- * is kept, so the client can still read the code from the path.
- *
- * (Next 16's successor to the deprecated `middleware` convention.)
- */
 export function proxy(request: NextRequest) {
+  const resolved = resolvePath(request.nextUrl.pathname);
+
+  if (resolved.kind === "redirect") {
+    const target = request.nextUrl.clone();
+    target.pathname = resolved.to;
+    return NextResponse.redirect(target, 308);
+  }
+
+  if (resolved.kind !== "referral") return NextResponse.next();
+
   const url = request.nextUrl.clone();
   url.pathname = "/";
   return NextResponse.rewrite(url);
 }
 
 export const config = {
-  // Everything except /api/*, Next internals, and any path with a file extension.
   matcher: ["/((?!api|_next/static|_next/image|.*\\.).*)"],
 };

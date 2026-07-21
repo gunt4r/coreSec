@@ -1,7 +1,7 @@
-{$DOMAIN} {
+{$DOMAIN}, www.{$DOMAIN} {
     encode gzip zstd
 
     reverse_proxy web:3000
 
-    tls {$ACME_EMAIL}
+    tls /etc/caddy/origin.pem /etc/caddy/origin.key
 }

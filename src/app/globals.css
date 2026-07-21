@@ -5,7 +5,6 @@
 
   --breakpoint-xs: 30rem;
 
-  /* Brand palette */
   --color-cream: #fbfbf8;
   --color-ink: #111111;
   --color-forest: #0f5d46;
@@ -14,13 +13,63 @@
   --color-deep: #10231e;
   --color-mint: #ebf5f0;
 
-  /* Neutral text ramp */
   --color-slate: #595959;
   --color-graphite: #686868;
   --color-mist: #bbbbbb;
 
+  --text-eyebrow: 0.6875rem;
+  --text-micro: 0.75rem;
+  --text-meta: 0.8125rem;
+  --text-body: clamp(0.875rem, 0.848rem + 0.11vw, 0.9375rem);
+  --text-lead: clamp(0.9375rem, 0.893rem + 0.19vw, 1.0625rem);
+  --text-quote: clamp(1rem, 0.955rem + 0.19vw, 1.125rem);
+  --text-h3: 1.375rem;
+  --text-h2-tight: clamp(1.625rem, 1.089rem + 2.23vw, 2.75rem);
+  --text-h2-soft: clamp(2rem, 1.643rem + 1.49vw, 2.75rem);
+  --text-h2: clamp(2rem, 1.286rem + 2.98vw, 3.5rem);
+  --text-display: clamp(3.25rem, 1.643rem + 6.7vw, 6rem);
+
+  --container-shell: 90rem;
+  --spacing-header: 4.25rem;
+
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+
   --animate-pulse-ring: pulse-ring 4s ease-in-out infinite;
   --animate-float-y: float-y 7s ease-in-out infinite;
+  --animate-fade-rise: fade-rise 0.65s var(--ease-out-expo) backwards;
+  --animate-fade-in: fade-in 0.55s ease-out backwards;
+  --animate-slide-in: slide-in 0.9s var(--ease-out-expo) backwards;
+
+  @keyframes fade-rise {
+    from {
+      opacity: 0;
+      transform: translateY(1.1rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-in {
+    from {
+      opacity: 0;
+      transform: translateX(1.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
 
   @keyframes pulse-ring {
     0%,
@@ -49,7 +98,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Tailwind v4's reset drops the browser default of `cursor: pointer` on buttons. */
 button:not(:disabled),
 [role="button"]:not(:disabled),
 a[href],
@@ -61,6 +109,29 @@ summary {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition:
+    opacity 0.6s var(--ease-out-expo) var(--reveal-delay, 0s),
+    transform 0.6s var(--ease-out-expo) var(--reveal-delay, 0s);
+}
+
+.reveal-shown {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-line {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.6s var(--ease-out-expo) 0.3s;
+}
+
+.reveal-shown .reveal-line {
+  transform: scaleX(1);
 }
 
 ::-webkit-scrollbar {
@@ -79,6 +150,12 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .reveal,
+  .reveal-line {
+    opacity: 1;
+    transform: none;
   }
 
   *,

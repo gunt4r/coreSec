@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useLanguage } from "@/i18n/language-provider";
 import { useAttribution } from "@/lib/attribution";
 import { FadeUp, SectionHeading } from "./fade-up";
 
 const fieldClass =
-  "w-full rounded-xl border border-black/[0.09] bg-white px-4 py-3.5 text-[15px] text-ink outline-none transition-all duration-200 placeholder:text-[#BDBDBD] focus:border-forest/60 focus:ring-2 focus:ring-forest/[0.08] md:px-5 md:py-4";
+  "w-full rounded-xl border border-black/[0.09] bg-white px-4 py-3.5 text-[0.9375rem] text-ink outline-none transition-all duration-200 placeholder:text-[#BDBDBD] focus:border-forest/60 focus:ring-2 focus:ring-forest/[0.08] md:px-5 md:py-4";
 
 function Field({
   name,
@@ -25,7 +25,7 @@ function Field({
     <div>
       <label
         htmlFor={name}
-        className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.12em] text-ink"
+        className="mbe-2 block text-eyebrow font-semibold uppercase tracking-[0.12em] text-ink"
       >
         {label}
       </label>
@@ -47,6 +47,7 @@ export function ContactForm() {
   const { lang, t } = useLanguage();
   const attribution = useAttribution();
   const [status, setStatus] = useState<Status>("idle");
+  const openedAt = useRef(Date.now());
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -56,6 +57,7 @@ export function ContactForm() {
       ...Object.fromEntries(new FormData(event.currentTarget)),
       lang,
       attribution,
+      elapsed: Date.now() - openedAt.current,
     };
 
     try {
@@ -72,22 +74,22 @@ export function ContactForm() {
 
   return (
     <section id="contact" className="bg-white py-20 md:py-32 lg:py-40">
-      <div className="mx-auto max-w-[1440px] px-6 md:px-10 lg:px-16">
+      <div className="mx-auto max-w-shell px-6 md:px-10 lg:px-16">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-24 xl:gap-32">
-          <div className="lg:sticky lg:top-28 lg:self-start">
+          <div className="lg:sticky lg:inset-bs-28 lg:self-start">
             <SectionHeading
               eyebrow={t.form.eyebrow}
               headline={t.form.headline}
-              headlineClassName="mb-5 text-[32px] font-extrabold leading-[1.08] tracking-[-0.025em] text-ink sm:text-[40px] md:text-[48px] lg:text-[52px]"
+              headlineClassName="mbe-5 text-h2 font-extrabold leading-[1.08] tracking-[-0.025em] text-ink"
             />
             <FadeUp delay={0.1}>
-              <p className="mb-8 max-w-[400px] text-[15px] leading-[1.7] text-slate md:text-[17px]">
+              <p className="mbe-8 max-w-[25rem] text-lead leading-[1.7] text-slate">
                 {t.form.sub}
               </p>
             </FadeUp>
             <FadeUp delay={0.14}>
               <div className="flex items-start gap-3 rounded-2xl border border-forest/10 bg-mint p-4 md:p-5">
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-forest">
+                <span className="mbs-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-forest">
                   <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
                     <path
                       d="M2 5.5L4 7.5L8 3"
@@ -98,7 +100,7 @@ export function ContactForm() {
                     />
                   </svg>
                 </span>
-                <p className="text-[13px] font-medium leading-[1.6] text-forest/75 md:text-[13.5px]">
+                <p className="text-meta font-medium leading-[1.6] text-forest/75 md:text-[0.84375rem]">
                   {t.form.privacy}
                 </p>
               </div>
@@ -109,7 +111,7 @@ export function ContactForm() {
             {status === "sent" ? (
               <FadeUp>
                 <div className="rounded-2xl border border-black/[0.07] bg-cream px-8 py-20 text-center">
-                  <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-mint">
+                  <div className="mx-auto mbe-6 flex h-16 w-16 items-center justify-center rounded-full bg-mint">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path
                         d="M4 12L10 18L20 6"
@@ -120,10 +122,10 @@ export function ContactForm() {
                       />
                     </svg>
                   </div>
-                  <h3 className="mb-3 text-[22px] font-extrabold tracking-tight text-ink">
+                  <h3 className="mbe-3 text-h3 font-extrabold tracking-tight text-ink">
                     {t.form.success_title}
                   </h3>
-                  <p className="text-[15px] text-graphite">{t.form.success_body}</p>
+                  <p className="text-[0.9375rem] text-graphite">{t.form.success_body}</p>
                 </div>
               </FadeUp>
             ) : (
@@ -132,6 +134,11 @@ export function ContactForm() {
                   onSubmit={onSubmit}
                   className="space-y-4 rounded-2xl border border-black/[0.07] bg-cream p-6 md:space-y-5 md:p-8 lg:p-10"
                 >
+                  <div aria-hidden="true" className="absolute h-0 w-0 overflow-hidden opacity-0">
+                    <label htmlFor="company">Company</label>
+                    <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+                  </div>
+
                   <div className="grid gap-4 sm:grid-cols-2 md:gap-5">
                     <Field name="name" label={t.form.name} placeholder={t.form.ph_name} required />
                     <Field
@@ -150,7 +157,7 @@ export function ContactForm() {
                   <div>
                     <label
                       htmlFor="situation"
-                      className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.12em] text-ink"
+                      className="mbe-2 block text-eyebrow font-semibold uppercase tracking-[0.12em] text-ink"
                     >
                       {t.form.situation}
                     </label>
@@ -164,13 +171,13 @@ export function ContactForm() {
                   </div>
 
                   {status === "error" && (
-                    <p className="text-[13px] font-medium text-red-600">{t.form.error}</p>
+                    <p className="text-meta font-medium text-red-600">{t.form.error}</p>
                   )}
 
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className="mt-1 w-full rounded-xl bg-forest py-[18px] text-[14px] font-bold tracking-wide text-white transition-all duration-200 hover:bg-forest-dark hover:shadow-lg hover:shadow-forest/20 active:scale-[0.995] disabled:cursor-not-allowed disabled:opacity-60"
+                    className="mbs-1 w-full rounded-xl bg-forest py-[1.125rem] text-[0.875rem] font-bold tracking-wide text-white transition-all duration-200 hover:bg-forest-dark hover:shadow-lg hover:shadow-forest/20 active:scale-[0.995] disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     {status === "sending" ? t.form.submitting : t.form.submit}
                   </button>
