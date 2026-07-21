@@ -78,7 +78,7 @@ export function Hero() {
                 {t.hero.ctaPrimary}
               </button>
               <button
-                onClick={() => scrollTo("#contact")}
+                onClick={() => scrollTo("#cases")}
                 className="whitespace-nowrap rounded-xl border border-black/[0.13] px-6 py-3.5 text-[0.84375rem] font-semibold text-ink transition-all duration-200 hover:border-forest/40 hover:text-forest"
               >
                 {t.hero.ctaSecondary}

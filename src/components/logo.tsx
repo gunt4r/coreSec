@@ -16,7 +16,7 @@ export function Logo({
         src="/mark.svg"
         width={313}
         height={356}
-        alt="Coresec Finance"
+        alt=""
         priority
         unoptimized
         className="h-7 w-auto shrink-0"
