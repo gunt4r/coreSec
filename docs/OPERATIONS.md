@@ -60,13 +60,21 @@ authenticated and **not** encryption — do not use it for anything that needs t
 
 ## Referral URLs and indexing
 
-`src/proxy.ts` passes real routes through and rewrites everything else to the English homepage,
-attaching `X-Robots-Tag: noindex, nofollow`.
+`src/proxy.ts` passes real routes through and rewrites everything else to the English homepage.
 
 Referral codes are indistinguishable from junk paths, so they cannot be validated at the edge.
-The rewrite keeps `coresec.finance/<code>` working for humans; the header keeps an unbounded set
-of duplicate URLs out of the index. Both halves are required — dropping the header reintroduces
-the duplicate-content problem an SEO audit flagged.
+The rewrite keeps `coresec.finance/<code>` working for humans, and the served page carries
+`<link rel="canonical" href="https://coresec.finance">`, which is what keeps an unbounded set of
+duplicate URLs out of the index.
+
+**The canonical is deliberately doing this alone.** These URLs previously also carried
+`X-Robots-Tag: noindex, nofollow`. That was removed: Google drops a `noindex` URL from the index
+and stops passing its signals, so every inbound blogger link — the site's main source of external
+links — would have earned nothing. A canonical is the correct tool for a tracking URL, because it
+consolidates the duplicate *and* credits the inbound link to the homepage. See `docs/BACKLINKS.md`.
+
+If a referral path is ever seen ranking in search, the cause is the canonical not being served —
+check that the rewrite still resolves to the homepage rather than reinstating `noindex`.
 
 `src/lib/attribution.ts` reads the referral from the first path segment, so any new top-level
 route must also be added to its exclusion list, or visitors to that route get attributed to a

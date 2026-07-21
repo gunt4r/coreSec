@@ -6,8 +6,13 @@ Next.js (App Router) landing page with a three-language switcher (EN / UA / RU),
 
 - Next.js 16 + React 19, TypeScript
 - Tailwind CSS v4 (design tokens live in `src/app/globals.css` under `@theme`)
-- `motion` for scroll and entrance animations, `lucide-react` for icons
+- `lucide-react` for icons. No animation library — entrance animations are CSS keyframes and
+  scroll reveals are a small `IntersectionObserver` hook in `src/components/fade-up.tsx`
 - Docker (multi-stage, `output: "standalone"`)
+
+Above-the-fold content is deliberately **not** animated from `opacity: 0`. It used to be, which
+meant the `<h1>` was invisible in the served HTML until React hydrated — a large, self-inflicted
+LCP penalty. Keep it that way.
 
 ## Local development
 
@@ -95,10 +100,14 @@ then decoded server-side so the Telegram message reads `Referred by: blogger-ann
 works as a plain fallback. A visitor with neither is reported as `• Direct — no referral`, and the
 browser referrer is included when available. Last touch wins.
 
+These URLs are rewritten to the homepage and rely on its `rel="canonical"` to avoid duplicating it
+in search — deliberately *without* `noindex`, so an inbound blogger link still credits the homepage.
+See `docs/BACKLINKS.md`.
+
 Language prefixes and real pages are never mistaken for referral codes — both the proxy and the
 client share `resolvePath()` in `src/lib/routes.ts`, covered by `src/lib/routes.test.ts`. **Any new
-top-level route must be added to `PAGES` there**, or visitors to it get attributed to a blogger of
-that name.
+top-level route must be added to `PAGES` (or `CASE_SLUGS`) there**, or visitors to it get attributed
+to a blogger of that name and the URL 404s.
 
 The code is attacker-controlled, so it is capped at 200 chars on both the client and the server, and
 HTML-escaped before it reaches Telegram. The endpoint is also rate-limited (5 per 10 minutes per IP)
@@ -117,21 +126,28 @@ convenience, so make sure they are set in production.
 ```
 src/
   app/
-    (en)/                   English at "/" — page, privacy, terms
+    (en)/                   English at "/" — page, privacy, terms, cases, cases/[slug]
     (intl)/[lang]/          /uk and /ru — same pages, prerendered per language
     globals.css             Tailwind import + brand tokens + fluid type scale
+    opengraph-image.tsx     1200x630 social card, generated at build (per route group)
     robots.ts sitemap.ts    generated from src/lib/routes.ts
     api/contact/route.ts    form endpoint (rate-limited, honeypot, then Telegram)
   components/               one file per section, plus site-shell / site-home
+                            case-index / case-detail render the /cases pages
   i18n/
-    translations.ts         all copy for en / uk / ru
+    translations.ts         all copy for en / uk / ru, incl. the case studies
     langs.ts                language codes, kept tiny for the middleware bundle
-    company.ts              company facts — fill these in, see docs/SEO-TODO.md
-    language-provider.tsx   language comes from the route; switching navigates
+    company.ts              company facts — see docs/SEO-TODO.md §2 before deploying
+    language-provider.tsx   language comes from the route; the dictionary is a server prop
   lib/
-    routes.ts               single source of truth for URLs and referral codes
+    routes.ts               single source of truth for URLs, case slugs, referral codes
+    cases.ts                case id → slug → screenshot
     seo.ts schema.ts        metadata, canonical, hreflang, JSON-LD
 ```
+
+The dictionary is passed into `LanguageProvider` from the server rather than imported by it, so a
+page ships one language's copy to the client instead of all three. Keep `translations.ts` out of
+client components.
 
 Both route groups are root layouts (`app/layout.tsx` deliberately does not exist), which is what
 lets `<html lang>` be correct per language while every page stays statically generated.
@@ -153,3 +169,6 @@ Googlebot, which crawls from the US, only ever sees English.
 See **`docs/SEO-TODO.md`** — it lists what still needs a human: filling `src/i18n/company.ts`,
 confirming the commercial claims in the copy, enabling HSTS in Cloudflare, setting
 `NEXT_PUBLIC_SITE_URL`, and submitting the sitemap.
+
+**`docs/BACKLINKS.md`** covers off-site: what the code now does to make earned links count, and the
+acquisition work only you can do.
