@@ -9,7 +9,7 @@ import { Problems } from "@/components/problems";
 import { Process } from "@/components/process";
 import { WhyUs } from "@/components/why-us";
 
-export default function Home() {
+export function SiteHome() {
   return (
     <>
       <Nav />

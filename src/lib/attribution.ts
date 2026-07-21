@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { resolvePath } from "@/lib/routes";
 
 export type Attribution = {
   ref?: string;
@@ -13,9 +14,9 @@ const STORAGE_KEY = "attribution";
 const MAX_REF = 200;
 
 function readRef(): string | undefined {
-  const segment = window.location.pathname.split("/").filter(Boolean)[0];
-  if (segment && !segment.includes(".")) {
-    return decodeURIComponent(segment).slice(0, MAX_REF);
+  const resolved = resolvePath(window.location.pathname);
+  if (resolved.kind === "referral") {
+    return decodeURIComponent(resolved.code).slice(0, MAX_REF);
   }
   const query = new URLSearchParams(window.location.search).get("ref");
   if (query) return query.slice(0, MAX_REF);

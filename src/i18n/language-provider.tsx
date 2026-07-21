@@ -1,9 +1,10 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useState } from "react";
-import { DEFAULT_LANG, dictionaries, isLang, type Dictionary, type Lang } from "./translations";
-
-const STORAGE_KEY = "lang";
+import { createContext, useCallback, useContext } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { dictionaries, type Dictionary } from "./translations";
+import type { Lang } from "./langs";
+import { hrefFor, pageOf } from "@/lib/routes";
 
 type LanguageValue = {
   lang: Lang;
@@ -13,22 +14,17 @@ type LanguageValue = {
 
 const LanguageContext = createContext<LanguageValue | null>(null);
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLangState] = useState<Lang>(DEFAULT_LANG);
+export function LanguageProvider({ lang, children }: { lang: Lang; children: React.ReactNode }) {
+  const router = useRouter();
+  const pathname = usePathname();
 
-  useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    const detected = navigator.language.slice(0, 2);
-    const next = isLang(stored) ? stored : isLang(detected) ? detected : DEFAULT_LANG;
-    setLangState(next);
-    document.documentElement.lang = next;
-  }, []);
-
-  const setLang = useCallback((next: Lang) => {
-    setLangState(next);
-    localStorage.setItem(STORAGE_KEY, next);
-    document.documentElement.lang = next;
-  }, []);
+  const setLang = useCallback(
+    (next: Lang) => {
+      if (next === lang) return;
+      router.push(hrefFor(next, pageOf(pathname)));
+    },
+    [lang, pathname, router],
+  );
 
   return (
     <LanguageContext.Provider value={{ lang, setLang, t: dictionaries[lang] }}>

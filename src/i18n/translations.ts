@@ -1,18 +1,7 @@
-export const LANGS = ["en", "uk", "ru"] as const;
+import type { Lang } from "./langs";
 
-export type Lang = (typeof LANGS)[number];
-
-export const LANG_LABELS: Record<Lang, string> = {
-  en: "EN",
-  uk: "UA",
-  ru: "RU",
-};
-
-export const DEFAULT_LANG: Lang = "en";
-
-export function isLang(value: unknown): value is Lang {
-  return typeof value === "string" && (LANGS as readonly string[]).includes(value);
-}
+export { LANGS, LANG_LABELS, DEFAULT_LANG, SECONDARY_LANGS, isLang } from "./langs";
+export type { Lang } from "./langs";
 
 const en = {
   meta: {
@@ -154,6 +143,18 @@ const en = {
       { q: "What is the cost of the service?", a: "Our fees are determined on a case-by-case basis depending on complexity and the amount of assets involved. We provide a clear pricing structure during the initial consultation at no charge." },
       { q: "How do I start?", a: "Fill in the application form on this page. A case manager will contact you within 24 hours to schedule an initial consultation." },
     ],
+  },
+  legal: {
+    privacy: {
+      title: "Privacy Policy — CORESEC FINANCE",
+      description:
+        "How CORESEC FINANCE collects, uses and stores the information you submit when requesting help with a frozen crypto account.",
+    },
+    terms: {
+      title: "Terms of Service — CORESEC FINANCE",
+      description:
+        "The terms under which CORESEC FINANCE provides crypto account recovery consulting, including scope, fees and limitations.",
+    },
   },
   footer: {
     tagline: "Professional crypto account recovery.",
@@ -311,6 +312,18 @@ const uk: Dictionary = {
       { q: "Як розпочати?", a: "Заповніть заявку на цій сторінці. Менеджер зв'яжеться з вами протягом 24 годин." },
     ],
   },
+  legal: {
+    privacy: {
+      title: "Політика конфіденційності — CORESEC FINANCE",
+      description:
+        "Як CORESEC FINANCE збирає, використовує та зберігає інформацію, яку ви надсилаєте, звертаючись щодо заблокованого криптоакаунта.",
+    },
+    terms: {
+      title: "Умови використання — CORESEC FINANCE",
+      description:
+        "Умови, на яких CORESEC FINANCE надає консультації з відновлення криптоакаунтів: обсяг послуг, оплата та обмеження.",
+    },
+  },
   footer: {
     tagline: "Професійне відновлення криптоакаунтів.",
     legal: "Правова інформація",
@@ -464,6 +477,18 @@ const ru: Dictionary = {
       { q: "Какова стоимость услуг?", a: "Стоимость определяется индивидуально в зависимости от сложности и суммы активов. Чёткая структура ценообразования — во время первичной консультации, без какой-либо оплаты." },
       { q: "Как начать?", a: "Заполните заявку на этой странице. Менеджер свяжется с вами в течение 24 часов." },
     ],
+  },
+  legal: {
+    privacy: {
+      title: "Политика конфиденциальности — CORESEC FINANCE",
+      description:
+        "Как CORESEC FINANCE собирает, использует и хранит информацию, которую вы отправляете при обращении по заблокированному криптоаккаунту.",
+    },
+    terms: {
+      title: "Условия использования — CORESEC FINANCE",
+      description:
+        "Условия, на которых CORESEC FINANCE оказывает консультации по восстановлению криптоаккаунтов: объём услуг, оплата и ограничения.",
+    },
   },
   footer: {
     tagline: "Профессиональное восстановление криптоаккаунтов.",
