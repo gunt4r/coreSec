@@ -24,11 +24,12 @@ Other scripts: `npm run build`, `npm start`, `npm run typecheck`.
 ## Deployment (VPS + Caddy)
 
 `docker compose` runs two containers: the Next.js app, and Caddy in front of it as a reverse proxy.
-Caddy terminates TLS and gets/renews the certificate automatically — there is no certbot step and no
-nginx config. The app itself is **not** published to the host; only Caddy's 80/443 are, and it reaches
-the app over the internal compose network.
+Cloudflare sits in front and terminates the public TLS; Caddy holds a Cloudflare Origin Certificate
+for the Cloudflare↔origin hop. The app itself is **not** published to the host; only Caddy's 80/443
+are, and it reaches the app over the internal compose network.
 
-Point your domain's `A` record at the VPS **before** starting, or the certificate cannot be issued.
+See `certs/README.md` for the Origin certificate, and `docs/OPERATIONS.md` for the things that will
+bite you (why the firewall must use `DOCKER-USER`, why the cert files must exist before `up`).
 
 On the server (needs Docker + the compose plugin):
 
@@ -37,10 +38,10 @@ git clone https://github.com/gunt4r/coreSec.git
 cd coreSec
 
 cp .env.example .env
-nano .env                      # set DOMAIN, ACME_EMAIL, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+nano .env                      # DOMAIN, NEXT_PUBLIC_SITE_URL, TELEGRAM_*, REF_SECRET
 
 docker compose up -d --build
-docker compose logs -f caddy   # watch the certificate get issued
+docker compose logs -f caddy   # should start clean, no ACME activity
 ```
 
 That is the whole deploy. To ship an update:
@@ -82,21 +83,29 @@ TELEGRAM_BOT_TOKEN=...   # from @BotFather
 TELEGRAM_CHAT_ID=...     # the chat/group that receives leads
 ```
 
-**Attribution.** Whatever query string a visitor lands with is captured into `sessionStorage`
-(`src/lib/attribution.ts`) and submitted with the form, so you can give each blogger their own link:
+**Attribution.** Each blogger gets a link with an obfuscated code in the path:
 
+```bash
+npm run gen-refs -- blogger-anna blogger-max     # needs REF_SECRET
+# https://coresec.finance/hDJlS9pYLwkdZADClw   →  blogger-anna
 ```
-https://your-site.com/?ref=blogger-anna
-https://your-site.com/?ref=blogger-max&utm_source=youtube
-```
 
-The parameters are arbitrary — every key/value pair is listed under **Source** in the Telegram message.
-A visitor with no query string is reported as `• Direct — no query parameters`, and the referrer is
-included when the browser provides one. Last touch wins: landing again with new parameters replaces the
-stored ones.
+The code is captured into `sessionStorage` (`src/lib/attribution.ts`) and submitted with the form,
+then decoded server-side so the Telegram message reads `Referred by: blogger-anna`. `?ref=name` also
+works as a plain fallback. A visitor with neither is reported as `• Direct — no referral`, and the
+browser referrer is included when available. Last touch wins.
 
-The query string is attacker-controlled, so it is capped (12 params, 40-char keys, 200-char values) on both
-the client and the server, and HTML-escaped before it reaches Telegram.
+Language prefixes and real pages are never mistaken for referral codes — both the proxy and the
+client share `resolvePath()` in `src/lib/routes.ts`, covered by `src/lib/routes.test.ts`. **Any new
+top-level route must be added to `PAGES` there**, or visitors to it get attributed to a blogger of
+that name.
+
+The code is attacker-controlled, so it is capped at 200 chars on both the client and the server, and
+HTML-escaped before it reaches Telegram. The endpoint is also rate-limited (5 per 10 minutes per IP)
+with a honeypot field; see `src/lib/rate-limit.ts`.
+
+`REF_SECRET` must match between the generator and production, and rotating it breaks attribution for
+every link already handed out — see `docs/OPERATIONS.md`.
 
 **Behaviour when things go wrong:** if Telegram is unreachable the endpoint returns `502` and the form shows
 its error state, rather than telling the visitor it worked and dropping the lead. If the two env vars are
@@ -108,15 +117,24 @@ convenience, so make sure they are set in production.
 ```
 src/
   app/
-    layout.tsx              root layout, Manrope font, LanguageProvider
-    page.tsx                composes the sections
-    globals.css             Tailwind import + brand tokens + keyframes
-    api/contact/route.ts    form endpoint (validates, then logs — see below)
-  components/               one file per section
+    (en)/                   English at "/" — page, privacy, terms
+    (intl)/[lang]/          /uk and /ru — same pages, prerendered per language
+    globals.css             Tailwind import + brand tokens + fluid type scale
+    robots.ts sitemap.ts    generated from src/lib/routes.ts
+    api/contact/route.ts    form endpoint (rate-limited, honeypot, then Telegram)
+  components/               one file per section, plus site-shell / site-home
   i18n/
     translations.ts         all copy for en / uk / ru
-    language-provider.tsx   language context, localStorage + browser-locale detection
+    langs.ts                language codes, kept tiny for the middleware bundle
+    company.ts              company facts — fill these in, see docs/SEO-TODO.md
+    language-provider.tsx   language comes from the route; switching navigates
+  lib/
+    routes.ts               single source of truth for URLs and referral codes
+    seo.ts schema.ts        metadata, canonical, hreflang, JSON-LD
 ```
+
+Both route groups are root layouts (`app/layout.tsx` deliberately does not exist), which is what
+lets `<html lang>` be correct per language while every page stays statically generated.
 
 ## Translations
 
@@ -124,12 +142,14 @@ src/
 fail to compile if a key is missing. To add a language: add its code to `LANGS`, a label to `LANG_LABELS`,
 and a dictionary to `dictionaries`.
 
-The visitor's choice is stored in `localStorage`; on first visit the browser locale is used when it is one
-of the supported languages, otherwise English.
+The language lives in the URL: English at `/`, Ukrainian at `/uk`, Russian at `/ru`. Switching
+navigates rather than swapping state, so each language is server-rendered and crawlable.
+
+Browser-locale auto-detection is deliberately absent — redirecting on `Accept-Language` would mean
+Googlebot, which crawls from the US, only ever sees English.
 
 ## Before launch
 
-- Set `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`. Leads are delivered to Telegram only; nothing is stored.
-- The footer links to `/privacy` and `/terms`, which do not exist yet.
-- Placeholder brand: the wordmark ("BRANDNAME"), the contact email, and the Telegram handle are still the
-  design's placeholders.
+See **`docs/SEO-TODO.md`** — it lists what still needs a human: filling `src/i18n/company.ts`,
+confirming the commercial claims in the copy, enabling HSTS in Cloudflare, setting
+`NEXT_PUBLIC_SITE_URL`, and submitting the sitemap.
