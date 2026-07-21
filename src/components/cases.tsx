@@ -46,7 +46,6 @@ function Lightbox({
         <X size={20} />
       </button>
 
-      {/* Stop clicks on the image itself from closing the dialog. */}
       <div onClick={(e) => e.stopPropagation()} className="max-h-full w-full max-w-5xl">
         <Image
           src={src}

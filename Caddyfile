@@ -3,11 +3,5 @@
 
     reverse_proxy web:3000
 
-    # Cloudflare sits in front and terminates the public TLS. This Cloudflare
-    # Origin Certificate secures the Cloudflare<->origin hop and is what
-    # "Full (strict)" validates. It covers coresec.finance AND *.coresec.finance,
-    # so the apex and www both work. See certs/README.md to generate it.
-    # (Replaces the old Let's Encrypt `tls {$ACME_EMAIL}` — Caddy no longer does
-    # ACME, because Cloudflare now intercepts the :80/:443 challenge traffic.)
     tls /etc/caddy/origin.pem /etc/caddy/origin.key
 }

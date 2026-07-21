@@ -106,7 +106,6 @@ export function HeroIllustration() {
 
       <polygon points={hexPoints} fill="white" fillOpacity="0.03" stroke="white" strokeOpacity="0.14" strokeWidth="1.5" />
 
-      {/* Padlock */}
       <path
         d="M266 252 L266 240 Q280 226 294 240 L294 252"
         stroke="white"

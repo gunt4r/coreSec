@@ -16,7 +16,6 @@ const LanguageContext = createContext<LanguageValue | null>(null);
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Lang>(DEFAULT_LANG);
 
-  // Restore the visitor's previous choice, then fall back to the browser locale.
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
     const detected = navigator.language.slice(0, 2);

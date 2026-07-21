@@ -26,7 +26,6 @@ export function FadeUp({
   );
 }
 
-/** Shared eyebrow + headline block used by every section. */
 export function SectionHeading({
   eyebrow,
   headline,

@@ -1,7 +1,5 @@
-// Overridable so the delivery path can be pointed at a local stub without real credentials.
 const API = process.env.TELEGRAM_API_URL ?? "https://api.telegram.org";
 
-/** Everything in the message comes from the visitor, so escape it for Telegram's HTML parse mode. */
 function escapeHtml(value: string): string {
   return value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
@@ -30,7 +28,6 @@ export async function sendTelegramMessage(html: string): Promise<void> {
   });
 
   if (!res.ok) {
-    // Telegram puts the real reason in the body; the status alone is rarely enough to debug.
     throw new Error(`Telegram sendMessage failed (${res.status}): ${await res.text()}`);
   }
 }

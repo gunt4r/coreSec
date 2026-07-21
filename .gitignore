@@ -11,6 +11,5 @@ next-env.d.ts
 .vercel
 *.tsbuildinfo
 
-# Cloudflare Origin cert (server-only secrets)
 certs/*.pem
 certs/*.key

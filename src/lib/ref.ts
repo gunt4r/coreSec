@@ -1,12 +1,5 @@
 import { createHmac, randomBytes } from "node:crypto";
 
-/**
- * Reversible, stateless obfuscation for blogger referral codes. NOT encryption:
- * the goal is only that a casual viewer of the URL can't read the nickname.
- * Keyed off REF_SECRET; a random nonce byte masks patterns so similar
- * nicknames don't produce similar-looking codes.
- */
-
 const NONCE_BYTES = 1;
 
 function secret(): string {
@@ -15,7 +8,6 @@ function secret(): string {
   return value;
 }
 
-/** HMAC-SHA256(secret, nonce || counter), concatenated to `length` bytes. */
 function keystream(nonce: Buffer, length: number): Buffer {
   const out = Buffer.alloc(length);
   let offset = 0;
@@ -53,7 +45,6 @@ export function decodeRef(code: string): string | null {
     const data = Buffer.alloc(masked.length);
     for (let i = 0; i < masked.length; i++) data[i] = masked[i] ^ ks[i];
     const text = data.toString("utf8");
-    // Reject inputs whose bytes aren't valid UTF-8 (round-trip changes length).
     if (Buffer.byteLength(text, "utf8") !== data.length) return null;
     return text;
   } catch {

@@ -27,7 +27,6 @@ function text(value: unknown, max = 2000): string | undefined {
   return typeof value === "string" && value.trim() ? value.trim().slice(0, max) : undefined;
 }
 
-/** The client is not trusted: re-apply caps here before anything reaches Telegram. */
 function parseAttribution(value: unknown): Attribution | undefined {
   if (typeof value !== "object" || value === null) return undefined;
   const { ref, referrer } = value as Record<string, unknown>;
@@ -102,8 +101,6 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid submission" }, { status: 400 });
   }
 
-  // A missing config must never look like success: that silently drops the lead while the
-  // visitor is told we received it.
   if (!isTelegramConfigured()) {
     console.error(
       "[contact] TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID are not set — lead NOT delivered:\n" +
@@ -115,7 +112,6 @@ export async function POST(request: Request) {
   try {
     await sendTelegramMessage(formatMessage(lead));
   } catch (error) {
-    // Tell the visitor it failed rather than pretending — the form shows its error state and they can retry.
     console.error("[contact] Telegram delivery failed", error);
     return NextResponse.json({ error: "Delivery failed" }, { status: 502 });
   }

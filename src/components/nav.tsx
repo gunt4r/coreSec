@@ -38,7 +38,6 @@ export function Nav() {
     setMobileOpen(false);
   };
 
-  // At lg+ the hero's dark panel sits behind the right-hand controls until the header gains its background.
   const onDarkPanel = !scrolled;
 
   return (

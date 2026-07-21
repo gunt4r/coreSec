@@ -5,7 +5,6 @@
 
   --breakpoint-xs: 30rem;
 
-  /* Brand palette */
   --color-cream: #fbfbf8;
   --color-ink: #111111;
   --color-forest: #0f5d46;
@@ -14,7 +13,6 @@
   --color-deep: #10231e;
   --color-mint: #ebf5f0;
 
-  /* Neutral text ramp */
   --color-slate: #595959;
   --color-graphite: #686868;
   --color-mist: #bbbbbb;
@@ -49,7 +47,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Tailwind v4's reset drops the browser default of `cursor: pointer` on buttons. */
 button:not(:disabled),
 [role="button"]:not(:disabled),
 a[href],

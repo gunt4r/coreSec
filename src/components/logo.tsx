@@ -1,12 +1,5 @@
 import Image from "next/image";
 
-/**
- * CORESEC FINANCE wordmark: the hexagon "S" mark (public/mark.svg — the brand SVG with its
- * background paths removed and the viewBox cropped to the mark) + the type as live text.
- *
- * The mark's green reads on both surfaces as an accent, so only the wordmark follows the
- * surface via `variant` (dark ink on the cream header, white on the dark footer).
- */
 export function Logo({
   variant = "light",
   className,

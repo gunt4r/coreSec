@@ -3,7 +3,6 @@ services:
     build: .
     image: coresec
     restart: unless-stopped
-    # Not published to the host — only Caddy reaches it, over the compose network.
     expose:
       - "3000"
     environment:
@@ -20,14 +19,12 @@ services:
       - "443:443/udp"
     environment:
       DOMAIN: ${DOMAIN:?set DOMAIN in .env}
-      ACME_EMAIL: ${ACME_EMAIL:-} # unused now (Cloudflare Origin cert); kept for easy rollback to Let's Encrypt
+      ACME_EMAIL: ${ACME_EMAIL:-}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      # Cloudflare Origin cert + key — must exist on the host BEFORE `up`, or
-      # Docker will create directories in their place. See certs/README.md.
       - ./certs/origin.pem:/etc/caddy/origin.pem:ro
       - ./certs/origin.key:/etc/caddy/origin.key:ro
-      - caddy_data:/data # persists ACME state if you ever roll back to Let's Encrypt
+      - caddy_data:/data
       - caddy_config:/config
     depends_on:
       - web

@@ -4,7 +4,6 @@ import { FadeUp } from "./fade-up";
 
 export type Feature = { num: string; title: string; desc: string };
 
-/** Numbered rule-separated rows, used by the Problems (light) and Why Us (dark) sections. */
 export function FeatureRows({ items, dark = false }: { items: readonly Feature[]; dark?: boolean }) {
   return (
     <div className={`border-t ${dark ? "border-white/[0.08]" : "border-black/[0.08]"}`}>
