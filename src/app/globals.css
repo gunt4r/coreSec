@@ -32,8 +32,44 @@
   --container-shell: 90rem;
   --spacing-header: 4.25rem;
 
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+
   --animate-pulse-ring: pulse-ring 4s ease-in-out infinite;
   --animate-float-y: float-y 7s ease-in-out infinite;
+  --animate-fade-rise: fade-rise 0.65s var(--ease-out-expo) backwards;
+  --animate-fade-in: fade-in 0.55s ease-out backwards;
+  --animate-slide-in: slide-in 0.9s var(--ease-out-expo) backwards;
+
+  @keyframes fade-rise {
+    from {
+      opacity: 0;
+      transform: translateY(1.1rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-in {
+    from {
+      opacity: 0;
+      transform: translateX(1.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
 
   @keyframes pulse-ring {
     0%,
@@ -75,6 +111,29 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.reveal {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition:
+    opacity 0.6s var(--ease-out-expo) var(--reveal-delay, 0s),
+    transform 0.6s var(--ease-out-expo) var(--reveal-delay, 0s);
+}
+
+.reveal-shown {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-line {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.6s var(--ease-out-expo) 0.3s;
+}
+
+.reveal-shown .reveal-line {
+  transform: scaleX(1);
+}
+
 ::-webkit-scrollbar {
   width: 5px;
 }
@@ -91,6 +150,12 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .reveal,
+  .reveal-line {
+    opacity: 1;
+    transform: none;
   }
 
   *,

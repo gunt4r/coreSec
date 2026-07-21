@@ -5,38 +5,30 @@ export type { Lang } from "./langs";
 
 const en = {
   meta: {
-    title: "Frozen Crypto Account Recovery — Binance, Bybit, OKX",
+    title: "Frozen Crypto Account Recovery — Binance & Bybit Appeals",
     description:
-      "Locked out by an AML flag, a stalled KYC or a compliance hold? We build the appeal and deal with the exchange. 220,711 USDT released, every case screenshot-backed.",
+      "Locked out by an AML flag, a stalled KYC check or a compliance hold? We identify the trigger, build the appeal and deal with the exchange. Documented cases, screenshot-backed.",
   },
   nav: {
     links: [
       { label: "Why accounts freeze", href: "#problems" },
-      { label: "Proven cases", href: "#cases" },
+      { label: "Documented cases", href: "#cases" },
       { label: "Process", href: "#process" },
       { label: "FAQ", href: "#faq" },
     ],
     cta: "Get a free case review",
     menu: "Menu",
     lang: "Lang",
+    home: "Home",
+    primary: "Main navigation",
   },
   hero: {
     eyebrow: "Crypto Account Recovery",
     headline: "Frozen\ncrypto\naccount\nrecovery.",
     sub: "Exchanges freeze accounts for AML flags, stalled verification and compliance reviews — and rarely explain which one. We identify the real trigger, assemble the evidence the exchange needs, and argue the case until your balance moves again.",
     ctaPrimary: "Get a free case review",
-    ctaSecondary: "See proven cases",
-    detail: "Free first review · No win, no fee on recovery · Complete confidentiality",
-  },
-  proof: {
-    recovered: "USDT released",
-    recovered_note: "Across the documented cases below",
-    exchanges: "Exchanges handled",
-    exchanges_note: "Binance, Bybit, Coinbase, Kraken, OKX, KuCoin",
-    evidence: "Screenshot-backed",
-    evidence_note: "Every case shows the exchange's own correspondence",
-    response: "Response time",
-    response_note: "Every application reviewed within 24 hours",
+    ctaSecondary: "See documented cases",
+    detail: "Free first review · Answered within 24 hours · Complete confidentiality",
   },
   problems: {
     eyebrow: "Why Accounts Get Blocked",
@@ -169,16 +161,132 @@ const en = {
       },
     },
   },
+  caseStudies: {
+    index: {
+      title: "Documented Crypto Account Recovery Cases — Bybit & Binance",
+      description:
+        "Four resolved cases published with the exchange's own screenshots: an Abnormal Asset Origin appeal, a withdrawal held in compliance review, a manual transfer before closure, and a released Binance balance.",
+      heading: "Documented cases",
+      intro:
+        "Four resolved cases, each published with the exchange correspondence or account screenshot behind it. Each one is written up so the mechanism is useful to you whether or not you ever contact us — what the exchange's system actually flagged, and what it takes to answer it. Identifying details are redacted at the client's request.",
+    },
+    labels: {
+      breadcrumb: "Cases",
+      exchange: "Exchange",
+      trigger: "Trigger",
+      outcome: "Outcome",
+      evidence: "The evidence",
+      read: "Read the full case",
+      back: "All documented cases",
+      related: "Other documented cases",
+    },
+    cta: {
+      headline: "Is your case like this one?",
+      sub: "Send the exchange's messages and a short description. Within 24 hours you get an honest read on which trigger you are facing and whether the case is winnable — free, and with no obligation to continue.",
+      button: "Get a free case review",
+    },
+    items: {
+      appeal: {
+        title: "Bybit “Abnormal Asset Origin”: 21,267 USDT Released on Appeal",
+        description:
+          "A Bybit balance isolated under the Abnormal Asset Origin policy, released after appeal. What the flag actually means and what an appeal against it has to contain.",
+        heading: "Bybit “Abnormal Asset Origin”: 21,267 USDT released after appeal",
+        intro:
+          "A Bybit funding account reading zero, with 21,267 USDT held under the exchange's “Abnormal Asset Origin” policy. The flag was lifted and the assets released. Below is what that policy actually is, and what an appeal against it has to contain.",
+        sections: [
+          {
+            title: "What happened",
+            body: "The balance was isolated under Bybit's “Abnormal Asset Origin” policy, which left the funding account showing nothing available. We mapped which deposit had triggered the flag, assembled the documentation for it, and filed the appeal through the route that reaches the compliance desk rather than first-line support. The flag was lifted and the assets were released.",
+          },
+          {
+            title: "What “Abnormal Asset Origin” actually means",
+            body: "It is not an accusation against you. Bybit scores incoming deposits against chain-analysis databases, and the label means the coins you received have an on-chain history that touched something scored as high risk — a mixer, a sanctioned address, a cluster attributed to a hacked exchange, sometimes a peer-to-peer desk. That contact may have happened several hops before the coins ever reached you. Because the score attaches to the coins rather than to your conduct, the hold is automatic and there is nothing for a first-line agent to negotiate. The balance sits in an isolated or pending state: visible in the interface, not tradeable, not withdrawable, with no stated end date.",
+          },
+          {
+            title: "Why most self-filed appeals fail here",
+            body: "The instinctive response — explaining that you personally did nothing wrong — is not responsive to what was actually asked, so it does not move the case. What moves it is a documented trail from an identifiable origin to the flagged deposit: exchange statements, peer-to-peer trade records, invoices or a payroll trail, with the transaction hashes tying each step together and an explanation of the counterparty. It has to be assembled so a reviewer can follow the chain without asking a follow-up question, because every round trip adds another wait with no clock on it. Identifying which deposit was flagged, before writing anything, is the part people skip.",
+          },
+        ],
+      },
+      withdrawal: {
+        title: "Bybit Withdrawal Held in Compliance Review — 27,576.98 USDT Released",
+        description:
+          "A Bybit withdrawal frozen in compliance review and released after submission. Why withdrawals get held when the account itself is fine, and what actually moves one.",
+        heading: "Bybit withdrawal held in compliance review: 27,576.98 USDT released",
+        intro:
+          "A withdrawal stopped during compliance review while the account itself kept working normally. After our submission the transfer was approved and broadcast on-chain. This is a different mechanism from an account freeze, and it fails for a different reason.",
+        sections: [
+          {
+            title: "What happened",
+            body: "The withdrawal was held during compliance review. We submitted to the exchange on the client's behalf, the transfer was approved, and it was broadcast to the network — 27,576.9793 USDT via Ethereum (ERC-20), confirmed by Bybit's own status change to “sent”.",
+          },
+          {
+            title: "Why a withdrawal is held when the account looks fine",
+            body: "A hold at the withdrawal step is not an account freeze. You can still log in, still trade, still see your full balance — only the transfer out enters manual review. The common triggers are a destination address carrying its own risk score, a first withdrawal to an address the account has never used, an amount that is an outlier for that account's history, a device or country change shortly beforehand, or simple periodic sampling. Because nothing about the account appears broken, this is the case people are most likely to wait out. That is the failure mode: a compliance hold has no built-in expiry, and an unanswered one can sit indefinitely.",
+          },
+          {
+            title: "What actually moves a held transfer",
+            body: "The submission has to be about the transaction, not about the account — that is the distinction that decides whether it lands with anyone who can act on it. In practice that means establishing what the destination address is and that it belongs to you, documenting the origin of the specific balance being moved, and putting it in front of the queue that handles transaction review rather than general support. Filing it as an account complaint is the most common way a straightforward hold turns into a months-long ticket thread.",
+          },
+        ],
+      },
+      manual_transfer: {
+        title: "Verification Could Not Be Completed — Full Balance Recovered Before Closure",
+        description:
+          "When an exchange cannot complete verification the account closes permanently. Balance return is a separate process with a finite window — here is how that exit is secured.",
+        heading: "Verification could not be completed: the full balance recovered before closure",
+        intro:
+          "When verification cannot be completed, the account is closed permanently and the account itself is not coming back. What is still recoverable is the balance — through a separate process, on a finite window, that most people spend arguing about their documents instead.",
+        sections: [
+          {
+            title: "What happened",
+            body: "Verification could not be completed, which meant permanent closure. We secured the exit that preserves the balance: a one-time manual transfer of the full amount to a wallet the client controls, authorised by Bybit Customer Support before the account was closed.",
+          },
+          {
+            title: "Why this is a deadline, not a dispute",
+            body: "This outcome is misread more often than any other. It is not a punishment and not an accusation — it happens when the documents simply cannot satisfy the check: a document type the exchange does not accept from your jurisdiction, a name that does not match the supporting record, a residency the exchange no longer serves, a liveness check that keeps failing. Once the exchange has reached that conclusion, the account will not be restored no matter how the appeal is worded. The part that matters is that closure and balance return are handled as two separate processes, and the window in which a manual transfer can still be requested is finite.",
+          },
+          {
+            title: "The ask has to change",
+            body: "The right move is to stop appealing the verification and start requesting the exit — a different request, to a different team, with different requirements: proof of continuity of ownership, an external address you control, and an explicit acknowledgement that the account will close. Continuing to argue verification while that window runs is how balances end up stranded inside closed accounts. Recognising which of the two situations you are in, early, is worth more than any argument you can make about the documents.",
+          },
+        ],
+      },
+      binance_withdrawal: {
+        title: "Binance Balance Released — 171,867 USDT Withdrawn After Clearance",
+        description:
+          "A cleared Binance account and a 171,867 USDT withdrawal accepted to the network. Why clearing the restriction and getting the balance out are two separate problems.",
+        heading: "Binance balance released: 171,867 USDT withdrawn after clearance",
+        intro:
+          "Once the account was cleared the client moved the balance out, and the withdrawal was accepted and sent to the network. Getting a restriction lifted is not the end of the case — the exit is its own step, and it is the one where recovered balances most often get stuck a second time.",
+        sections: [
+          {
+            title: "What happened",
+            body: "With the account cleared, the client submitted the withdrawal and it was accepted — 171,867.37 USDT to the receiving address via Tron (TRC-20), out of the Spot Wallet, confirmed by Binance's own “Withdrawal Request Submitted” screen.",
+          },
+          {
+            title: "Clearing the account and getting the money out are two problems",
+            body: "A released account is not a finished case. From the risk engine's point of view, an account that was recently restricted and is now moving its entire balance is a textbook pattern, and it is common for a large post-restriction withdrawal to re-enter review on its own. The moment a balance is released is therefore the moment to plan the exit deliberately, rather than to move everything at once and discover that the same evidence is needed again — this time without the momentum of an open case behind it.",
+          },
+          {
+            title: "What that means in practice",
+            body: "Keep the source-of-funds package assembled rather than filing it away, since a second review will ask for the same material. Expect address whitelisting to impose its own delay and start it before you need it. Choose the network deliberately: a chain with lower fees is not automatically the one the exchange treats as lower risk for a large transfer. None of this is dramatic, and all of it is easier to do before the balance is released than after a second hold has already landed.",
+          },
+        ],
+      },
+    },
+  },
   faq: {
     eyebrow: "Questions",
     headline: "Frequently asked",
     items: [
-      { q: "How long does the recovery process take?", a: "Timeline varies by case complexity and exchange responsiveness. Most cases resolve within 7 to 30 business days. We provide an estimated timeline after the initial case analysis." },
-      { q: "Do you guarantee account recovery?", a: "We do not offer unconditional guarantees, as outcomes depend on exchange policies and the nature of each case. We are transparent about likelihood of success during the initial consultation." },
-      { q: "What exchanges do you work with?", a: "We handle cases for all major centralized exchanges including Binance, Coinbase, Kraken, OKX, Bybit, KuCoin, Huobi, and others. We also assist with decentralized wallet recovery." },
-      { q: "Is my information kept confidential?", a: "Absolutely. All case information is handled under strict confidentiality. We do not share client data with third parties under any circumstances." },
-      { q: "What is the cost of the service?", a: "Our fees are determined on a case-by-case basis depending on complexity and the amount of assets involved. We provide a clear pricing structure during the initial consultation at no charge." },
-      { q: "How do I start?", a: "Fill in the application form on this page. A case manager will contact you within 24 hours to schedule an initial consultation." },
+      { q: "How long does it take to unfreeze a crypto account?", a: "It depends on which trigger caused the freeze and how quickly the exchange's compliance desk responds — neither of which any service controls. A source-of-funds request answered in the right format can close in days; a case sitting with a regulator takes considerably longer. We give you a realistic range for your case after the first review, including when the honest answer is that the exchange is simply slow." },
+      { q: "Do you guarantee my account will be recovered?", a: "No, and you should be wary of anyone who does. The outcome depends on the exchange's policies, the reason for the freeze and the facts of your case. What we commit to is an honest assessment in the first review — including telling you when a case is not winnable, rather than billing you for the attempt." },
+      { q: "Which exchanges do you handle cases for?", a: "The cases published on this page, with the exchange's own screenshots behind them, are Bybit and Binance. We take cases on other major centralised exchanges too, since the appeal mechanics are broadly similar — but we only claim a documented track record where we can show you the evidence. Tell us which exchange you are dealing with and we will say plainly whether we have handled it." },
+      { q: "Will you ever ask for my password, seed phrase or 2FA codes?", a: "Never. No part of preparing an appeal requires them, and anyone who asks for them is stealing from you — including anyone claiming to act on our behalf. We work from the exchange's messages to you, your transaction history and your proof of where the funds came from. Nothing we ask for would let us move your assets." },
+      { q: "What does it cost?", a: "The first review is free and carries no obligation. Fees for anything beyond it are set per case, according to complexity and what the appeal requires, and are agreed with you in writing before chargeable work begins. We do not start paid work without your agreement." },
+      { q: "Is my information kept confidential?", a: "Yes. Case details are not shared with third parties and enquiries are never sold on. Submissions go to a private chat used solely for handling them — this site keeps no database of applications. Where we publish an outcome as a case study, identifying details are redacted, and only with the client's agreement." },
+      { q: "How do I start?", a: "Send the exchange's messages and a short description of what happened through the form on this page. Within 24 hours you get an answer covering which of the common triggers you are most likely facing, whether the case looks winnable, and what it would take. No charge, and no obligation to continue." },
     ],
   },
   closing: {
@@ -197,7 +305,6 @@ const en = {
         "This policy explains what we collect when you contact us about a frozen account, why we collect it, and what we do not do with it.",
       sections: [
         { title: "What we collect", body: "Only what you type into the form on this site: your name, email address, and optionally your Telegram handle, phone number, the exchange or wallet involved, and your description of the situation. If you arrived through a partner link, we also record that referral code and the page that referred you." },
-        { title: "How it is delivered and stored", body: "Submissions are delivered to a private Telegram chat used solely for handling enquiries. This site keeps no database of applications — there is no stored copy on the web server. Case material you send us later, during the work itself, is held only for as long as the case is open and for the period we may need to evidence what was done." },
         { title: "What we never ask for", body: "We never ask for exchange passwords, seed phrases, private keys, 2FA codes or remote access to your device. No part of the recovery process requires them. Do not send them to us, or to anyone else claiming to act on our behalf." },
         { title: "Who else sees it", body: "Case details are not sold, rented or shared with third parties for marketing. Information is disclosed to an exchange, or to a professional adviser, only where doing so is necessary to advance your case and you have asked us to act. Telegram acts as the messaging provider for delivery." },
         { title: "Your rights", body: "You can ask what we hold about you, ask for it to be corrected, or ask for it to be deleted. Email the address in the footer and we will act on the request. Deletion may end an open case, since we would no longer hold the material needed to work it." },
@@ -223,7 +330,9 @@ const en = {
     },
   },
   footer: {
-    tagline: "Professional crypto account recovery.",
+    tagline:
+      "Appeals and case preparation for frozen exchange accounts — AML holds, stalled verification and compliance reviews.",
+    language: "Language",
     legal: "Legal",
     privacy: "Privacy Policy",
     terms: "Terms of Service",
@@ -239,20 +348,22 @@ export type Dictionary = typeof en;
 
 const uk: Dictionary = {
   meta: {
-    title: "Розблокування криптоакаунта — Binance, Bybit, OKX",
+    title: "Розблокування криптоакаунта — апеляції Binance і Bybit",
     description:
-      "Заблокували акаунт через AML, KYC чи комплаєнс-перевірку? Готуємо апеляцію та ведемо комунікацію з біржею. 220 711 USDT розблоковано, кожен кейс підтверджено скриншотом.",
+      "Заблокували акаунт через AML, KYC чи комплаєнс-перевірку? Визначаємо причину, готуємо апеляцію та ведемо комунікацію з біржею. Кейси підтверджено скриншотами.",
   },
   nav: {
     links: [
       { label: "Чому блокують", href: "#problems" },
-      { label: "Підтверджені кейси", href: "#cases" },
+      { label: "Документовані кейси", href: "#cases" },
       { label: "Процес", href: "#process" },
       { label: "FAQ", href: "#faq" },
     ],
     cta: "Безкоштовний розбір",
     menu: "Меню",
     lang: "Мова",
+    home: "Головна",
+    primary: "Основна навігація",
   },
   hero: {
     eyebrow: "Відновлення криптоакаунтів",
@@ -260,17 +371,7 @@ const uk: Dictionary = {
     sub: "Біржі блокують акаунти через AML-мітки, незавершену верифікацію та комплаєнс-перевірки — і рідко пояснюють, через що саме. Ми визначаємо справжню причину, збираємо докази, яких вимагає біржа, і ведемо справу, доки ваш баланс не розблокують.",
     ctaPrimary: "Безкоштовний розбір",
     ctaSecondary: "Дивитися кейси",
-    detail: "Перший розбір безкоштовно · Повна конфіденційність · Працюємо з усіма великими біржами",
-  },
-  proof: {
-    recovered: "USDT розблоковано",
-    recovered_note: "За документально підтвердженими кейсами нижче",
-    exchanges: "Біржі",
-    exchanges_note: "Binance, Bybit, Coinbase, Kraken, OKX, KuCoin",
-    evidence: "Підтверджено скриншотами",
-    evidence_note: "Кожен кейс — з листуванням самої біржі",
-    response: "Час відповіді",
-    response_note: "Кожну заявку розглядаємо протягом 24 годин",
+    detail: "Перший розбір безкоштовно · Відповідь протягом 24 годин · Повна конфіденційність",
   },
   problems: {
     eyebrow: "Чому блокують акаунти",
@@ -403,16 +504,132 @@ const uk: Dictionary = {
       },
     },
   },
+  caseStudies: {
+    index: {
+      title: "Документовані кейси розблокування криптоакаунтів — Bybit і Binance",
+      description:
+        "Чотири вирішені справи зі скриншотами від самих бірж: апеляція за Abnormal Asset Origin, виведення на комплаєнс-перевірці, ручний переказ перед закриттям і розблокований баланс Binance.",
+      heading: "Документовані кейси",
+      intro:
+        "Чотири вирішені справи, кожну опубліковано з листуванням біржі або скриншотом акаунта, який її підтверджує. Кожен кейс розписано так, щоб механіка була корисною вам незалежно від того, чи звернетесь ви до нас, — що саме позначила система біржі і що потрібно, щоб на це відповісти. Ідентифікуючі дані приховано на прохання клієнта.",
+    },
+    labels: {
+      breadcrumb: "Кейси",
+      exchange: "Біржа",
+      trigger: "Причина",
+      outcome: "Результат",
+      evidence: "Доказ",
+      read: "Читати кейс повністю",
+      back: "Усі документовані кейси",
+      related: "Інші документовані кейси",
+    },
+    cta: {
+      headline: "Ваша ситуація схожа?",
+      sub: "Надішліть повідомлення від біржі та короткий опис. Протягом 24 годин отримаєте чесну оцінку: з якою причиною ви зіткнулися і чи можна виграти справу — безкоштовно й без зобов'язань продовжувати.",
+      button: "Безкоштовний розбір",
+    },
+    items: {
+      appeal: {
+        title: "Bybit «Abnormal Asset Origin»: 21 267 USDT розблоковано за апеляцією",
+        description:
+          "Баланс на Bybit ізольовано за політикою Abnormal Asset Origin і розблоковано після апеляції. Що насправді означає ця позначка і що має містити апеляція.",
+        heading: "Bybit «Abnormal Asset Origin»: 21 267 USDT розблоковано після апеляції",
+        intro:
+          "Фандинг-акаунт Bybit показує нуль, а 21 267 USDT утримуються за політикою біржі «Abnormal Asset Origin». Позначку знято, активи розблоковано. Нижче — що це за політика насправді і що має містити апеляція проти неї.",
+        sections: [
+          {
+            title: "Що сталося",
+            body: "Баланс було ізольовано за політикою Bybit «Abnormal Asset Origin», через що фандинг-акаунт не показував нічого доступного. Ми визначили, який саме депозит спричинив позначку, зібрали документи щодо нього та подали апеляцію тим каналом, який доходить до комплаєнсу, а не до першої лінії підтримки. Позначку знято, активи розблоковано.",
+          },
+          {
+            title: "Що насправді означає «Abnormal Asset Origin»",
+            body: "Це не звинувачення на вашу адресу. Bybit оцінює вхідні депозити за базами чейн-аналітики, і ця позначка означає, що монети, які ви отримали, мають ончейн-історію з контактом із чимось високоризиковим — міксером, санкційною адресою, кластером, віднесеним до зламаної біржі, іноді P2P-майданчиком. Цей контакт міг статися за кілька переказів до того, як монети взагалі дійшли до вас. Оскільки оцінка прив'язана до монет, а не до вашої поведінки, утримання відбувається автоматично, і першій лінії підтримки просто нічого обговорювати. Баланс лишається в ізольованому стані: видимий в інтерфейсі, недоступний для торгівлі й виведення, без жодних заявлених термінів.",
+          },
+          {
+            title: "Чому самостійні апеляції тут зазвичай провалюються",
+            body: "Інстинктивна реакція — пояснити, що особисто ви нічого не порушували — не відповідає на поставлене питання, тому справу не рухає. Рухає її документований ланцюг від зрозумілого джерела до позначеного депозиту: виписки з бірж, записи P2P-угод, рахунки або підтвердження зарплати, з хешами транзакцій, що зв'язують кожен крок, і поясненням щодо контрагента. Усе це має бути зібрано так, щоб перевіряльник пройшов ланцюг без жодного уточнювального запитання, бо кожен такий обмін додає чергове очікування без будь-яких термінів. Визначити, який саме депозит було позначено, ще до того як щось писати, — саме той крок, який пропускають.",
+          },
+        ],
+      },
+      withdrawal: {
+        title: "Виведення на Bybit затримано комплаєнсом — 27 576,98 USDT розблоковано",
+        description:
+          "Виведення на Bybit заморожено на комплаєнс-перевірці та розблоковано після звернення. Чому виведення затримують, коли з акаунтом усе гаразд, і що справді зрушує справу.",
+        heading: "Виведення на Bybit затримано комплаєнсом: 27 576,98 USDT розблоковано",
+        intro:
+          "Виведення зупинили на комплаєнс-перевірці, тоді як сам акаунт працював нормально. Після нашого звернення переказ схвалено та відправлено в мережу. Це інша механіка, ніж блокування акаунта, і провалюється вона з іншої причини.",
+        sections: [
+          {
+            title: "Що сталося",
+            body: "Виведення було затримано під час комплаєнс-перевірки. Ми звернулися до біржі від імені клієнта, переказ схвалили та відправили в мережу — 27 576,9793 USDT через Ethereum (ERC-20), що підтверджує зміна статусу на «відправлено» в листі самої Bybit.",
+          },
+          {
+            title: "Чому виведення затримують, коли з акаунтом усе гаразд",
+            body: "Затримка на етапі виведення — це не блокування акаунта. Ви входите в акаунт, торгуєте, бачите весь баланс — на ручну перевірку йде тільки переказ назовні. Типові причини: адреса призначення з власним ризик-рейтингом, перше виведення на адресу, якою акаунт ніколи не користувався, сума, нетипова для історії цього акаунта, зміна пристрою чи країни незадовго до того, або звичайна вибіркова перевірка. Оскільки з акаунтом нічого не виглядає зламаним, саме тут люди найчастіше вирішують просто зачекати. У цьому й помилка: комплаєнс-затримка не має вбудованого терміну, і без відповіді вона може тривати як завгодно довго.",
+          },
+          {
+            title: "Що справді зрушує затриманий переказ",
+            body: "Звернення має бути про транзакцію, а не про акаунт — саме це вирішує, чи потрапить воно до тих, хто може щось зробити. На практиці це означає підтвердити, що це за адреса призначення і що вона ваша, задокументувати походження саме тієї суми, яка виводиться, і подати все в чергу, що займається перевіркою транзакцій, а не в загальну підтримку. Подати це як скаргу на акаунт — найпоширеніший спосіб перетворити просту затримку на місяці листування.",
+          },
+        ],
+      },
+      manual_transfer: {
+        title: "Верифікацію завершити неможливо — повний баланс повернуто до закриття",
+        description:
+          "Якщо біржа не може завершити верифікацію, акаунт закривають назавжди. Повернення балансу — окремий процес із обмеженим вікном; ось як забезпечується цей вихід.",
+        heading: "Верифікацію завершити неможливо: повний баланс повернуто до закриття",
+        intro:
+          "Якщо верифікацію завершити неможливо, акаунт закривають назавжди — і сам акаунт уже не повернути. Повернути можна баланс: через окремий процес, у обмежене вікно, яке більшість людей витрачає на суперечки про документи.",
+        sections: [
+          {
+            title: "Що сталося",
+            body: "Верифікацію завершити не вдалося, що означало остаточне закриття акаунта. Ми забезпечили вихід, який зберігає баланс: одноразовий ручний переказ усієї суми на гаманець, який контролює клієнт, погоджений службою підтримки Bybit до закриття акаунта.",
+          },
+          {
+            title: "Чому це дедлайн, а не суперечка",
+            body: "Цей сценарій тлумачать хибно частіше за інші. Це не покарання і не звинувачення — так буває, коли документи просто не можуть задовольнити перевірку: тип документа, який біржа не приймає з вашої юрисдикції, ім'я, що не збігається з підтверджувальним записом, резидентство, яке біржа більше не обслуговує, перевірка «живої» присутності, що раз за разом не проходить. Щойно біржа дійшла такого висновку, акаунт не відновлять, хоч би як була сформульована апеляція. Важливо інше: закриття акаунта й повернення балансу — це два окремі процеси, і вікно, у яке ще можна запросити ручний переказ, обмежене.",
+          },
+          {
+            title: "Прохання має змінитися",
+            body: "Правильний крок — перестати оскаржувати верифікацію і почати запитувати вихід. Це інше звернення, до іншої команди, з іншими вимогами: підтвердження безперервності володіння, зовнішня адреса під вашим контролем і пряме визнання того, що акаунт буде закрито. Продовжувати сперечатися про верифікацію, поки це вікно спливає, — саме так баланси й залишаються замкненими в закритих акаунтах. Вчасно зрозуміти, у якій із двох ситуацій ви перебуваєте, важить більше за будь-які аргументи щодо документів.",
+          },
+        ],
+      },
+      binance_withdrawal: {
+        title: "Баланс Binance розблоковано — 171 867 USDT виведено після зняття обмежень",
+        description:
+          "Розблокований акаунт Binance і виведення 171 867 USDT, прийняте в мережу. Чому зняти обмеження і вивести кошти — це дві різні задачі.",
+        heading: "Баланс Binance розблоковано: 171 867 USDT виведено після зняття обмежень",
+        intro:
+          "Щойно акаунт розблокували, клієнт вивів баланс, і запит на виведення прийняли та відправили в мережу. Зняття обмеження — ще не кінець справи: вихід є окремим етапом, і саме на ньому повернуті баланси найчастіше застрягають удруге.",
+        sections: [
+          {
+            title: "Що сталося",
+            body: "Після розблокування акаунта клієнт подав запит на виведення, і його прийняли — 171 867,37 USDT на адресу одержувача через Tron (TRC-20) зі Spot-гаманця, що підтверджує екран Binance «Withdrawal Request Submitted».",
+          },
+          {
+            title: "Розблокувати акаунт і вивести кошти — це дві різні задачі",
+            body: "Розблокований акаунт — ще не завершена справа. З погляду ризик-системи акаунт, який щойно мав обмеження і тепер виводить увесь баланс, — це хрестоматійний патерн, і велике виведення одразу після зняття обмежень нерідко саме по собі повертається на перевірку. Тому момент розблокування балансу — це момент, коли вихід треба спланувати свідомо, а не вивести все одразу й виявити, що ті самі докази потрібні знову, цього разу вже без інерції відкритої справи.",
+          },
+          {
+            title: "Що це означає на практиці",
+            body: "Тримайте пакет підтверджень походження коштів зібраним, а не відкладеним: повторна перевірка попросить ті самі матеріали. Закладайте затримку на внесення адреси в білий список і починайте це заздалегідь. Обирайте мережу свідомо: ланцюг із нижчою комісією не є автоматично тим, який біржа вважає менш ризиковим для великого переказу. Нічого драматичного в цьому немає — і все це значно легше зробити до розблокування балансу, ніж після того, як уже настала друга затримка.",
+          },
+        ],
+      },
+    },
+  },
   faq: {
     eyebrow: "Запитання",
     headline: "Поширені запитання",
     items: [
-      { q: "Скільки часу займає процес відновлення?", a: "Тривалість залежить від складності справи та швидкості реагування біржі. Більшість справ вирішується протягом 7–30 робочих днів. Ми надаємо орієнтовні терміни після первинного аналізу." },
-      { q: "Чи гарантуєте ви відновлення акаунту?", a: "Ми не надаємо безумовних гарантій, оскільки результат залежить від політики біржі та характеру кожної справи. Прозоро оцінюємо шанси під час первинної консультації." },
-      { q: "З якими біржами ви працюєте?", a: "Ми розглядаємо справи для Binance, Coinbase, Kraken, OKX, Bybit, KuCoin, Huobi та інших. Також допомагаємо з відновленням децентралізованих гаманців." },
-      { q: "Чи зберігається конфіденційність моїх даних?", a: "Абсолютно. Вся інформація обробляється з дотриманням суворої конфіденційності. Ми не передаємо дані клієнтів третім особам за жодних обставин." },
-      { q: "Яка вартість послуг?", a: "Вартість визначається індивідуально залежно від складності та суми активів. Чітка структура ціноутворення — під час первинної консультації, без будь-якої оплати." },
-      { q: "Як розпочати?", a: "Заповніть заявку на цій сторінці. Менеджер зв'яжеться з вами протягом 24 годин." },
+      { q: "Скільки часу займає розблокування криптоакаунта?", a: "Залежить від причини блокування і від того, як швидко відповідає комплаєнс біржі, — жодного з цих чинників не контролює жоден сервіс. Запит про походження коштів, відповідь на який складено правильно, може закритися за кілька днів; справа, що лежить у регулятора, триває значно довше. Реалістичні терміни для вашої справи називаємо після першого розбору — зокрема тоді, коли чесна відповідь звучить як «біржа просто повільна»." },
+      { q: "Чи гарантуєте ви повернення акаунта?", a: "Ні, і варто насторожитися щодо тих, хто гарантує. Результат залежить від політики біржі, причини блокування та обставин справи. Ми зобов'язуємось дати чесну оцінку на першому розборі — зокрема сказати, що справу виграти не можна, а не виставити рахунок за спробу." },
+      { q: "З якими біржами ви працюєте?", a: "Кейси, опубліковані на цій сторінці зі скриншотами від самих бірж, — це Bybit і Binance. Беремо справи й на інших великих централізованих біржах, бо механіка апеляції там схожа, але заявляємо про підтверджений досвід лише там, де можемо показати докази. Напишіть, з якою біржею маєте справу, — скажемо прямо, чи працювали з нею." },
+      { q: "Чи попросите ви пароль, seed-фразу або коди 2FA?", a: "Ніколи. Жоден етап підготовки апеляції їх не потребує, а той, хто їх просить, вас обкрадає — зокрема якщо стверджує, що діє від нашого імені. Ми працюємо з повідомленнями біржі до вас, історією ваших транзакцій і підтвердженням походження коштів. Ніщо з того, що ми просимо, не дає доступу до ваших активів." },
+      { q: "Скільки це коштує?", a: "Перший розбір безкоштовний і ні до чого не зобов'язує. Вартість подальшої роботи визначається індивідуально — за складністю та обсягом того, що потребує апеляція, — і узгоджується з вами письмово до початку платної роботи. Без вашої згоди ми її не починаємо." },
+      { q: "Чи зберігається конфіденційність моїх даних?", a: "Так. Деталі справ не передаються третім особам, а звернення не перепродаються. Заявки надходять у приватний чат, який використовується виключно для їх обробки, — сайт не веде бази даних заявок. Якщо результат публікується як кейс, ідентифікуючі дані приховуються, і лише за згодою клієнта." },
+      { q: "Як розпочати?", a: "Надішліть повідомлення від біржі та короткий опис ситуації через форму на цій сторінці. Протягом 24 годин отримаєте відповідь: з якою з типових причин ви найімовірніше зіткнулися, чи виглядає справа виграшною і що для цього потрібно. Безкоштовно й без зобов'язань продовжувати." },
     ],
   },
   closing: {
@@ -431,7 +648,6 @@ const uk: Dictionary = {
         "Ця політика пояснює, що ми збираємо, коли ви звертаєтесь щодо заблокованого акаунта, навіщо це збираємо і чого з цими даними не робимо.",
       sections: [
         { title: "Що ми збираємо", body: "Лише те, що ви вводите у форму на цьому сайті: ім'я, email і за бажанням — Telegram, номер телефону, назву біржі чи гаманця та опис ситуації. Якщо ви прийшли за партнерським посиланням, ми також фіксуємо цей реферальний код і сторінку, з якої ви перейшли." },
-        { title: "Як це передається та зберігається", body: "Заявки надходять у приватний чат Telegram, який використовується виключно для обробки звернень. Сайт не веде базу даних заявок — на вебсервері копія не зберігається. Матеріали справи, які ви надсилаєте пізніше, зберігаються лише поки справа відкрита та протягом строку, потрібного для підтвердження виконаної роботи." },
         { title: "Чого ми ніколи не просимо", body: "Ми ніколи не просимо паролі від бірж, seed-фрази, приватні ключі, коди 2FA чи віддалений доступ до вашого пристрою. Жоден етап відновлення їх не потребує. Не надсилайте їх ні нам, ні будь-кому, хто стверджує, що діє від нашого імені." },
         { title: "Хто ще це бачить", body: "Деталі справ не продаються, не передаються в оренду та не надаються третім особам для маркетингу. Інформація розкривається біржі або профільному раднику лише тоді, коли це потрібно для просування вашої справи і ви попросили нас діяти. Telegram виступає провайдером доставки повідомлень." },
         { title: "Ваші права", body: "Ви можете запитати, які дані ми зберігаємо, вимагати їх виправлення або видалення. Напишіть на адресу у футері — ми виконаємо запит. Видалення може означати завершення відкритої справи, оскільки ми більше не матимемо матеріалів для роботи." },
@@ -457,7 +673,9 @@ const uk: Dictionary = {
     },
   },
   footer: {
-    tagline: "Професійне відновлення криптоакаунтів.",
+    tagline:
+      "Апеляції та підготовка справ щодо заблокованих акаунтів на біржах — AML-мітки, незавершена верифікація, комплаєнс-перевірки.",
+    language: "Мова",
     legal: "Правова інформація",
     privacy: "Політика конфіденційності",
     terms: "Умови використання",
@@ -471,20 +689,22 @@ const uk: Dictionary = {
 
 const ru: Dictionary = {
   meta: {
-    title: "Разблокировка криптоаккаунта — Binance, Bybit, OKX",
+    title: "Разблокировка криптоаккаунта — апелляции Binance и Bybit",
     description:
-      "Заблокировали аккаунт из-за AML, KYC или комплаенс-проверки? Готовим апелляцию и ведём переписку с биржей. 220 711 USDT разблокировано, каждый кейс подтверждён скриншотом.",
+      "Заблокировали аккаунт из-за AML, KYC или комплаенс-проверки? Определяем причину, готовим апелляцию и ведём переписку с биржей. Кейсы подтверждены скриншотами.",
   },
   nav: {
     links: [
       { label: "Почему блокируют", href: "#problems" },
-      { label: "Подтверждённые кейсы", href: "#cases" },
+      { label: "Документированные кейсы", href: "#cases" },
       { label: "Процесс", href: "#process" },
       { label: "FAQ", href: "#faq" },
     ],
     cta: "Бесплатный разбор",
     menu: "Меню",
     lang: "Язык",
+    home: "Главная",
+    primary: "Основная навигация",
   },
   hero: {
     eyebrow: "Восстановление криптоаккаунтов",
@@ -492,17 +712,7 @@ const ru: Dictionary = {
     sub: "Биржи блокируют аккаунты из-за AML-меток, незавершённой верификации и комплаенс-проверок — и редко объясняют, из-за чего именно. Мы определяем настоящую причину, собираем доказательства, которых требует биржа, и ведём дело, пока ваш баланс не разблокируют.",
     ctaPrimary: "Бесплатный разбор",
     ctaSecondary: "Смотреть кейсы",
-    detail: "Первый разбор бесплатно · Полная конфиденциальность · Работаем со всеми крупными биржами",
-  },
-  proof: {
-    recovered: "USDT разблокировано",
-    recovered_note: "По документально подтверждённым кейсам ниже",
-    exchanges: "Биржи",
-    exchanges_note: "Binance, Bybit, Coinbase, Kraken, OKX, KuCoin",
-    evidence: "Подтверждено скриншотами",
-    evidence_note: "Каждый кейс — с перепиской самой биржи",
-    response: "Время ответа",
-    response_note: "Каждую заявку рассматриваем в течение 24 часов",
+    detail: "Первый разбор бесплатно · Ответ в течение 24 часов · Полная конфиденциальность",
   },
   problems: {
     eyebrow: "Почему блокируют аккаунты",
@@ -635,16 +845,132 @@ const ru: Dictionary = {
       },
     },
   },
+  caseStudies: {
+    index: {
+      title: "Документированные кейсы разблокировки криптоаккаунтов — Bybit и Binance",
+      description:
+        "Четыре решённых дела со скриншотами от самих бирж: апелляция по Abnormal Asset Origin, вывод на комплаенс-проверке, ручной перевод перед закрытием и разблокированный баланс Binance.",
+      heading: "Документированные кейсы",
+      intro:
+        "Четыре решённых дела, каждое опубликовано с перепиской биржи или скриншотом аккаунта, который его подтверждает. Каждый кейс расписан так, чтобы механика была полезна вам независимо от того, обратитесь ли вы к нам, — что именно пометила система биржи и что нужно, чтобы на это ответить. Идентифицирующие данные скрыты по просьбе клиента.",
+    },
+    labels: {
+      breadcrumb: "Кейсы",
+      exchange: "Биржа",
+      trigger: "Причина",
+      outcome: "Результат",
+      evidence: "Доказательство",
+      read: "Читать кейс полностью",
+      back: "Все документированные кейсы",
+      related: "Другие документированные кейсы",
+    },
+    cta: {
+      headline: "Ваша ситуация похожа?",
+      sub: "Отправьте сообщения от биржи и краткое описание. В течение 24 часов получите честную оценку: с какой причиной вы столкнулись и можно ли выиграть дело — бесплатно и без обязательств продолжать.",
+      button: "Бесплатный разбор",
+    },
+    items: {
+      appeal: {
+        title: "Bybit «Abnormal Asset Origin»: 21 267 USDT разблокировано по апелляции",
+        description:
+          "Баланс на Bybit изолирован по политике Abnormal Asset Origin и разблокирован после апелляции. Что на самом деле означает эта пометка и что должна содержать апелляция.",
+        heading: "Bybit «Abnormal Asset Origin»: 21 267 USDT разблокировано после апелляции",
+        intro:
+          "Фандинг-аккаунт Bybit показывает ноль, а 21 267 USDT удерживаются по политике биржи «Abnormal Asset Origin». Пометка снята, активы разблокированы. Ниже — что это за политика на самом деле и что должна содержать апелляция против неё.",
+        sections: [
+          {
+            title: "Что произошло",
+            body: "Баланс был изолирован по политике Bybit «Abnormal Asset Origin», из-за чего фандинг-аккаунт не показывал ничего доступного. Мы определили, какой именно депозит вызвал пометку, собрали документы по нему и подали апелляцию по каналу, который доходит до комплаенса, а не до первой линии поддержки. Пометка снята, активы разблокированы.",
+          },
+          {
+            title: "Что на самом деле означает «Abnormal Asset Origin»",
+            body: "Это не обвинение в ваш адрес. Bybit оценивает входящие депозиты по базам чейн-аналитики, и эта пометка означает, что полученные вами монеты имеют ончейн-историю с контактом с чем-то высокорисковым — миксером, санкционным адресом, кластером, отнесённым к взломанной бирже, иногда P2P-площадкой. Этот контакт мог случиться за несколько переводов до того, как монеты вообще дошли до вас. Поскольку оценка привязана к монетам, а не к вашему поведению, удержание происходит автоматически, и первой линии поддержки попросту нечего обсуждать. Баланс остаётся в изолированном состоянии: виден в интерфейсе, недоступен для торговли и вывода, без каких-либо заявленных сроков.",
+          },
+          {
+            title: "Почему самостоятельные апелляции здесь обычно проваливаются",
+            body: "Инстинктивная реакция — объяснить, что лично вы ничего не нарушали — не отвечает на заданный вопрос, поэтому дело не двигает. Двигает его документированная цепочка от понятного источника до помеченного депозита: выписки с бирж, записи P2P-сделок, счета или подтверждение зарплаты, с хешами транзакций, связывающими каждый шаг, и пояснением по контрагенту. Всё это должно быть собрано так, чтобы проверяющий прошёл цепочку без единого уточняющего вопроса, потому что каждый такой обмен добавляет очередное ожидание без всяких сроков. Определить, какой именно депозит был помечен, ещё до того как что-то писать, — как раз тот шаг, который пропускают.",
+          },
+        ],
+      },
+      withdrawal: {
+        title: "Вывод на Bybit задержан комплаенсом — 27 576,98 USDT разблокировано",
+        description:
+          "Вывод на Bybit заморожен на комплаенс-проверке и разблокирован после обращения. Почему выводы задерживают, когда с аккаунтом всё в порядке, и что действительно сдвигает дело.",
+        heading: "Вывод на Bybit задержан комплаенсом: 27 576,98 USDT разблокировано",
+        intro:
+          "Вывод остановили на комплаенс-проверке, тогда как сам аккаунт работал нормально. После нашего обращения перевод одобрили и отправили в сеть. Это другая механика, чем блокировка аккаунта, и проваливается она по другой причине.",
+        sections: [
+          {
+            title: "Что произошло",
+            body: "Вывод был задержан во время комплаенс-проверки. Мы обратились к бирже от имени клиента, перевод одобрили и отправили в сеть — 27 576,9793 USDT через Ethereum (ERC-20), что подтверждает смена статуса на «отправлено» в письме самой Bybit.",
+          },
+          {
+            title: "Почему вывод задерживают, когда с аккаунтом всё в порядке",
+            body: "Задержка на этапе вывода — это не блокировка аккаунта. Вы входите в аккаунт, торгуете, видите весь баланс — на ручную проверку уходит только перевод наружу. Типичные причины: адрес назначения с собственным риск-рейтингом, первый вывод на адрес, которым аккаунт никогда не пользовался, сумма, нетипичная для истории этого аккаунта, смена устройства или страны незадолго до этого, либо обычная выборочная проверка. Поскольку с аккаунтом ничего не выглядит сломанным, именно здесь люди чаще всего решают просто подождать. В этом и ошибка: комплаенс-задержка не имеет встроенного срока, и без ответа она может длиться сколь угодно долго.",
+          },
+          {
+            title: "Что действительно сдвигает задержанный перевод",
+            body: "Обращение должно быть о транзакции, а не об аккаунте — именно это решает, попадёт ли оно к тем, кто может что-то сделать. На практике это значит подтвердить, что это за адрес назначения и что он ваш, задокументировать происхождение именно той суммы, которая выводится, и подать всё в очередь, занимающуюся проверкой транзакций, а не в общую поддержку. Подать это как жалобу на аккаунт — самый распространённый способ превратить простую задержку в месяцы переписки.",
+          },
+        ],
+      },
+      manual_transfer: {
+        title: "Верификацию завершить невозможно — полный баланс возвращён до закрытия",
+        description:
+          "Если биржа не может завершить верификацию, аккаунт закрывают навсегда. Возврат баланса — отдельный процесс с ограниченным окном; вот как обеспечивается этот выход.",
+        heading: "Верификацию завершить невозможно: полный баланс возвращён до закрытия",
+        intro:
+          "Если верификацию завершить невозможно, аккаунт закрывают навсегда — и сам аккаунт уже не вернуть. Вернуть можно баланс: через отдельный процесс, в ограниченное окно, которое большинство людей тратит на споры о документах.",
+        sections: [
+          {
+            title: "Что произошло",
+            body: "Верификацию завершить не удалось, что означало окончательное закрытие аккаунта. Мы обеспечили выход, сохраняющий баланс: единоразовый ручной перевод всей суммы на кошелёк, который контролирует клиент, согласованный службой поддержки Bybit до закрытия аккаунта.",
+          },
+          {
+            title: "Почему это дедлайн, а не спор",
+            body: "Этот сценарий понимают неверно чаще остальных. Это не наказание и не обвинение — так бывает, когда документы просто не могут удовлетворить проверку: тип документа, который биржа не принимает из вашей юрисдикции, имя, не совпадающее с подтверждающей записью, резидентство, которое биржа больше не обслуживает, проверка «живого» присутствия, которая раз за разом не проходит. Как только биржа пришла к такому выводу, аккаунт не восстановят, как бы ни была сформулирована апелляция. Важно другое: закрытие аккаунта и возврат баланса — это два отдельных процесса, и окно, в которое ещё можно запросить ручной перевод, ограничено.",
+          },
+          {
+            title: "Просьба должна измениться",
+            body: "Правильный шаг — перестать оспаривать верификацию и начать запрашивать выход. Это другое обращение, к другой команде, с другими требованиями: подтверждение непрерывности владения, внешний адрес под вашим контролем и прямое признание того, что аккаунт будет закрыт. Продолжать спорить о верификации, пока это окно истекает, — именно так балансы и остаются запертыми в закрытых аккаунтах. Вовремя понять, в какой из двух ситуаций вы находитесь, значит больше, чем любые аргументы о документах.",
+          },
+        ],
+      },
+      binance_withdrawal: {
+        title: "Баланс Binance разблокирован — 171 867 USDT выведено после снятия ограничений",
+        description:
+          "Разблокированный аккаунт Binance и вывод 171 867 USDT, принятый в сеть. Почему снять ограничение и вывести средства — это две разные задачи.",
+        heading: "Баланс Binance разблокирован: 171 867 USDT выведено после снятия ограничений",
+        intro:
+          "Как только аккаунт разблокировали, клиент вывел баланс, и запрос на вывод приняли и отправили в сеть. Снятие ограничения — ещё не конец дела: выход является отдельным этапом, и именно на нём возвращённые балансы чаще всего застревают во второй раз.",
+        sections: [
+          {
+            title: "Что произошло",
+            body: "После разблокировки аккаунта клиент подал запрос на вывод, и его приняли — 171 867,37 USDT на адрес получателя через Tron (TRC-20) со Spot-кошелька, что подтверждает экран Binance «Withdrawal Request Submitted».",
+          },
+          {
+            title: "Разблокировать аккаунт и вывести средства — две разные задачи",
+            body: "Разблокированный аккаунт — ещё не завершённое дело. С точки зрения риск-системы аккаунт, который только что имел ограничения и теперь выводит весь баланс, — это хрестоматийный паттерн, и крупный вывод сразу после снятия ограничений нередко сам по себе возвращается на проверку. Поэтому момент разблокировки баланса — это момент, когда выход нужно спланировать осознанно, а не вывести всё сразу и обнаружить, что те же доказательства нужны снова, на этот раз уже без инерции открытого дела.",
+          },
+          {
+            title: "Что это значит на практике",
+            body: "Держите пакет подтверждений происхождения средств собранным, а не убранным: повторная проверка попросит те же материалы. Закладывайте задержку на внесение адреса в белый список и начинайте это заранее. Выбирайте сеть осознанно: цепочка с меньшей комиссией не является автоматически той, которую биржа считает менее рискованной для крупного перевода. Ничего драматичного в этом нет — и всё это значительно легче сделать до разблокировки баланса, чем после того, как уже наступила вторая задержка.",
+          },
+        ],
+      },
+    },
+  },
   faq: {
     eyebrow: "Вопросы",
     headline: "Часто задаваемые",
     items: [
-      { q: "Сколько времени занимает процесс восстановления?", a: "Сроки зависят от сложности дела и скорости реагирования биржи. Большинство дел решается в течение 7–30 рабочих дней. Ориентировочные сроки — после первичного анализа." },
-      { q: "Гарантируете ли вы восстановление аккаунта?", a: "Мы не предоставляем безусловных гарантий, так как результат зависит от политики биржи и характера каждого дела. Прозрачно оцениваем шансы во время первичной консультации." },
-      { q: "С какими биржами вы работаете?", a: "Мы рассматриваем дела для Binance, Coinbase, Kraken, OKX, Bybit, KuCoin, Huobi и других. Также помогаем с восстановлением децентрализованных кошельков." },
-      { q: "Сохраняется ли конфиденциальность моих данных?", a: "Абсолютно. Вся информация обрабатывается с соблюдением строгой конфиденциальности. Мы не передаём данные клиентов третьим лицам ни при каких обстоятельствах." },
-      { q: "Какова стоимость услуг?", a: "Стоимость определяется индивидуально в зависимости от сложности и суммы активов. Чёткая структура ценообразования — во время первичной консультации, без какой-либо оплаты." },
-      { q: "Как начать?", a: "Заполните заявку на этой странице. Менеджер свяжется с вами в течение 24 часов." },
+      { q: "Сколько времени занимает разблокировка криптоаккаунта?", a: "Зависит от причины блокировки и от того, как быстро отвечает комплаенс биржи, — ни один из этих факторов не контролирует ни один сервис. Запрос о происхождении средств, ответ на который составлен правильно, может закрыться за несколько дней; дело, лежащее у регулятора, идёт значительно дольше. Реалистичные сроки по вашему делу называем после первого разбора — в том числе тогда, когда честный ответ звучит как «биржа просто медленная»." },
+      { q: "Гарантируете ли вы возврат аккаунта?", a: "Нет, и к тем, кто гарантирует, стоит отнестись настороженно. Результат зависит от политики биржи, причины блокировки и обстоятельств дела. Мы обязуемся дать честную оценку на первом разборе — в том числе сказать, что дело выиграть нельзя, а не выставить счёт за попытку." },
+      { q: "С какими биржами вы работаете?", a: "Кейсы, опубликованные на этой странице со скриншотами от самих бирж, — это Bybit и Binance. Берём дела и на других крупных централизованных биржах, так как механика апелляции там схожая, но заявляем о подтверждённом опыте только там, где можем показать доказательства. Напишите, с какой биржей имеете дело, — скажем прямо, работали ли мы с ней." },
+      { q: "Попросите ли вы пароль, seed-фразу или коды 2FA?", a: "Никогда. Ни один этап подготовки апелляции их не требует, а тот, кто их просит, вас обкрадывает — в том числе если утверждает, что действует от нашего имени. Мы работаем с сообщениями биржи к вам, историей ваших транзакций и подтверждением происхождения средств. Ничто из того, что мы просим, не даёт доступа к вашим активам." },
+      { q: "Сколько это стоит?", a: "Первый разбор бесплатный и ни к чему не обязывает. Стоимость дальнейшей работы определяется индивидуально — по сложности и объёму того, что требует апелляция, — и согласовывается с вами письменно до начала платной работы. Без вашего согласия мы её не начинаем." },
+      { q: "Сохраняется ли конфиденциальность моих данных?", a: "Да. Детали дел не передаются третьим лицам, а обращения не перепродаются. Заявки поступают в приватный чат, используемый исключительно для их обработки, — сайт не ведёт базу данных заявок. Если результат публикуется как кейс, идентифицирующие данные скрываются, и только с согласия клиента." },
+      { q: "Как начать?", a: "Отправьте сообщения от биржи и краткое описание ситуации через форму на этой странице. В течение 24 часов получите ответ: с какой из типичных причин вы вероятнее всего столкнулись, выглядит ли дело выигрышным и что для этого нужно. Бесплатно и без обязательств продолжать." },
     ],
   },
   closing: {
@@ -663,7 +989,6 @@ const ru: Dictionary = {
         "Эта политика объясняет, что мы собираем, когда вы обращаетесь по заблокированному аккаунту, зачем мы это собираем и чего с этими данными не делаем.",
       sections: [
         { title: "Что мы собираем", body: "Только то, что вы вводите в форму на этом сайте: имя, email и по желанию — Telegram, номер телефона, название биржи или кошелька и описание ситуации. Если вы пришли по партнёрской ссылке, мы также фиксируем этот реферальный код и страницу, с которой вы перешли." },
-        { title: "Как это передаётся и хранится", body: "Заявки поступают в приватный чат Telegram, используемый исключительно для обработки обращений. Сайт не ведёт базу данных заявок — на веб-сервере копия не хранится. Материалы дела, которые вы присылаете позже, хранятся только пока дело открыто и в течение срока, необходимого для подтверждения выполненной работы." },
         { title: "Чего мы никогда не просим", body: "Мы никогда не просим пароли от бирж, seed-фразы, приватные ключи, коды 2FA или удалённый доступ к вашему устройству. Ни один этап восстановления их не требует. Не отправляйте их ни нам, ни кому-либо, кто утверждает, что действует от нашего имени." },
         { title: "Кто ещё это видит", body: "Детали дел не продаются, не сдаются в аренду и не передаются третьим лицам для маркетинга. Информация раскрывается бирже или профильному консультанту только тогда, когда это необходимо для продвижения вашего дела и вы попросили нас действовать. Telegram выступает провайдером доставки сообщений." },
         { title: "Ваши права", body: "Вы можете запросить, какие данные мы храним, потребовать их исправления или удаления. Напишите на адрес в футере — мы выполним запрос. Удаление может означать завершение открытого дела, поскольку у нас больше не будет материалов для работы." },
@@ -689,7 +1014,9 @@ const ru: Dictionary = {
     },
   },
   footer: {
-    tagline: "Профессиональное восстановление криптоаккаунтов.",
+    tagline:
+      "Апелляции и подготовка дел по заблокированным аккаунтам на биржах — AML-метки, незавершённая верификация, комплаенс-проверки.",
+    language: "Язык",
     legal: "Правовая информация",
     privacy: "Политика конфиденциальности",
     terms: "Условия использования",

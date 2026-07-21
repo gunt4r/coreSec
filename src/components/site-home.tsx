@@ -9,16 +9,14 @@ import { Nav } from "@/components/nav";
 import { Objections } from "@/components/objections";
 import { Problems } from "@/components/problems";
 import { Process } from "@/components/process";
-import { ProofStrip } from "@/components/proof-strip";
 import { WhyUs } from "@/components/why-us";
 
 export function SiteHome() {
   return (
     <>
-      <Nav />
+      <Nav overlay />
       <main>
         <Hero />
-        <ProofStrip />
         <Cases />
         <Problems />
         <Process />

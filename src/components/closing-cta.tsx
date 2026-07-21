@@ -18,7 +18,7 @@ export function ClosingCta() {
             <p className="mbs-6 text-lead leading-[1.7] text-white/60">{t.closing.sub}</p>
             <button
               onClick={() => scrollTo("#contact")}
-              className="mbs-10 rounded-xl bg-emerald px-8 py-4 text-body font-bold tracking-wide text-white transition-all duration-200 hover:bg-emerald/90 hover:shadow-lg hover:shadow-emerald/20 active:scale-[0.98]"
+              className="mbs-10 rounded-xl bg-forest px-8 py-4 text-body font-bold tracking-wide text-white transition-all duration-200 hover:bg-emerald hover:shadow-lg hover:shadow-emerald/25 active:scale-[0.98]"
             >
               {t.closing.cta}
             </button>

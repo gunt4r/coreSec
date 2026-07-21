@@ -1,73 +1,14 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import Image from "next/image";
-import { X, ZoomIn } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/i18n/language-provider";
 import { CASE_FILES } from "@/lib/cases";
+import { hrefForCase, hrefForCases } from "@/lib/routes";
 import { FadeUp, SectionHeading } from "./fade-up";
 
-function Lightbox({
-  src,
-  alt,
-  caption,
-  onClose,
-}: {
-  src: string;
-  alt: string;
-  caption: string;
-  onClose: () => void;
-}) {
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
-  }, [onClose]);
-
-  return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-label={caption}
-      onClick={onClose}
-      className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-black/85 p-4 backdrop-blur-sm md:p-10"
-    >
-      <button
-        onClick={onClose}
-        aria-label="Close"
-        className="absolute end-4 inset-bs-4 rounded-full border border-white/20 p-2 text-white/70 transition-colors hover:bg-white/10 hover:text-white md:end-8 md:inset-bs-8"
-      >
-        <X size={20} />
-      </button>
-
-      <div onClick={(e) => e.stopPropagation()} className="max-h-full w-full max-w-5xl">
-        <Image
-          src={src}
-          alt={alt}
-          width={1280}
-          height={720}
-          className="h-auto max-h-[78vh] w-full rounded-xl object-contain shadow-2xl"
-        />
-        <p className="mbs-4 text-center text-meta leading-relaxed text-white/60">{caption}</p>
-      </div>
-    </div>
-  );
-}
-
 export function Cases() {
-  const { t } = useLanguage();
-  const [openId, setOpenId] = useState<string | null>(null);
-
-  const close = useCallback(() => setOpenId(null), []);
-
-  const open = openId ? CASE_FILES.find((c) => c.id === openId) : undefined;
-  const openCopy = openId ? t.cases.items[openId as keyof typeof t.cases.items] : undefined;
+  const { lang, t } = useLanguage();
 
   return (
     <section id="cases" className="bg-deep py-20 md:py-32 lg:py-40">
@@ -91,8 +32,8 @@ export function Cases() {
             const initials = String(i + 1).padStart(2, "0");
             return (
               <FadeUp key={file.id} delay={0.05 * i}>
-                <button
-                  onClick={() => setOpenId(file.id)}
+                <Link
+                  href={hrefForCase(lang, file.slug)}
                   className="group flex w-full flex-col items-start border-t border-white/[0.08] py-10 text-start"
                 >
                   <p className="text-quote leading-[1.6] tracking-[-0.01em] text-white/90">
@@ -114,27 +55,30 @@ export function Cases() {
                   </p>
 
                   <span className="mbs-4 inline-flex items-center gap-1.5 text-micro font-semibold text-white/45 transition-colors group-hover:text-emerald">
-                    <ZoomIn size={13} />
                     <span className="border-b border-transparent group-hover:border-emerald/40">
-                      {t.cases.view_proof}
+                      {t.caseStudies.labels.read}
                     </span>
+                    <ArrowRight size={13} aria-hidden="true" />
                   </span>
-                </button>
+                </Link>
               </FadeUp>
             );
           })}
         </div>
 
         <FadeUp>
-          <p className="mbs-10 max-w-[45rem] text-[0.78125rem] leading-relaxed text-white/35">
+          <Link
+            href={hrefForCases(lang)}
+            className="mbs-10 inline-flex items-center gap-2 rounded-xl border border-white/[0.18] px-6 py-3.5 text-[0.84375rem] font-semibold text-white transition-all duration-200 hover:border-emerald/50 hover:text-emerald"
+          >
+            {t.caseStudies.labels.back}
+            <ArrowRight size={15} aria-hidden="true" />
+          </Link>
+          <p className="mbs-8 max-w-[45rem] text-[0.78125rem] leading-relaxed text-white/35">
             {t.cases.disclaimer}
           </p>
         </FadeUp>
       </div>
-
-      {open && openCopy && (
-        <Lightbox src={open.image} alt={openCopy.label} caption={openCopy.proof} onClose={close} />
-      )}
     </section>
   );
 }

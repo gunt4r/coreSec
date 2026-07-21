@@ -1,36 +1,28 @@
 "use client";
 
-import { createContext, useCallback, useContext } from "react";
-import { usePathname, useRouter } from "next/navigation";
-import { dictionaries, type Dictionary } from "./translations";
+import { createContext, useContext, useMemo } from "react";
+import type { Dictionary } from "./translations";
 import type { Lang } from "./langs";
-import { hrefFor, pageOf } from "@/lib/routes";
 
 type LanguageValue = {
   lang: Lang;
-  setLang: (lang: Lang) => void;
   t: Dictionary;
 };
 
 const LanguageContext = createContext<LanguageValue | null>(null);
 
-export function LanguageProvider({ lang, children }: { lang: Lang; children: React.ReactNode }) {
-  const router = useRouter();
-  const pathname = usePathname();
+export function LanguageProvider({
+  lang,
+  dictionary,
+  children,
+}: {
+  lang: Lang;
+  dictionary: Dictionary;
+  children: React.ReactNode;
+}) {
+  const value = useMemo(() => ({ lang, t: dictionary }), [lang, dictionary]);
 
-  const setLang = useCallback(
-    (next: Lang) => {
-      if (next === lang) return;
-      router.push(hrefFor(next, pageOf(pathname)));
-    },
-    [lang, pathname, router],
-  );
-
-  return (
-    <LanguageContext.Provider value={{ lang, setLang, t: dictionaries[lang] }}>
-      {children}
-    </LanguageContext.Provider>
-  );
+  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 }
 
 export function useLanguage() {

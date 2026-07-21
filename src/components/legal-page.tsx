@@ -1,15 +1,17 @@
 "use client";
 
+import Link from "next/link";
 import { useLanguage } from "@/i18n/language-provider";
 import { COMPANY } from "@/i18n/company";
 import { FadeUp } from "./fade-up";
 import { Footer } from "./footer";
 import { Nav } from "./nav";
-import type { Page } from "@/lib/routes";
+import { hrefFor, type Page } from "@/lib/routes";
 
 export function LegalPage({ page }: { page: Exclude<Page, ""> }) {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
   const copy = page === "privacy" ? t.legal.privacy : t.legal.terms;
+  const other = page === "privacy" ? "terms" : "privacy";
 
   return (
     <>
@@ -17,6 +19,14 @@ export function LegalPage({ page }: { page: Exclude<Page, ""> }) {
       <main className="bg-cream pbs-32 pbe-20 md:pbs-40 md:pbe-32">
         <div className="mx-auto max-w-[48rem] px-6 md:px-10">
           <FadeUp>
+            <nav aria-label={copy.heading} className="mbe-6">
+              <Link
+                href={hrefFor(lang)}
+                className="text-meta font-medium text-slate transition-colors duration-200 hover:text-forest"
+              >
+                ← {t.nav.home}
+              </Link>
+            </nav>
             <h1 className="text-h2-soft font-extrabold leading-[1.1] tracking-[-0.025em] text-ink">
               {copy.heading}
             </h1>
@@ -42,6 +52,12 @@ export function LegalPage({ page }: { page: Exclude<Page, ""> }) {
               {COMPANY.jurisdiction ? `${COMPANY.jurisdiction}. ` : null}
               {t.footer.contact}: {t.footer.email}
             </p>
+            <Link
+              href={hrefFor(lang, other)}
+              className="mbs-4 inline-block text-meta font-medium text-forest transition-colors duration-200 hover:text-forest-dark"
+            >
+              {other === "terms" ? t.footer.terms : t.footer.privacy} →
+            </Link>
           </FadeUp>
         </div>
       </main>

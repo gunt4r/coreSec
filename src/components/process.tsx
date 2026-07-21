@@ -1,8 +1,7 @@
 "use client";
 
-import { motion } from "motion/react";
 import { useLanguage } from "@/i18n/language-provider";
-import { EASE, FadeUp, SectionHeading } from "./fade-up";
+import { FadeUp, SectionHeading, useInView } from "./fade-up";
 import type { Feature } from "./feature-rows";
 
 function StepBadge({ num }: { num: string }) {
@@ -12,33 +11,30 @@ function StepBadge({ num }: { num: string }) {
 }
 
 function HorizontalTimeline({ steps }: { steps: readonly Feature[] }) {
+  const { ref, inView } = useInView<HTMLDivElement>();
+
   return (
-    <motion.div initial="hidden" whileInView="shown" viewport={{ once: true, amount: 0.2 }} className="relative">
+    <div ref={ref} className={`relative${inView ? " reveal-shown" : ""}`}>
       <div className="absolute inset-x-0 inset-bs-[1.875rem] h-px bg-black/[0.07]">
-        <motion.div
-          className="h-full origin-left bg-forest/25"
-          variants={{ hidden: { scaleX: 0 }, shown: { scaleX: 1 } }}
-          transition={{ duration: 1.6, delay: 0.3, ease: EASE }}
-        />
+        <div className="reveal-line h-full bg-forest/25" />
       </div>
 
       <div className="relative grid grid-cols-6 gap-3">
         {steps.map((step, i) => (
-          <motion.div
+          <div
             key={step.num}
-            variants={{ hidden: { opacity: 0, y: 20 }, shown: { opacity: 1, y: 0 } }}
-            transition={{ duration: 0.5, delay: 0.3 + i * 0.1, ease: EASE }}
-            className="flex flex-col items-center text-center"
+            style={{ "--reveal-delay": `${0.3 + i * 0.1}s` } as React.CSSProperties}
+            className={`reveal flex flex-col items-center text-center${inView ? " reveal-shown" : ""}`}
           >
             <div className="relative z-10 mbe-5 flex h-[3.75rem] w-[3.75rem] items-center justify-center rounded-full border border-black/[0.1] bg-cream shadow-sm">
               <StepBadge num={step.num} />
             </div>
             <h3 className="mbe-2 text-meta font-bold leading-tight tracking-[-0.01em] text-ink">{step.title}</h3>
             <p className="text-micro leading-[1.6] text-[#888]">{step.desc}</p>
-          </motion.div>
+          </div>
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 }
 

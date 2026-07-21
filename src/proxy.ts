@@ -15,9 +15,7 @@ export function proxy(request: NextRequest) {
 
   const url = request.nextUrl.clone();
   url.pathname = "/";
-  const response = NextResponse.rewrite(url);
-  response.headers.set("x-robots-tag", "noindex, nofollow");
-  return response;
+  return NextResponse.rewrite(url);
 }
 
 export const config = {
