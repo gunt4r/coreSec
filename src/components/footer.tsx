@@ -4,7 +4,7 @@ import { useLanguage } from "@/i18n/language-provider";
 import { Logo } from "./logo";
 import { InstagramIcon, TelegramIcon } from "./social-icons";
 
-const linkClass = "text-[14px] text-white/[0.78] transition-colors duration-200 hover:text-white";
+const linkClass = "text-[0.875rem] text-white/[0.78] transition-colors duration-200 hover:text-white";
 const socialIconClass =
   "flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.12] text-white/70 transition-all duration-200 hover:border-white/40 hover:bg-white/[0.06] hover:text-white";
 
@@ -13,15 +13,15 @@ export function Footer() {
 
   return (
     <footer className="bg-deep text-white">
-      <div className="mx-auto max-w-[1440px] px-6 py-14 md:px-10 md:py-16 lg:px-16">
+      <div className="mx-auto max-w-shell px-6 py-14 md:px-10 md:py-16 lg:px-16">
         <div className="grid gap-10 md:grid-cols-[1fr_auto_auto] md:gap-16 lg:gap-28">
           <div>
-            <Logo variant="dark" className="mb-4" />
-            <p className="max-w-[220px] text-[13.5px] leading-relaxed text-white/60">{t.footer.tagline}</p>
+            <Logo variant="dark" className="mbe-4" />
+            <p className="max-w-[13.75rem] text-[0.84375rem] leading-relaxed text-white/60">{t.footer.tagline}</p>
           </div>
 
           <div>
-            <h2 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/45 md:mb-5">
+            <h2 className="mbe-4 text-eyebrow font-semibold uppercase tracking-[0.16em] text-white/45 md:mbe-5">
               {t.footer.contact}
             </h2>
             <div className="flex flex-col gap-4">
@@ -56,8 +56,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/[0.08] pt-5">
-          <p className="text-[12px] text-white/[0.38]">
+        <div className="mbs-12 border-t border-white/[0.08] pbs-5">
+          <p className="text-micro text-white/[0.38]">
             © {new Date().getFullYear()} CORESEC Finance. {t.footer.rights}
           </p>
         </div>

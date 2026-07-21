@@ -15,21 +15,21 @@ export function FeatureRows({ items, dark = false }: { items: readonly Feature[]
             }`}
           >
             <span
-              className={`row-span-2 pt-0.5 text-[11.5px] font-bold tracking-widest md:row-span-1 ${
+              className={`row-span-2 pbs-0.5 text-[0.71875rem] font-bold tracking-widest md:row-span-1 ${
                 dark ? "text-emerald/55" : "text-forest/45"
               }`}
             >
               {item.num}
             </span>
             <h3
-              className={`text-[15px] font-bold tracking-[-0.01em] transition-colors duration-300 ${
+              className={`text-[0.9375rem] font-bold tracking-[-0.01em] transition-colors duration-300 ${
                 dark ? "text-white/90 group-hover:text-white" : "text-ink group-hover:text-forest"
               }`}
             >
               {item.title}
             </h3>
             <p
-              className={`mt-1.5 text-[14px] leading-[1.7] md:mt-0 md:text-[15px] ${
+              className={`mbs-1.5 text-body leading-[1.7] md:mbs-0 ${
                 dark ? "text-white/50" : "text-graphite"
               }`}
             >

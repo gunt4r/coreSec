@@ -43,7 +43,7 @@ export function SectionHeading({
     <div className={className}>
       <FadeUp>
         <span
-          className={`mb-5 block text-[11px] font-semibold uppercase tracking-[0.22em] ${
+          className={`mbe-5 block text-eyebrow font-semibold uppercase tracking-[0.22em] ${
             dark ? "text-emerald" : "text-forest"
           }`}
         >
@@ -54,7 +54,7 @@ export function SectionHeading({
         <h2
           className={
             headlineClassName ??
-            `text-[32px] font-extrabold leading-[1.08] tracking-[-0.025em] sm:text-[40px] md:text-[48px] lg:text-[56px] ${
+            `text-h2 font-extrabold leading-[1.08] tracking-[-0.025em] ${
               dark ? "text-white" : "text-ink"
             }`
           }

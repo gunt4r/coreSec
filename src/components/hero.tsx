@@ -22,14 +22,14 @@ export function Hero() {
 
   return (
     <section className="flex min-h-[100svh] flex-col overflow-hidden lg:flex-row">
-      <div className="relative flex flex-1 flex-col justify-between px-6 pb-10 pt-24 md:px-10 md:pb-12 md:pt-28 lg:px-16 lg:pb-16 lg:pt-[148px] xl:px-24">
-        <div className="absolute right-0 top-0 hidden h-full w-px bg-black/[0.06] lg:block" />
+      <div className="relative flex flex-1 flex-col justify-between px-6 pbe-10 pbs-24 md:px-10 md:pbe-12 md:pbs-28 lg:px-16 lg:pbe-16 lg:pbs-[9.25rem] xl:px-24">
+        <div className="absolute end-0 inset-bs-0 hidden h-full w-px bg-black/[0.06] lg:block" />
 
         <motion.span
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.05 }}
-          className="block text-[11px] font-semibold uppercase tracking-[0.22em] text-forest"
+          className="block text-eyebrow font-semibold uppercase tracking-[0.22em] text-forest"
         >
           {t.hero.eyebrow}
         </motion.span>
@@ -37,7 +37,7 @@ export function Hero() {
         <div className="py-6 lg:py-0">
           <h1
             key={lang}
-            className="text-[52px] font-extrabold leading-[0.93] tracking-[-0.036em] text-ink sm:text-[64px] md:text-[76px] lg:text-[82px] xl:text-[96px]"
+            className="text-display font-extrabold leading-[0.93] tracking-[-0.036em] text-ink"
           >
             {t.hero.headline.split("\n").map((line, i) => (
               <motion.span
@@ -54,13 +54,13 @@ export function Hero() {
         </div>
 
         <div>
-          <div className="mb-6 h-px bg-black/[0.08] md:mb-8" />
+          <div className="mbe-6 h-px bg-black/[0.08] md:mbe-8" />
           <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end lg:flex-col lg:items-start xl:flex-row xl:items-end md:gap-8">
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.55, ease: EASE }}
-              className="max-w-[420px] text-[15px] leading-[1.7] text-slate md:text-[17px]"
+              className="max-w-[26.25rem] text-lead leading-[1.7] text-slate"
             >
               {t.hero.sub}
             </motion.p>
@@ -73,13 +73,13 @@ export function Hero() {
             >
               <button
                 onClick={() => scrollTo("#contact")}
-                className="whitespace-nowrap rounded-xl bg-forest px-6 py-3.5 text-[13.5px] font-semibold text-white transition-all duration-200 hover:bg-forest-dark hover:shadow-lg hover:shadow-forest/20 active:scale-[0.97]"
+                className="whitespace-nowrap rounded-xl bg-forest px-6 py-3.5 text-[0.84375rem] font-semibold text-white transition-all duration-200 hover:bg-forest-dark hover:shadow-lg hover:shadow-forest/20 active:scale-[0.97]"
               >
                 {t.hero.ctaPrimary}
               </button>
               <button
                 onClick={() => scrollTo("#contact")}
-                className="whitespace-nowrap rounded-xl border border-black/[0.13] px-6 py-3.5 text-[13.5px] font-semibold text-ink transition-all duration-200 hover:border-forest/40 hover:text-forest"
+                className="whitespace-nowrap rounded-xl border border-black/[0.13] px-6 py-3.5 text-[0.84375rem] font-semibold text-ink transition-all duration-200 hover:border-forest/40 hover:text-forest"
               >
                 {t.hero.ctaSecondary}
               </button>
@@ -90,7 +90,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.8 }}
-            className="mt-5 text-[11.5px] tracking-wide text-mist"
+            className="mbs-5 text-[0.71875rem] tracking-wide text-mist"
           >
             {t.hero.detail}
           </motion.p>
@@ -110,7 +110,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.7, delay: 0.4 }}
-        className="relative flex h-[220px] items-center justify-center overflow-hidden bg-deep sm:h-[260px] lg:hidden"
+        className="relative flex h-[13.75rem] items-center justify-center overflow-hidden bg-deep sm:h-[16.25rem] lg:hidden"
       >
         <IllustrationPanel />
       </motion.div>

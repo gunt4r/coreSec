@@ -22,10 +22,10 @@ export function Logo({
         className="h-7 w-auto shrink-0"
       />
       <span className="flex flex-col leading-none">
-        <span className={`text-[15px] font-extrabold uppercase tracking-[0.14em] ${wordColor}`}>
+        <span className={`text-[0.9375rem] font-extrabold uppercase tracking-[0.14em] ${wordColor}`}>
           Coresec
         </span>
-        <span className="mt-[3px] text-[8px] font-semibold uppercase tracking-[0.42em] text-emerald">
+        <span className="mbs-[0.1875rem] text-[0.5rem] font-semibold uppercase tracking-[0.42em] text-emerald">
           Finance
         </span>
       </span>

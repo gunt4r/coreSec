@@ -8,8 +8,8 @@ const cardClass =
   "group flex items-center gap-4 rounded-2xl border border-black/[0.07] bg-cream p-5 transition-all duration-200 hover:border-forest/30 hover:shadow-lg hover:shadow-forest/[0.06] md:p-6";
 const iconWrapClass =
   "flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-mint text-forest transition-colors duration-200 group-hover:bg-forest group-hover:text-white";
-const labelClass = "text-[11px] font-semibold uppercase tracking-[0.14em] text-slate";
-const valueClass = "text-[15px] font-semibold tracking-tight text-ink md:text-[16px]";
+const labelClass = "text-eyebrow font-semibold uppercase tracking-[0.14em] text-slate";
+const valueClass = "text-lead font-semibold tracking-tight text-ink";
 
 export function Contacts() {
   const { t } = useLanguage();
@@ -40,14 +40,14 @@ export function Contacts() {
 
   return (
     <section id="contacts" className="bg-white py-20 md:py-28 lg:py-32">
-      <div className="mx-auto max-w-[1440px] px-6 md:px-10 lg:px-16">
+      <div className="mx-auto max-w-shell px-6 md:px-10 lg:px-16">
         <SectionHeading
           eyebrow={t.contacts.eyebrow}
           headline={t.contacts.headline}
-          className="mb-4 max-w-[560px]"
+          className="mbe-4 max-w-[35rem]"
         />
         <FadeUp delay={0.1}>
-          <p className="mb-10 max-w-[440px] text-[15px] leading-[1.7] text-slate md:mb-12 md:text-[17px]">
+          <p className="mbe-10 max-w-[27.5rem] text-lead leading-[1.7] text-slate md:mbe-12">
             {t.contacts.sub}
           </p>
         </FadeUp>
