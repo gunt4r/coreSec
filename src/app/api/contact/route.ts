@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { escapeHtml, isTelegramConfigured, sendTelegramMessage } from "@/lib/telegram";
 import { decodeRef } from "@/lib/ref";
+import { clientKey, rateLimit } from "@/lib/rate-limit";
 
 type Attribution = {
   ref?: string;
@@ -22,6 +23,17 @@ type Lead = {
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const MAX_REF = 200;
+
+const MAX_BODY_BYTES = 16 * 1024;
+
+const MIN_FILL_MS = 2000;
+
+function isBot(body: unknown): boolean {
+  if (typeof body !== "object" || body === null) return false;
+  const { company, elapsed } = body as Record<string, unknown>;
+  if (typeof company === "string" && company.trim()) return true;
+  return typeof elapsed === "number" && elapsed >= 0 && elapsed < MIN_FILL_MS;
+}
 
 function text(value: unknown, max = 2000): string | undefined {
   return typeof value === "string" && value.trim() ? value.trim().slice(0, max) : undefined;
@@ -95,7 +107,26 @@ function formatMessage(lead: Lead): string {
 }
 
 export async function POST(request: Request) {
-  const lead = parseLead(await request.json().catch(() => null));
+  const limit = rateLimit(clientKey(request));
+  if (!limit.allowed) {
+    return NextResponse.json(
+      { error: "Too many requests" },
+      { status: 429, headers: { "Retry-After": String(limit.retryAfter) } },
+    );
+  }
+
+  const size = Number(request.headers.get("content-length") ?? 0);
+  if (size > MAX_BODY_BYTES) {
+    return NextResponse.json({ error: "Payload too large" }, { status: 413 });
+  }
+
+  const body = await request.json().catch(() => null);
+
+  if (isBot(body)) {
+    return NextResponse.json({ ok: true });
+  }
+
+  const lead = parseLead(body);
 
   if (!lead) {
     return NextResponse.json({ error: "Invalid submission" }, { status: 400 });

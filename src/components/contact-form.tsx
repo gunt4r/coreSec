@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useLanguage } from "@/i18n/language-provider";
 import { useAttribution } from "@/lib/attribution";
 import { FadeUp, SectionHeading } from "./fade-up";
@@ -47,6 +47,7 @@ export function ContactForm() {
   const { lang, t } = useLanguage();
   const attribution = useAttribution();
   const [status, setStatus] = useState<Status>("idle");
+  const openedAt = useRef(Date.now());
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -56,6 +57,7 @@ export function ContactForm() {
       ...Object.fromEntries(new FormData(event.currentTarget)),
       lang,
       attribution,
+      elapsed: Date.now() - openedAt.current,
     };
 
     try {
@@ -132,6 +134,11 @@ export function ContactForm() {
                   onSubmit={onSubmit}
                   className="space-y-4 rounded-2xl border border-black/[0.07] bg-cream p-6 md:space-y-5 md:p-8 lg:p-10"
                 >
+                  <div aria-hidden="true" className="absolute h-0 w-0 overflow-hidden opacity-0">
+                    <label htmlFor="company">Company</label>
+                    <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+                  </div>
+
                   <div className="grid gap-4 sm:grid-cols-2 md:gap-5">
                     <Field name="name" label={t.form.name} placeholder={t.form.ph_name} required />
                     <Field
