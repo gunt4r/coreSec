@@ -1,6 +1,15 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { CASE_SLUGS, hrefFor, hrefForCase, hrefForCases, pageOf, resolvePath, swapLang } from "./routes";
+import {
+  CASE_SLUGS,
+  hrefFor,
+  hrefForCase,
+  hrefForCases,
+  hrefForThankYou,
+  pageOf,
+  resolvePath,
+  swapLang,
+} from "./routes";
 
 const SLUG = CASE_SLUGS[0];
 
@@ -75,6 +84,20 @@ test("the /en prefix redirects for case URLs too", () => {
     kind: "redirect",
     to: `/cases/${SLUG}`,
   });
+});
+
+test("the thank-you page resolves per language and is never a referral code", () => {
+  assert.equal(hrefForThankYou("en"), "/thank-you");
+  assert.equal(hrefForThankYou("uk"), "/uk/thank-you");
+  assert.equal(hrefForThankYou("ru"), "/ru/thank-you");
+
+  assert.deepEqual(resolvePath("/thank-you"), { kind: "thankyou", lang: "en" });
+  assert.deepEqual(resolvePath("/uk/thank-you"), { kind: "thankyou", lang: "uk" });
+  assert.notEqual(resolvePath("/thank-you").kind, "referral");
+
+  assert.deepEqual(resolvePath("/en/thank-you"), { kind: "redirect", to: "/thank-you" });
+  assert.equal(swapLang("/thank-you", "uk"), "/uk/thank-you");
+  assert.equal(swapLang("/ru/thank-you", "en"), "/thank-you");
 });
 
 test("swapLang keeps the visitor on the same page in the new language", () => {

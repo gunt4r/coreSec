@@ -147,5 +147,5 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Delivery failed" }, { status: 502 });
   }
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, delivered: true });
 }

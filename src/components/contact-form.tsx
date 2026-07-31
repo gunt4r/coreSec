@@ -1,8 +1,11 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useLanguage } from "@/i18n/language-provider";
 import { useAttribution } from "@/lib/attribution";
+import { isFacebookVisitor, markLeadPending } from "./facebook-pixel";
+import { hrefForThankYou } from "@/lib/routes";
 import { FadeUp, SectionHeading } from "./fade-up";
 
 const fieldClass =
@@ -45,6 +48,7 @@ type Status = "idle" | "sending" | "sent" | "error";
 
 export function ContactForm() {
   const { lang, t } = useLanguage();
+  const router = useRouter();
   const attribution = useAttribution();
   const [status, setStatus] = useState<Status>("idle");
   const openedAt = useRef(Date.now());
@@ -66,7 +70,17 @@ export function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      setStatus(res.ok ? "sent" : "error");
+      if (res.ok) {
+        const data = (await res.json().catch(() => null)) as { delivered?: boolean } | null;
+        if (data?.delivered && isFacebookVisitor()) {
+          markLeadPending();
+          router.push(hrefForThankYou(lang));
+          return;
+        }
+        setStatus("sent");
+      } else {
+        setStatus("error");
+      }
     } catch {
       setStatus("error");
     }
