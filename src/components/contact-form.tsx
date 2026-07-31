@@ -71,7 +71,8 @@ export function ContactForm() {
         body: JSON.stringify(payload),
       });
       if (res.ok) {
-        if (isFacebookVisitor()) {
+        const data = (await res.json().catch(() => null)) as { delivered?: boolean } | null;
+        if (data?.delivered && isFacebookVisitor()) {
           markLeadPending();
           router.push(hrefForThankYou(lang));
           return;

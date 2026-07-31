@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useLanguage } from "@/i18n/language-provider";
-import { fireLeadIfPending } from "./facebook-pixel";
+import { fireLeadIfPending, hasLeadPending } from "./facebook-pixel";
 import { FadeUp } from "./fade-up";
 import { Footer } from "./footer";
 import { Nav } from "./nav";
@@ -11,10 +12,23 @@ import { hrefFor, hrefForCases } from "@/lib/routes";
 
 export function ThankYou() {
   const { lang, t } = useLanguage();
+  const router = useRouter();
+  const [allowed, setAllowed] = useState(false);
+  const decided = useRef(false);
 
   useEffect(() => {
-    fireLeadIfPending();
-  }, []);
+    if (decided.current) return;
+    decided.current = true;
+
+    if (hasLeadPending()) {
+      setAllowed(true);
+      fireLeadIfPending();
+    } else {
+      router.replace(hrefFor(lang));
+    }
+  }, [lang, router]);
+
+  if (!allowed) return null;
 
   return (
     <>

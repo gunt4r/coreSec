@@ -80,6 +80,15 @@ export function FacebookPixel() {
   return null;
 }
 
+export function hasLeadPending(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    return sessionStorage.getItem(LEAD_PENDING) === "1";
+  } catch {
+    return false;
+  }
+}
+
 export function markLeadPending(): void {
   if (typeof window === "undefined") return;
   try {
