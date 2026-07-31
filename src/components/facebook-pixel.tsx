@@ -73,3 +73,9 @@ export function FacebookPixel() {
 
   return null;
 }
+
+export function trackFacebookLead(): void {
+  if (typeof window === "undefined") return;
+  if (!isFacebookVisit()) return;
+  window.fbq?.("track", "Lead");
+}

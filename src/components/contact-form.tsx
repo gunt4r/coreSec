@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { useLanguage } from "@/i18n/language-provider";
 import { useAttribution } from "@/lib/attribution";
+import { trackFacebookLead } from "./facebook-pixel";
 import { FadeUp, SectionHeading } from "./fade-up";
 
 const fieldClass =
@@ -66,7 +67,12 @@ export function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      setStatus(res.ok ? "sent" : "error");
+      if (res.ok) {
+        trackFacebookLead();
+        setStatus("sent");
+      } else {
+        setStatus("error");
+      }
     } catch {
       setStatus("error");
     }
