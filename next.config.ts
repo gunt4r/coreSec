@@ -1,12 +1,17 @@
 import type { NextConfig } from "next";
 
+const scriptSrc =
+  process.env.NODE_ENV === "production"
+    ? "script-src 'self' 'unsafe-inline' https://connect.facebook.net"
+    : "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://connect.facebook.net";
+
 const csp = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
+  scriptSrc,
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob:",
+  "img-src 'self' data: blob: https://www.facebook.com https://connect.facebook.net",
   "font-src 'self' data:",
-  "connect-src 'self'",
+  "connect-src 'self' https://www.facebook.com https://connect.facebook.net",
   "form-action 'self'",
   "frame-ancestors 'none'",
   "frame-src 'none'",

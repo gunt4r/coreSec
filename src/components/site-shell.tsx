@@ -1,5 +1,6 @@
 import { Manrope } from "next/font/google";
 import { LanguageProvider } from "@/i18n/language-provider";
+import { FacebookPixel } from "@/components/facebook-pixel";
 import { dictionaries } from "@/i18n/translations";
 import type { Lang } from "@/i18n/langs";
 import "@/app/globals.css";
@@ -19,6 +20,7 @@ export function SiteShell({ lang, children }: { lang: Lang; children: React.Reac
         <noscript>
           <style>{revealFallback}</style>
         </noscript>
+        <FacebookPixel />
         <LanguageProvider lang={lang} dictionary={dictionaries[lang]}>
           {children}
         </LanguageProvider>
