@@ -14,7 +14,7 @@ import { absolute, SITE_NAME, SITE_URL } from "@/lib/seo";
 const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
 
-const LANGUAGE_NAMES = ["English", "Ukrainian", "Russian"];
+const LANGUAGE_NAMES = ["English", "Ukrainian", "Russian", "Serbian"];
 const LANGUAGE_CODES = LANGS.map((lang) => lang as string);
 
 export type SchemaPage = Page | "cases" | "case";

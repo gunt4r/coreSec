@@ -161,8 +161,13 @@ and a dictionary to `dictionaries`.
 The language lives in the URL: English at `/`, Ukrainian at `/uk`, Russian at `/ru`. Switching
 navigates rather than swapping state, so each language is server-rendered and crawlable.
 
-Browser-locale auto-detection is deliberately absent — redirecting on `Accept-Language` would mean
-Googlebot, which crawls from the US, only ever sees English.
+Browser-locale auto-detection runs in `src/proxy.ts`, but only where it is safe. On a **first**
+visit to an English (default-language) URL, a real human whose `Accept-Language` prefers Ukrainian
+or Russian is 307-redirected to the matching `/uk` or `/ru` URL (query string preserved), and a
+`lang` cookie is set so it never fires again — an explicit switch back to English is respected.
+Crawlers are excluded by user-agent (Googlebot **and** YandexBot always see the URL they requested,
+so the per-language split still gets indexed), and referral links are never touched. The pure
+detection logic lives in `src/lib/lang-detect.ts` with tests in `src/lib/lang-detect.test.ts`.
 
 ## Before launch
 
