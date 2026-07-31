@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 const PIXEL_ID = "28591060267192525";
 const FLAG = "fb_ref";
+const LEAD_PENDING = "fb_lead_pending";
 
 type Fbq = {
   (...args: unknown[]): void;
@@ -21,7 +22,8 @@ declare global {
   }
 }
 
-function isFacebookVisit(): boolean {
+export function isFacebookVisitor(): boolean {
+  if (typeof window === "undefined") return false;
   const ref = new URLSearchParams(window.location.search).get("ref");
   if (ref === "facebook") {
     try {
@@ -63,19 +65,43 @@ function bootstrap(): void {
   document.head.appendChild(script);
 }
 
+function ensurePixel(): void {
+  bootstrap();
+  window.fbq?.("init", PIXEL_ID);
+}
+
 export function FacebookPixel() {
   useEffect(() => {
-    if (!isFacebookVisit()) return;
-    bootstrap();
-    window.fbq?.("init", PIXEL_ID);
+    if (!isFacebookVisitor()) return;
+    ensurePixel();
     window.fbq?.("track", "PageView");
   }, []);
 
   return null;
 }
 
-export function trackFacebookLead(): void {
+export function markLeadPending(): void {
   if (typeof window === "undefined") return;
-  if (!isFacebookVisit()) return;
+  try {
+    sessionStorage.setItem(LEAD_PENDING, "1");
+  } catch {
+    return;
+  }
+}
+
+export function fireLeadIfPending(): void {
+  if (typeof window === "undefined") return;
+  if (!isFacebookVisitor()) return;
+
+  let pending = false;
+  try {
+    pending = sessionStorage.getItem(LEAD_PENDING) === "1";
+    if (pending) sessionStorage.removeItem(LEAD_PENDING);
+  } catch {
+    return;
+  }
+  if (!pending) return;
+
+  ensurePixel();
   window.fbq?.("track", "Lead");
 }

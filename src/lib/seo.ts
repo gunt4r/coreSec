@@ -2,7 +2,14 @@ import type { Metadata } from "next";
 import { DEFAULT_LANG, LANGS, OG_LOCALES, type Lang } from "@/i18n/langs";
 import { dictionaries } from "@/i18n/translations";
 import { caseBySlug } from "@/lib/cases";
-import { hrefFor, hrefForCase, hrefForCases, type CaseSlug, type Page } from "@/lib/routes";
+import {
+  hrefFor,
+  hrefForCase,
+  hrefForCases,
+  hrefForThankYou,
+  type CaseSlug,
+  type Page,
+} from "@/lib/routes";
 
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://coresec.finance").replace(
   /\/+$/,
@@ -91,4 +98,16 @@ export function buildCaseMetadata(lang: Lang, slug: CaseSlug): Metadata {
   if (!file) throw new Error(`No case file for slug "${slug}"`);
   const copy = dictionaries[lang].caseStudies.items[file.id];
   return metadataFor(lang, copy, (l) => hrefForCase(l, slug));
+}
+
+export function buildThankYouMetadata(lang: Lang): Metadata {
+  const base = metadataFor(lang, dictionaries[lang].thankYou.meta, hrefForThankYou);
+  return {
+    ...base,
+    robots: {
+      index: false,
+      follow: true,
+      googleBot: { index: false, follow: true },
+    },
+  };
 }

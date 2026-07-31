@@ -1,9 +1,11 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useLanguage } from "@/i18n/language-provider";
 import { useAttribution } from "@/lib/attribution";
-import { trackFacebookLead } from "./facebook-pixel";
+import { isFacebookVisitor, markLeadPending } from "./facebook-pixel";
+import { hrefForThankYou } from "@/lib/routes";
 import { FadeUp, SectionHeading } from "./fade-up";
 
 const fieldClass =
@@ -46,6 +48,7 @@ type Status = "idle" | "sending" | "sent" | "error";
 
 export function ContactForm() {
   const { lang, t } = useLanguage();
+  const router = useRouter();
   const attribution = useAttribution();
   const [status, setStatus] = useState<Status>("idle");
   const openedAt = useRef(Date.now());
@@ -68,7 +71,11 @@ export function ContactForm() {
         body: JSON.stringify(payload),
       });
       if (res.ok) {
-        trackFacebookLead();
+        if (isFacebookVisitor()) {
+          markLeadPending();
+          router.push(hrefForThankYou(lang));
+          return;
+        }
         setStatus("sent");
       } else {
         setStatus("error");

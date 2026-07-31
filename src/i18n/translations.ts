@@ -115,6 +115,19 @@ const en = {
     success_body: "We will contact you within 24 hours.",
     error: "Something went wrong. Please try again or contact us directly.",
   },
+  thankYou: {
+    meta: {
+      title: "Application received — CORESEC FINANCE",
+      description:
+        "Your recovery request has been received. Our team reviews every case and replies within 24 hours.",
+    },
+    eyebrow: "Application received",
+    heading: "Thank you — your request is in.",
+    body: "Our specialists are already reviewing the details you shared. You'll hear back within 24 hours, in English, Ukrainian or Russian. Everything you send stays strictly confidential.",
+    detail: "Keep an eye on your email and Telegram — that's where we reach out first.",
+    cta: "Back to home",
+    casesCta: "Read documented recoveries",
+  },
   contacts: {
     eyebrow: "Contact Us",
     headline: "Get in touch",
@@ -458,6 +471,19 @@ const uk: Dictionary = {
     success_body: "Ми зв'яжемося з вами протягом 24 годин.",
     error: "Щось пішло не так. Спробуйте ще раз або зв'яжіться з нами напряму.",
   },
+  thankYou: {
+    meta: {
+      title: "Заявку отримано — CORESEC FINANCE",
+      description:
+        "Вашу заявку на відновлення отримано. Ми розглядаємо кожен випадок і відповідаємо протягом 24 годин.",
+    },
+    eyebrow: "Заявку отримано",
+    heading: "Дякуємо — вашу заявку прийнято.",
+    body: "Наші фахівці вже вивчають надані вами деталі. Ви отримаєте відповідь протягом 24 годин — англійською, українською або російською. Уся інформація зберігається в суворій конфіденційності.",
+    detail: "Слідкуйте за поштою та Telegram — саме туди ми звертаємося насамперед.",
+    cta: "На головну",
+    casesCta: "Переглянути підтверджені кейси",
+  },
   contacts: {
     eyebrow: "Зв'язок",
     headline: "Зв'яжіться з нами",
@@ -798,6 +824,19 @@ const ru: Dictionary = {
     success_title: "Заявка получена",
     success_body: "Мы свяжемся с вами в течение 24 часов.",
     error: "Что-то пошло не так. Попробуйте ещё раз или свяжитесь с нами напрямую.",
+  },
+  thankYou: {
+    meta: {
+      title: "Заявка получена — CORESEC FINANCE",
+      description:
+        "Ваша заявка на восстановление получена. Мы рассматриваем каждый случай и отвечаем в течение 24 часов.",
+    },
+    eyebrow: "Заявка получена",
+    heading: "Спасибо — ваша заявка принята.",
+    body: "Наши специалисты уже изучают предоставленные вами детали. Вы получите ответ в течение 24 часов — на английском, украинском или русском. Вся информация хранится в строгой конфиденциальности.",
+    detail: "Проверяйте почту и Telegram — именно туда мы обращаемся в первую очередь.",
+    cta: "На главную",
+    casesCta: "Смотреть подтверждённые кейсы",
   },
   contacts: {
     eyebrow: "Связаться",

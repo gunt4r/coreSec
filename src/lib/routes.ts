@@ -6,6 +6,8 @@ export type Page = (typeof PAGES)[number];
 
 export const CASES_SEGMENT = "cases";
 
+export const THANKYOU_SEGMENT = "thank-you";
+
 export const CASE_SLUGS = [
   "bybit-abnormal-asset-origin-appeal",
   "bybit-withdrawal-compliance-hold",
@@ -43,10 +45,15 @@ export function hrefForCase(lang: Lang, slug: CaseSlug): string {
   return `${prefix(lang)}/${CASES_SEGMENT}/${slug}`;
 }
 
+export function hrefForThankYou(lang: Lang): string {
+  return `${prefix(lang)}/${THANKYOU_SEGMENT}`;
+}
+
 type Resolved =
   | { kind: "route"; lang: Lang; page: Page }
   | { kind: "cases"; lang: Lang }
   | { kind: "case"; lang: Lang; slug: CaseSlug }
+  | { kind: "thankyou"; lang: Lang }
   | { kind: "redirect"; to: string }
   | { kind: "referral"; code: string }
   | { kind: "unknown" };
@@ -54,6 +61,7 @@ type Resolved =
 function hrefOf(resolved: Resolved): string {
   if (resolved.kind === "case") return hrefForCase(resolved.lang, resolved.slug);
   if (resolved.kind === "cases") return hrefForCases(resolved.lang);
+  if (resolved.kind === "thankyou") return hrefForThankYou(resolved.lang);
   if (resolved.kind === "route") return hrefFor(resolved.lang, resolved.page);
   return hrefFor(DEFAULT_LANG);
 }
@@ -63,6 +71,7 @@ function resolveRest(lang: Lang, rest: string[]): Resolved | null {
 
   if (rest.length === 1) {
     if (rest[0] === CASES_SEGMENT) return { kind: "cases", lang };
+    if (rest[0] === THANKYOU_SEGMENT) return { kind: "thankyou", lang };
     if (isPage(rest[0]) && rest[0] !== "") return { kind: "route", lang, page: rest[0] };
     return null;
   }
@@ -110,6 +119,7 @@ export function swapLang(pathname: string, next: Lang): string {
   const resolved = resolvePath(pathname);
   if (resolved.kind === "case") return hrefForCase(next, resolved.slug);
   if (resolved.kind === "cases") return hrefForCases(next);
+  if (resolved.kind === "thankyou") return hrefForThankYou(next);
   if (resolved.kind === "route") return hrefFor(next, resolved.page);
   return hrefFor(next);
 }
