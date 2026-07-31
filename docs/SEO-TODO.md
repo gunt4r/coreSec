@@ -114,9 +114,12 @@ agreed in writing, liability capped at fees paid) that should match what you act
 
 ## Deliberate decisions worth knowing about
 
-- **Browser-language auto-detection was removed.** Redirecting on `Accept-Language` means
-  Googlebot, which crawls from the US, only ever sees English — which would defeat the entire
-  per-language URL split. Visitors choose the language; the choice is in the URL.
+- **Browser-language auto-detection is SEO-safe by construction.** On a first visit to a
+  default-language (`/…`) URL, a human whose `Accept-Language` prefers `uk`/`ru` is 307-redirected
+  to the matching localized URL and a `lang` cookie stops it recurring (explicit English is
+  respected). It is gated on user-agent so Googlebot and YandexBot are never redirected and keep
+  seeing the URL they requested — the per-language split still indexes. Bots and unknown agents
+  fail safe to English. See `src/proxy.ts` and `src/lib/lang-detect.ts`.
 - **English stays at `/`, not `/en`.** Your bloggers' and ads' links keep working with no redirect.
   `/en` 308s to `/` for anyone who types it.
 - **Referral links still work unchanged** and are consolidated into the canonical homepage, so they
