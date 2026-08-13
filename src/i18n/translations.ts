@@ -1067,4 +1067,316 @@ const ru: Dictionary = {
   },
 };
 
-export const dictionaries: Record<Lang, Dictionary> = { en, uk, ru };
+const sr: Dictionary = {
+  meta: {
+    title: "Оporavak zamrznutih kripto naloga — žalbe za Binance i Bybit",
+    description:
+      "Isključen zbog AML oznake, zastoja KYC provere ili blokade usled usklađenosti? Otkrivamo uzrok, pripremamo žalbu i komuniciramo sa berzom. Dokumentovani slučajevi sa snimcima ekrana.",
+  },
+  nav: {
+    links: [
+      { label: "Zašto se blokira", href: "#problems" },
+      { label: "Dokumentovani slučajevi", href: "#cases" },
+      { label: "Proces", href: "#process" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    cta: "Besplatna procena slučaja",
+    menu: "Meni",
+    lang: "Jezik",
+    home: "Početna",
+    primary: "Glavna navigacija",
+  },
+  hero: {
+    eyebrow: "Oporavak kripto naloga",
+    headline: "Zamrznut\nkripto\nnalog\n?",
+    sub: "Berze blokiraju naloge zbog AML oznaka, zaglavljenih verifikacija i provera usklađenosti — retko objašnjavaju zbog čega. Mi utvrđujemo pravi uzrok, sastavljamo dokaze koje berza traži i zastupamo slučaj dok se vaš balans ne oslobodi.",
+    ctaPrimary: "Zatraži besplatnu procenu",
+    ctaSecondary: "Pogledaj dokumentovane slučajeve",
+    detail: "Prva procena besplatno · Odgovor u roku od 24h · Potpuna poverljivost",
+  },
+  problems: {
+    eyebrow: "Zašto se blokiraju nalozi",
+    headline: "Šest razloga zašto berze ograničavaju pristup — i šta svaki zaista znači",
+    items: [
+      { num: "01", title: "AML oznaka na primljenim sredstvima", desc: "Berze proveravaju svaki depozit pomoću baza lančane analize. Ako su kovanice koje ste primili prošle kroz mešalicu, sankcionisanu ili označenu adresu — čak i nekoliko hopova pre nego što su stigle do vas — balans se stavi u karantin. Niste učinili ništa loše; kovanice nose svoju istoriju. Ovo je najčešći razlog zamrzavanja i rešava se dokumentovanim tragom porekla sredstava, a ne tiketima podrške." },
+      { num: "02", title: "KYC verifikacija koja se nikad ne završava", desc: "Odbijen dokument, ime koje se ne poklapa sa bankovnim zapisom, ili beskrajna provera selfija. Nalog nije zabranjen — zaglavljen je, i automatska podrška će ponavljati zahtev. Neke berze zatvaraju naloge nakon ponovljenih neuspeha, zbog čega je vreme odgovora važnije od sadržaja." },
+      { num: "03", title: "Triggeri sumnjivih aktivnosti", desc: "Prijava iz nove zemlje, nagla promena obima trgovanja, brzi ciklusi depozita i podizanja ili VPN. Rizik engine prvo deluje, pa tek potom pregledava, pa se pristup trenutno prekida, a čovek se uključi tek nakon pravilne eskalacije." },
+      { num: "04", title: "Provera usklađenosti i regulatorne provere", desc: "Periodične revizije, nova licenca u jurisdikciji berze ili zahtev regulatora mogu staviti nalog pod pregled bez krajnjeg roka. Tu znanje koji odeljak kontaktirati i u kom formatu skraćuje nedelje na dane." },
+      { num: "05", title: "Greškom ili problematični transferi", desc: "Depozit u pogrešnoj mreži, transfer sa adrese kasnije povezane sa prevarom, ili sredstva koja treća strana osporava. Berza zamrzava balans da bi se zaštitila dok je spor otvoren — i drži ga zamrznutim dok neko ne odgovori na zahtev u vaše ime." },
+      { num: "06", title: "Zaključavanja zbog bezbednosti i preuzimanja naloga", desc: "Posle sumnje na kompromitovanje, resetovanja 2FA ili promene uređaja, berze zaključavaju nalog po defaultu. Oporavak je proceduralan, ne tehnički: dokazivanje kontinuiteta identiteta i vlasništva po tačnoj proceduri koju bezbednosni tim očekuje." },
+    ],
+  },
+  objections: {
+    eyebrow: "Iskreni odgovori",
+    headline: "Ono o čemu zaista razmišljate",
+    items: [
+      {
+        num: "01",
+        title: "Kako ovo nije još jedna prevara za oporavak?",
+        desc: "Pošteno pitanje — u niši ima prevara. Dve stvari nas izdvajaju. Prvo, nikad ne tražimo lozinku, seed frazu, 2FA kodove ili daljinski pristup uređaju; nijedan legitiman oporavak to ne zahteva. Drugo, svaki ishod na stranici ima priložen screenshot od same berze. Pogledajte dokaz pre nego što nas kontaktirate.",
+      },
+      {
+        num: "02",
+        title: "Šta vam zapravo treba od mene?",
+        desc: "Poruke koje je berza poslala vama, istorija transakcija i dokaz porekla sredstava. To je materijal za žalbu. Radimo sa onim što već imate — ništa što bi nam dozvolilo da pomeramo vaše sredstva ili kompromituje nalog.",
+      },
+      {
+        num: "03",
+        title: "Šta ako ne možete da povratite?",
+        desc: "Neki slučajevi se jednostavno ne mogu dobiti — potvrđen suparnička sankcija ili sredstva oduzeta naređenjem organa reda. Reći ćemo to u prvoj proceni, a ne posle naplate. Gde povratak nije moguć, tako ćemo i reći; gde je realan ishod delimičan, reći ćemo i to.",
+      },
+      {
+        num: "04",
+        title: "Zašto ne mogu sam da podnesem žalbu?",
+        desc: "Možete, i ako je slučaj jednostavan — učinite to. Mi dodajemo znanje o tome koji kanal berza zapravo čita, koji format dokaza završi zahtev u jednom krugu, i kako eskalirati kad prvi agent odgovara skriptom. Većina slučajeva do nas dolazi posle meseci neuspešnih tiketa.",
+      },
+    ],
+  },
+  why: {
+    eyebrow: "Šta obećavamo — a šta ne",
+    headline: "Svaki servis obećava rezultate. Mi radije kažemo istinu.",
+    items: [
+      { num: "01", title: "Ne garantujemo povraćaj", desc: "Ishod zavisi od berze, razloga zamrzavanja i činjenica slučaja. Ko garantuje rezultat pre nego što pročita slučaj — prodaje vam nešto. Mi dajemo poštenu procenu u prvoj proceni." },
+      { num: "02", title: "Nikad ne tražimo kredencijale", desc: "Ne tražimo lozinke, seed fraze, 2FA kodove ili daljinski pristup. Ako neko to traži — to nije legalno." },
+      { num: "03", title: "Ne prihvatamo beznadežne slučajeve", desc: "Potvrđena sankcija ili oduzeta sredstva po naredbi suda se ne mogu vratiti. Takve slučajeve odbijamo, ne naplaćujemo pokušaj." },
+      { num: "04", title: "Dokazi, ne izjave", desc: "Ishodi su objavljeni sa screenshotima od berzi. Nema stock fotografija ili izmišljenih citata." },
+      { num: "05", title: "Jedan menadžer, direktna linija", desc: "Razgovarate sa osobom koja vodi vaš slučaj, ne rotirajućom podrškom — na engleskom, ukrajinskom ili ruskom." },
+      { num: "06", title: "Stroga poverljivost", desc: "Detalji slučaja se ne dele sa trećim stranama i ne prodaju se. Identifikacione informacije su redactovane na zahtev klijenta." },
+    ],
+  },
+  process: {
+    eyebrow: "Kako funkcioniše",
+    headline: "Od prijave do rešenja",
+    steps: [
+      { num: "01", title: "Besplatna procena — 24h", desc: "Pošaljite poruke od berze i kratak opis. Mi ćemo reći koji od šest triggera imate, da li je slučaj dobitan i šta je potrebno. Bez naplate i bez obaveze." },
+      { num: "02", title: "Analiza uzroka", desc: "Deklarisani razlog i pravi razlog često se razlikuju. Čitamo obaveštenje i istoriju transakcija da nađemo šta je stvarno označeno — apelovanje na pogrešan trigger je razlog većine neuspeha." },
+      { num: "03", title: "Paket dokaza", desc: "Dokazi o poreklu sredstava, lančana analiza depozita, kontinuitet identiteta i komunikacija sa berzom — u formatu koji prihvata specifična berza." },
+      { num: "04", title: "Podnošenje i eskalacija", desc: "Žalba ide putem kanala koji berza zaista čita, a ne u prvu liniju. Ako zapne — eskaliramo i znamo kada to pomaže." },
+      { num: "05", title: "Informisanost", desc: "Radite sa jednim menadžerom; dobijate izveštaj šta je podneto, šta je odgovoreno i realne rokove." },
+      { num: "06", title: "Rešenje", desc: "Pristup vraćen, balans oslobođen, ili — ako nalog nije moguće spasiti — manuelni transfer sredstava na novčanik pod vašom kontrolom." },
+    ],
+  },
+  form: {
+    eyebrow: "Počnite",
+    headline: "Pošaljite vaš zahtev",
+    sub: "Sve prijave se pregledaju u roku od 24h. Vaši podaci su strogo poverljivi.",
+    name: "Puno ime",
+    email: "Email adresa",
+    telegram: "Telegram",
+    phone: "Broj telefona",
+    exchange: "Berza ili novčanik",
+    situation: "Opišite situaciju",
+    submit: "Pošalji prijavu",
+    submitting: "Šalje se...",
+    ph_name: "Ivan Ivanović",
+    ph_email: "ivan@example.com",
+    ph_telegram: "@username",
+    ph_phone: "+381 (00) 000-0000",
+    ph_exchange: "Binance, Coinbase, MetaMask...",
+    ph_situation: "Kada je nalog zamrznut? Koje poruke ste dobili od berze?",
+    privacy: "Vaši podaci su zaštićeni. Održavamo strogu poverljivost.",
+    success_title: "Prijava primljena",
+    success_body: "Kontaktiraćemo vas u roku od 24 sata.",
+    error: "Nešto je pošlo po zlu. Pokušajte ponovo ili nas kontaktirajte direktno.",
+  },
+  thankYou: {
+    meta: {
+      title: "Prijava primljena — CORESEC FINANCE",
+      description:
+        "Vaša prijava za oporavak je primljena. Naš tim pregleda svaki slučaj i odgovara u roku od 24 sata.",
+    },
+    eyebrow: "Prijava primljena",
+    heading: "Hvala — vaša prijava je zaprimljena.",
+    body: "Naši stručnjaci već pregledaju podatke koje ste poslali. Čućete od nas u roku od 24 sata.",
+    detail: "Pratite mejl i Telegram — tamo vas prvo kontaktiramo.",
+    cta: "Nazad na početnu",
+    casesCta: "Pročitajte dokumentovane slučajeve",
+  },
+  contacts: {
+    eyebrow: "Kontakt",
+    headline: "Kontaktirajte nas",
+    sub: "Javite se preko bilo kog kanala ispod. Odgovaramo na svaku poruku.",
+    email_label: "Email",
+    telegram_label: "Telegram",
+    instagram_label: "Instagram",
+  },
+  cases: {
+    eyebrow: "Ishodi klijenata",
+    headline: "Slučajevi koje smo rešili",
+    sub: "Svaki slučaj je potkrepljen komunikacijom sa berzom ili screenshotom. Kliknite karticu za dokaz.",
+    view_proof: "Pogledaj dokaz",
+    disclaimer: "Ishod zavisi od berze, razloga i specifičnosti slučaja. Prošli rezultati ne garantuju isti ishod.",
+    items: {
+      appeal: {
+        body: "Balans je bio izolovan po Bybit pravilu “Abnormal Asset Origin”. Identifikovali smo zastavicu, pripremili dokumentaciju i podneli žalbu. Zastavica je uklonjena i sredstva su oslobođena.",
+        label: "Bybit",
+        meta: "Abnormal asset origin · žalba",
+        outcome: "Žalba usvojena · 21,267 USDT oslobođeno",
+        proof: "Bybit funding account, Pending Assets: 21,267 USDT (TRON TRC-20), status “Appeal Successful”.",
+      },
+      withdrawal: {
+        body: "Isplata je bila zaustavljena u toku provere usklađenosti. Nakon naše prijave transfer je odobren i emitovan na mrežu.",
+        label: "Bybit",
+        meta: "Isplata zadržana na proveri",
+        outcome: "Oslobođeno · 27,576.98 USDT poslato",
+        proof: "Bybit confirmation email: status isplate promenjen u “sent” — 27,576.9793 USDT preko Ethereum (ERC-20).",
+      },
+      manual_transfer: {
+        body: "Kada verifikacija ne može da se završi, nalog se zatvara. Osigurali smo izlaz koji čuva balans — jednokratni manuelni transfer celokupnog iznosa na novčanik koji kontroliše klijent.",
+        label: "Bybit",
+        meta: "Verifikacija nije moguća",
+        outcome: "Sredstva vraćena na klijentov novčanik",
+        proof: "Bybit Customer Support odobrava jednokratni manuelni transfer dostupnih sredstava pre zatvaranja naloga.",
+      },
+      binance_withdrawal: {
+        body: "Kada je nalog očišćen, klijent je podigao sredstva. Isplata je prihvaćena i poslata na mrežu — 171,867 USDT.",
+        label: "Binance",
+        meta: "Sredstva oslobođena · isplata",
+        outcome: "Isplata potvrđena · 171,867 USDT",
+        proof: "Binance Withdraw Crypto — \"Withdrawal Request Submitted\": primalac prima 171,867.37 USDT preko Tron (TRC-20), iz Spot novčanika.",
+      },
+    },
+  },
+  caseStudies: {
+    index: {
+      title: "Dokumentovani slučajevi povraćaja kripto naloga — Bybit & Binance",
+      description:
+        "Četiri rešena slučaja objavljena sa screenshotima od same berze: Apel za Abnormal Asset Origin, isplata zadržana na proveri, manuelni transfer pre zatvaranja i oslobođen Binance balans.",
+      heading: "Dokumentovani slučajevi",
+      intro:
+        "Četiri rešena slučaja, svaki sa pratećom komunikacijom ili screenshotom. Svaki slučaj objašnjen tako da bude koristan čak i ako nas ne kontaktirate — šta je berza označila i šta je potrebno da se odgovori.",
+    },
+    labels: {
+      breadcrumb: "Slučajevi",
+      exchange: "Berza",
+      trigger: "Okidač",
+      outcome: "Ishod",
+      evidence: "Dokaz",
+      read: "Pročitaj celu priču",
+      back: "Svi dokumentovani slučajevi",
+      related: "Drugi slučajevi",
+    },
+    cta: {
+      headline: "Da li je vaš slučaj sličan?",
+      sub: "Pošaljite poruke od berze i kratak opis. U roku od 24h dobijate poštenu procenu da li je slučaj dobitan — besplatno.",
+      button: "Besplatna procena",
+    },
+    items: {
+      appeal: {
+        title: "Bybit \"Abnormal Asset Origin\": 21,267 USDT oslobođeno po žalbi",
+        description:
+          "Balans na Bybit-u je izolovan zbog Abnormal Asset Origin politike i oslobođen nakon žalbe. Šta ta oznaka zapravo znači i šta žalba treba da sadrži.",
+        heading: "Bybit \"Abnormal Asset Origin\": 21,267 USDT oslobođeno nakon žalbe",
+        intro:
+          "Funding account je pokazivao 0, a 21,267 USDT su bili zadržani. Identifikovali smo koji depozit je izazvao oznaku, pripremili dokumente i podneli žalbu kanalom koji ide do compliance tima.",
+        sections: [
+          { title: "Šta se desilo", body: "Balans je izolovan po Bybit " + '"Abnormal Asset Origin"' + ", identifikovali smo zastavicu i pripremili dokumentaciju." },
+          { title: "Šta zapravo znači", body: "Oznaka ukazuje na to da su kovanice imale istoriju koja implicira rizik — miješalice, sankcije ili kompromitovane adrese — i zato je balans automatski izolovan." },
+          { title: "Zašto samostalne žalbe često ne uspeju", body: "Instinktivni odgovor da niste učinili ništa nije dovoljan. Potreban je dokumentovani lanac porekla povezan sa transakcijama." },
+        ],
+      },
+      withdrawal: {
+        title: "Bybit isplata zadržana u compliance proveri — 27,576.98 USDT oslobođeno",
+        description:
+          "Isplata je bila zadržana tokom compliance provere i oslobođena nakon naše prijave. Zašto se dešava i šta pokreće rešavanje.",
+        heading: "Bybit isplata zadržana u compliance proveri: 27,576.98 USDT oslobođeno",
+        intro: "Isplata je bila zaustavljena, mi smo podneli zahtev i transfer je odobren i poslat na mrežu.",
+        sections: [
+          { title: "Šta se desilo", body: "Isplata je bila zadržana tokom provere — nakon naše prijave je odobrena i emitovana." },
+          { title: "Zašto se dešava kada je nalog u redu", body: "Zadržavanje se dešava na nivou transfera, često zbog adrese prijema ili neobične sume." },
+          { title: "Šta pokreće rešavanje", body: "Podnošenje dokaza vezanih direktno za transakciju — potvrda vlasništva adrese i poreklo sredstava." },
+        ],
+      },
+      manual_transfer: {
+        title: "Verifikacija nije moguća — kompletan balans vraćen pre zatvaranja",
+        description:
+          "Ako verifikacija ne može da se završi, nalog se zatvara. Vraćanje balansa je odvojeni proces sa ograničenim vremenom — evo kako smo osigurali izlaz.",
+        heading: "Verifikacija nije moguća: kompletan balans vraćen pre zatvaranja",
+        intro: "Verifikacija nije uspela i nalog je zatvoren — osigurali smo jednokratni transfer sredstava na klijentov novčanik pre zatvaranja.",
+        sections: [
+          { title: "Šta se desilo", body: "Nalog je trajno zatvoren; omogućili smo manuelni transfer sredstava na adresu pod kontrolom klijenta." },
+          { title: "Zašto je to rok, a ne spor", body: "Vraćanje sredstava ima vremensko ograničenje; dok traje spor o dokumentima, prozor za transfer može isteći." },
+          { title: "Šta promeniti u zahtevu", body: "Prestanite da apelujete verifikaciju i zatražite izlaz — to je drugi tim sa različitim zahtevima." },
+        ],
+      },
+      binance_withdrawal: {
+        title: "Binance balans oslobođen — 171,867 USDT isplaćeno nakon razrešenja",
+        description:
+          "Nalog je očišćen i isplata je prihvaćena na mreži. Razlika između oslobađanja balansa i samog izlaza objašnjava zašto planiranje ima značaj.",
+        heading: "Binance balans oslobođen: 171,867 USDT isplaćeno nakon razrešenja",
+        intro: "Nakon razrešenja, klijent je podigao sredstva i transfer je potvrđen — 171,867.37 USDT preko Tron (TRC-20).",
+        sections: [
+          { title: "Šta se desilo", body: "Nakon razrešenja, isplata je izvršena i potvrđena u interfejsu berze." },
+          { title: "Oslobađanje i izlaz su različite stvari", body: "Velika isplata odmah nakon razrešenja može ponovo pokrenuti proveru; planirajte izlaz." },
+          { title: "Šta to znači u praksi", body: "Sačuvajte paket dokaza i planirajte whitelist adrese i izbor mreže pre isplate." },
+        ],
+      },
+    },
+  },
+  faq: {
+    eyebrow: "Pitanja",
+    headline: "Najčešća pitanja",
+    items: [
+      { q: "Koliko traje otključavanje naloga?", a: "Zavisi od uzroka zamrzavanja i vremena odgovora compliance tima berze. Prva procena daje realan interval." },
+      { q: "Da li garantujete vraćanje naloga?", a: "Ne. Ishod zavisi od berze i činjenica slučaja. Prvi pregled je poštena procena, ne garancija." },
+      { q: "Sa kojim berzama radite?", a: "Dokazani slučajevi na sajtu su za Bybit i Binance, ali radimo i s drugim velikim berzama." },
+      { q: "Da li ćete tražiti lozinku ili seed?", a: "Nikad. Ništa od toga nam nije potrebno; ako neko to traži, to nije sigurno." },
+      { q: "Koliko to košta?", a: "Prvi pregled je besplatan. Naknade za dalje usluge se dogovaraju po slučaju." },
+      { q: "Da li su moji podaci poverljivi?", a: "Da. Ne delimo podatke trećim stranama i objave su redigovane po dogovoru klijenta." },
+      { q: "Kako početi?", a: "Pošaljite poruke od berze i kratak opis putem forme. Odgovor u roku od 24h." },
+    ],
+  },
+  closing: {
+    headline: "Saznajte da li je vaš slučaj dobitan",
+    sub: "Besplatna procena sa odgovorom u roku od 24h. Reći ćemo verovatni uzrok i realan ishod.",
+    cta: "Zatraži besplatnu procenu",
+    reassurance: "Nikad ne tražimo lozinke, seed fraze ili 2FA kodove.",
+  },
+  legal: {
+    privacy: {
+      title: "Politika privatnosti — CORESEC FINANCE",
+      description:
+        "Kako CORESEC FINANCE prikuplja, koristi i čuva informacije koje pošaljete kada tražite pomoć zbog zamrznutog kripto naloga.",
+      heading: "Politika privatnosti",
+      intro: "Ova politika objašnjava šta prikupljamo, zašto i šta ne radimo sa tim podacima.",
+      sections: [
+        { title: "Šta prikupljamo", body: "Samo ono što unesete u formu: ime, email, po želji Telegram, telefon, naziv berze i opis situacije." },
+        { title: "Šta nikad ne tražimo", body: "Ne tražimo lozinke, seed fraze, privatne ključeve, 2FA kodove ili daljinski pristup." },
+        { title: "Ko još vidi podatke", body: "Podaci se ne prodaju. Otkrivamo ih berzi ili savetniku samo kada je to neophodno i uz vaš zahtev." },
+        { title: "Vaša prava", body: "Možete zatražiti uvid, ispravku ili brisanje podataka — pošaljite zahtev na email u footeru." },
+        { title: "Cookies i analitika", body: "Sajt ne postavlja reklamne ili prateće kolačiće. Izbor jezika i ref kod čuvaju se u session storage-u korisnika." },
+      ],
+    },
+    terms: {
+      title: "Uslovi korišćenja — CORESEC FINANCE",
+      description:
+        "Uslovi pod kojima CORESEC FINANCE pruža konsultantske usluge za oporavak kripto naloga: obim, naknade i ograničenja.",
+      heading: "Uslovi korišćenja",
+      intro: "Ovi uslovi opisuju šta radimo i šta ne, i granice naše odgovornosti.",
+      sections: [
+        { title: "Šta je usluga", body: "Pružamo konsultacije i pripremamo žalbe za zamrznute ili ograničene naloge." },
+        { title: "Šta nije usluga", body: "Nismo advokati; ne kršimo bezbednost, ne obnavljamo izgubljene seed fraze i ne poništavamo potvrđene transakcije." },
+        { title: "Nema garancija", body: "Ne garantujemo povratak naloga; to zavisi od politike berze i okolnosti slučaja." },
+        { title: "Prvi pregled besplatan", body: "Prvi pregled ne naplaćuje se; dalji rad se plaća dogovorom." },
+        { title: "Šta očekujemo od vas", body: "Tačne informacije i poruke od berze; nedostatak istinitih podataka može dovesti do obustave rada." },
+        { title: "Ograničenje odgovornosti", body: "Odgovornost je ograničena iznosom koji ste platili za taj slučaj." },
+        { title: "Poverljivost", body: "Detalji slučaja su poverljivi i objave su redigovane uz saglasnost klijenta." },
+      ],
+    },
+  },
+  footer: {
+    tagline:
+      "Žalbe i priprema slučajeva za zamrznute naloge — AML oznake, zaglavljene verifikacije i provere usklađenosti.",
+    language: "Jezik",
+    legal: "Pravno",
+    privacy: "Politika privatnosti",
+    terms: "Uslovi korišćenja",
+    contact: "Kontakt",
+    email: "core.sec.finance@gmail.com",
+    telegram: "@coresec_finance",
+    instagram: "coresec.finance",
+    rights: "Sva prava zadržana.",
+  },
+};
+
+export const dictionaries: Record<Lang, Dictionary> = { en, uk, ru, sr };
