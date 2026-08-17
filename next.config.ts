@@ -1,20 +1,23 @@
 import type { NextConfig } from "next";
 
+const googleTag = "https://www.googletagmanager.com";
+const googleAnalytics = "https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com";
+
 const scriptSrc =
   process.env.NODE_ENV === "production"
-    ? "script-src 'self' 'unsafe-inline' https://connect.facebook.net"
-    : "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://connect.facebook.net";
+    ? `script-src 'self' 'unsafe-inline' https://connect.facebook.net ${googleTag}`
+    : `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://connect.facebook.net ${googleTag}`;
 
 const csp = [
   "default-src 'self'",
   scriptSrc,
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://www.facebook.com https://connect.facebook.net",
+  `img-src 'self' data: blob: https://www.facebook.com https://connect.facebook.net ${googleTag} ${googleAnalytics}`,
   "font-src 'self' data:",
-  "connect-src 'self' https://www.facebook.com https://connect.facebook.net",
+  `connect-src 'self' https://www.facebook.com https://connect.facebook.net ${googleTag} ${googleAnalytics}`,
   "form-action 'self'",
   "frame-ancestors 'none'",
-  "frame-src 'none'",
+  `frame-src ${googleTag}`,
   "child-src 'none'",
   "worker-src 'self'",
   "manifest-src 'self'",
