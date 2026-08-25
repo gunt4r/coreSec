@@ -16,7 +16,7 @@ const csp = [
   "font-src 'self' data:",
   `connect-src 'self' https://www.facebook.com https://connect.facebook.net ${googleTag} ${googleAnalytics}`,
   "form-action 'self'",
-  "frame-ancestors 'none'",
+  "frame-ancestors 'self' https://tagassistant.google.com",
   `frame-src ${googleTag}`,
   "child-src 'none'",
   "worker-src 'self'",
@@ -46,7 +46,6 @@ const permissionsPolicy = [
 const securityHeaders = [
   { key: "Content-Security-Policy", value: csp },
   { key: "X-Content-Type-Options", value: "nosniff" },
-  { key: "X-Frame-Options", value: "DENY" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "Permissions-Policy", value: permissionsPolicy },
   { key: "Cross-Origin-Opener-Policy", value: "same-origin-allow-popups" },
