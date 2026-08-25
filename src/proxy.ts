@@ -15,6 +15,9 @@ const LANG_COOKIE_OPTIONS = {
 const LOCALIZABLE = new Set(["route", "cases", "case", "thankyou"]);
 
 function languageRedirect(request: NextRequest): NextResponse | null {
+  // GTM Preview / Tag Assistant drive the page in a popup carrying gtm_debug.
+  // Redirecting that popup severs the debug handshake, so leave it in place.
+  if (request.nextUrl.searchParams.has("gtm_debug")) return null;
   if (request.cookies.has(LANG_COOKIE)) return null;
   if (isBotUserAgent(request.headers.get("user-agent"))) return null;
 
