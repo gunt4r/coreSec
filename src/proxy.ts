@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { DEFAULT_LANG } from "@/i18n/langs";
+import { DEFAULT_LANG, isLang } from "@/i18n/langs";
 import { isBotUserAgent, preferredLanguage } from "@/lib/lang-detect";
 import { resolvePath, swapLang } from "@/lib/routes";
 
@@ -47,7 +47,9 @@ export function proxy(request: NextRequest) {
 
   if (resolved.kind === "referral") {
     const url = request.nextUrl.clone();
-    url.pathname = "/";
+    const first = request.nextUrl.pathname.split("/").filter(Boolean)[0];
+    const lang = isLang(first) && first !== DEFAULT_LANG ? first : DEFAULT_LANG;
+    url.pathname = lang === DEFAULT_LANG ? "/" : `/${lang}`;
     return NextResponse.rewrite(url);
   }
 
