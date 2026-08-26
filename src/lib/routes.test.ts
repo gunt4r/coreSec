@@ -38,6 +38,14 @@ test("treats a bare code segment as a referral so blogger links keep working", (
   assert.deepEqual(resolvePath("/a-_9"), { kind: "referral", code: "a-_9" });
 });
 
+test("a language-prefixed code opens the referral in that language", () => {
+  assert.deepEqual(resolvePath("/sr/I0MIrSWGFC5BZ3NB"), {
+    kind: "referral",
+    code: "I0MIrSWGFC5BZ3NB",
+  });
+  assert.deepEqual(resolvePath("/uk/a-_9"), { kind: "referral", code: "a-_9" });
+});
+
 test("never mistakes a language prefix or a real page for a referral code", () => {
   for (const path of ["/uk", "/ru", "/privacy", "/terms", "/uk/privacy"]) {
     assert.notEqual(resolvePath(path).kind, "referral", path);
@@ -52,7 +60,6 @@ test("redirects the /en prefix back to the canonical bare domain", () => {
 test("junk paths stay unknown so they can 404 instead of duplicating the homepage", () => {
   for (const path of [
     "/wp-admin/setup.php",
-    "/uk/nope",
     "/a",
     "/one/two/three",
     "/en/nope",
@@ -106,7 +113,8 @@ test("swapLang keeps the visitor on the same page in the new language", () => {
   assert.equal(swapLang(`/cases/${SLUG}`, "uk"), `/uk/cases/${SLUG}`);
   assert.equal(swapLang(`/ru/cases/${SLUG}`, "en"), `/cases/${SLUG}`);
   assert.equal(swapLang("/uk/cases", "ru"), "/ru/cases");
-  assert.equal(swapLang("/I0MIrSWGFC5BZ3NB", "uk"), "/uk");
+  assert.equal(swapLang("/I0MIrSWGFC5BZ3NB", "uk"), "/uk/I0MIrSWGFC5BZ3NB");
+  assert.equal(swapLang("/sr/I0MIrSWGFC5BZ3NB", "en"), "/I0MIrSWGFC5BZ3NB");
 });
 
 test("pageOf survives referral and junk paths", () => {

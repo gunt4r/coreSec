@@ -103,8 +103,11 @@ export function resolvePath(pathname: string): Resolved {
   const resolved = resolveRest(lang, rest);
   if (resolved) return resolved;
 
-  if (!prefixed && segments.length === 1 && REFERRAL_CODE.test(head)) {
-    return { kind: "referral", code: head };
+  // A lone code segment is a referral link. It works with or without a
+  // language prefix, so a partner link can open in a specific language
+  // (e.g. /sr/<code>). The homepage is served while the code stays in the URL.
+  if (rest.length === 1 && REFERRAL_CODE.test(rest[0])) {
+    return { kind: "referral", code: rest[0] };
   }
 
   return { kind: "unknown" };
@@ -121,5 +124,8 @@ export function swapLang(pathname: string, next: Lang): string {
   if (resolved.kind === "cases") return hrefForCases(next);
   if (resolved.kind === "thankyou") return hrefForThankYou(next);
   if (resolved.kind === "route") return hrefFor(next, resolved.page);
+  if (resolved.kind === "referral") {
+    return next === DEFAULT_LANG ? `/${resolved.code}` : `/${next}/${resolved.code}`;
+  }
   return hrefFor(next);
 }
